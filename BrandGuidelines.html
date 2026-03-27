@@ -982,40 +982,95 @@ code, pre, .meta-code {
   border: 0;
 }
 
-/* ── Concierge Table ── */
-.concierge-table {
-  width: 100%;
-  border-collapse: collapse;
-  font-size: 0.86rem;
-  margin-top: 16px;
+/* ── Concierge Cards ── */
+.cc-main-line {
+  background: var(--ink);
+  color: #fff;
+  padding: 20px 26px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 28px;
 }
 
-.concierge-table th {
-  text-align: left;
-  font-size: 0.7rem;
+.cc-label {
+  font-size: 0.75rem;
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: var(--ink);
-  padding: 10px 12px;
-  border-bottom: 2px solid var(--ink);
-  background: var(--paper);
+  letter-spacing: 0.15em;
 }
 
-.concierge-table td {
-  padding: 10px 12px;
-  border-bottom: 1px solid var(--line);
-  color: var(--muted);
-  vertical-align: top;
+.cc-phone {
+  font-size: 1.3rem;
+  font-weight: 300;
+  letter-spacing: 0.05em;
+  color: #fff;
+  text-decoration: none;
 }
 
-.concierge-table td:first-child {
+.cc-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.cc-card {
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 22px 24px;
+  transition: box-shadow 0.3s;
+}
+
+.cc-card:hover {
+  box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+}
+
+.cc-card h4 {
+  font-size: 0.78rem;
   font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
   color: var(--ink);
-  white-space: nowrap;
+  margin: 0 0 4px;
+  border-bottom: 2px solid var(--ink);
+  padding-bottom: 8px;
 }
 
-.concierge-table a { color: var(--ink); }
+.cc-name {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--text);
+  margin-top: 10px;
+  margin-bottom: 6px;
+}
+
+.cc-detail {
+  font-size: 0.82rem;
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+.cc-detail a {
+  color: #2a6496;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.cc-detail a:hover { color: var(--ink); }
+
+.cc-hours {
+  font-size: 0.75rem;
+  color: var(--subtle);
+  font-style: italic;
+  margin-top: 6px;
+}
+
+.cc-note {
+  font-size: 0.75rem;
+  color: var(--subtle);
+  margin-top: 6px;
+}
 
 /* ── Footer ── */
 .footer {
@@ -1078,6 +1133,7 @@ code, pre, .meta-code {
   .cover-mountain { width: 110%; bottom: -10%; left: 50%; }
   .scope-section { padding: 28px 16px; }
   .scope-grid { gap: 16px; }
+  .cc-grid { grid-template-columns: 1fr; }
 }
 </style>
 </head>
@@ -1814,24 +1870,76 @@ https://hobackclub.com/Default.aspx?p=.NETCEEditorPFSTC&amp;NoNav=1&amp;ShowFoot
             </div>
           </div>
           <div class="module-preview-pane" style="padding: 32px;">
-            <p style="font-size: 0.82rem; color: var(--subtle); margin-bottom: 8px;">Main Line: <strong style="color: var(--ink);">(307) 249-1000</strong></p>
-            <table class="concierge-table">
-              <thead><tr><th>Department</th><th>Contact</th><th>Phone</th><th>Email</th></tr></thead>
-              <tbody>
-                <tr><td>All Inquiries &amp; Concierge</td><td>Mel Toye</td><td>(307) 249-5913</td><td><a href="mailto:Concierge@hobackclub.com">Concierge@hobackclub.com</a></td></tr>
-                <tr><td>Member &amp; Guest Services</td><td>Cassidy Ballard</td><td>(307) 249-5903</td><td><a href="mailto:Cassidy.Ballard@hobackclub.com">Cassidy.Ballard@hobackclub.com</a></td></tr>
-                <tr><td>Room Reservations</td><td>Kristen Carelas</td><td>(307) 249-5914</td><td><a href="mailto:Reservations@hobackclub.com">Reservations@hobackclub.com</a></td></tr>
-                <tr><td>Dining / Host Stand</td><td>Vanessa Flory</td><td>(307) 249-5943</td><td><a href="mailto:dining@hobackclub.com">dining@hobackclub.com</a></td></tr>
-                <tr><td>Bar</td><td>Dee Bloomquist</td><td>(307) 249-5940</td><td></td></tr>
-                <tr><td>Director of F&amp;B</td><td>Nelson Veiga</td><td>(307) 249-5940</td><td>Banquet &amp; party reservations</td></tr>
-                <tr><td>Ski &amp; Parking Valet</td><td>Mike Quintiliani</td><td>(307) 249-5920</td><td><a href="mailto:Mike.Quintiliani@hobackclub.com">Mike.Quintiliani@hobackclub.com</a></td></tr>
-                <tr><td>Spa Reception</td><td></td><td>(307) 249-5930</td><td><a href="mailto:Spa@hobackclub.com">Spa@hobackclub.com</a></td></tr>
-                <tr><td>Property Manager</td><td>Megan McClintock</td><td>(307) 249-5951</td><td><a href="mailto:Megan.Mcclintock@hobackclub.com">Megan.Mcclintock@hobackclub.com</a></td></tr>
-                <tr><td>Night Security</td><td>Rob Hymas</td><td>(307) 249-5963</td><td>10 PM &ndash; 7 AM</td></tr>
-                <tr><td>Receiving &amp; Day Security</td><td>Mike Blawn / Dani Pevy</td><td>(307) 249-5962</td><td><a href="mailto:Receiving@hobackclub.com">Receiving@hobackclub.com</a></td></tr>
-                <tr><td>General Manager</td><td>John R. Newman</td><td>(307) 249-5901</td><td><a href="mailto:John.Newman@hobackclub.com">John.Newman@hobackclub.com</a></td></tr>
-              </tbody>
-            </table>
+            <div class="cc-main-line">
+              <span class="cc-label">Main Line</span>
+              <a href="tel:+13072491000" class="cc-phone">(307) 249-1000</a>
+            </div>
+
+            <div class="cc-grid">
+              <div class="cc-card">
+                <h4>All Inquiries &amp; Concierge</h4>
+                <div class="cc-name">Mel Toye</div>
+                <div class="cc-detail">Email: <a href="mailto:Concierge@hobackclub.com">Concierge@hobackclub.com</a><br>Phone: <a href="tel:+13072495913">(307) 249-5913</a><br>Internal: 5913</div>
+              </div>
+              <div class="cc-card">
+                <h4>Member &amp; Guest Services</h4>
+                <div class="cc-name">Cassidy Ballard</div>
+                <div class="cc-detail">Email: <a href="mailto:Cassidy.Ballard@hobackclub.com">Cassidy.Ballard@hobackclub.com</a><br>Phone: <a href="tel:+13072495903">(307) 249-5903</a><br>Internal: 5903</div>
+              </div>
+              <div class="cc-card">
+                <h4>Room Reservations</h4>
+                <div class="cc-name">Kristen Carelas</div>
+                <div class="cc-detail">Email: <a href="mailto:Kristen.Carelas@hobackclub.com">Kristen.Carelas@hobackclub.com</a><br>or <a href="mailto:Reservations@hobackclub.com">Reservations@hobackclub.com</a><br>Phone: <a href="tel:+13072495914">(307) 249-5914</a><br>Internal: 5914</div>
+              </div>
+              <div class="cc-card">
+                <h4>Dining Reservations / Host Stand</h4>
+                <div class="cc-name">Vanessa Flory</div>
+                <div class="cc-detail">Email: <a href="mailto:dining@hobackclub.com">dining@hobackclub.com</a><br>Phone: <a href="tel:+13072495943">(307) 249-5943</a><br>Internal: 5943</div>
+              </div>
+              <div class="cc-card">
+                <h4>Bar</h4>
+                <div class="cc-name">Dee Bloomquist</div>
+                <div class="cc-detail">Phone: <a href="tel:+13072495940">(307) 249-5940</a></div>
+              </div>
+              <div class="cc-card">
+                <h4>Director of Food &amp; Beverage</h4>
+                <div class="cc-name">Nelson Veiga</div>
+                <div class="cc-detail">Phone: <a href="tel:+13072495940">(307) 249-5940</a></div>
+                <div class="cc-note">For Banquet &amp; Party Reservations</div>
+              </div>
+              <div class="cc-card">
+                <h4>Ski &amp; Parking Valet</h4>
+                <div class="cc-name">Mike Quintiliani</div>
+                <div class="cc-detail">Email: <a href="mailto:Mike.Quintiliani@hobackclub.com">Mike.Quintiliani@hobackclub.com</a><br>Phone: <a href="tel:+13072495920">(307) 249-5920</a><br>Internal: 5920</div>
+                <div class="cc-hours">Hours: 7 AM to 10 PM</div>
+              </div>
+              <div class="cc-card">
+                <h4>Reservations &amp; Spa Reception</h4>
+                <div class="cc-detail">Email: <a href="mailto:Spa@hobackclub.com">Spa@hobackclub.com</a><br>Phone: <a href="tel:+13072495930">(307) 249-5930</a></div>
+                <div class="cc-note">If no Spa response, call Massage Artistry Dispatch at <a href="tel:+13857431350">(385) 743-1350</a></div>
+              </div>
+              <div class="cc-card">
+                <h4>Property Manager (Rooms)</h4>
+                <div class="cc-name">Megan McClintock</div>
+                <div class="cc-detail">Email: <a href="mailto:Megan.Mcclintock@hobackclub.com">Megan.Mcclintock@hobackclub.com</a><br>Phone: <a href="tel:+13072495951">(307) 249-5951</a><br>Main Club Line <a href="tel:+13072491000">(307) 249-1000</a> Option 4</div>
+              </div>
+              <div class="cc-card">
+                <h4>Night Security / Emergency Night Maintenance</h4>
+                <div class="cc-name">Rob Hymas</div>
+                <div class="cc-detail">Phone: <a href="tel:+13072495963">(307) 249-5963</a></div>
+                <div class="cc-hours">Hours: 10 PM to 7 AM</div>
+              </div>
+              <div class="cc-card">
+                <h4>Receiving &amp; Day Security</h4>
+                <div class="cc-name">Mike Blawn / Dani Pevy</div>
+                <div class="cc-detail">Email: <a href="mailto:Receiving@hobackclub.com">Receiving@hobackclub.com</a><br>Phone: <a href="tel:+13072495962">(307) 249-5962</a></div>
+              </div>
+              <div class="cc-card">
+                <h4>General Manager</h4>
+                <div class="cc-name">John R. Newman</div>
+                <div class="cc-detail">Email: <a href="mailto:John.Newman@hobackclub.com">John.Newman@hobackclub.com</a><br>Phone: <a href="tel:+13072495901">(307) 249-5901</a></div>
+              </div>
+            </div>
           </div>
           <div class="module-code-pane" id="concierge-code-pane" data-source="concierge.html">
             <pre>Loading source...</pre>
