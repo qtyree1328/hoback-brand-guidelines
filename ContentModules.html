@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hoback Club — Complete Content Modules</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&family=Cormorant+Garamond:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #1e2d3a;
+  --tan: #ede9e1;
+  --paper: #f7f5f2;
+  --line: #e8e4df;
+  --muted: #666;
+  --subtle: #7a8d98;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: "Lato", Helvetica, Arial, sans-serif;
+  color: #272f36;
+  background: var(--paper);
+}
+a { color: inherit; }
+code { font-family: "SFMono-Regular", Menlo, Monaco, Consolas, monospace; }
+
+/* ── Top bar ── */
+.top-bar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 28px;
+  background: rgba(30, 45, 58, 0.97);
+  backdrop-filter: blur(8px);
+  color: #fff;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+
+.top-bar h1 {
+  margin: 0;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 1.4rem;
+  font-weight: 300;
+}
+
+.top-bar-links {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+
+.top-bar-links a {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  text-decoration: none;
+  color: rgba(255,255,255,0.65);
+  transition: color 0.2s;
+}
+
+.top-bar-links a:hover { color: #fff; }
+
+.viewport-toggle {
+  display: inline-flex;
+  border-radius: 999px;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.2);
+}
+
+.viewport-toggle button {
+  padding: 6px 14px;
+  font-family: "Lato", sans-serif;
+  font-size: 0.66rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  border: none;
+  background: transparent;
+  color: rgba(255,255,255,0.5);
+  cursor: pointer;
+}
+
+.viewport-toggle button.active {
+  background: rgba(255,255,255,0.15);
+  color: #fff;
+}
+
+/* ── Module wrapper ── */
+.modules-stream {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 32px 40px;
+}
+
+.module-entry {
+  margin-bottom: 28px;
+  background: #fff;
+  overflow: hidden;
+  border-radius: 12px;
+  box-shadow: 0 6px 24px rgba(30,45,58,0.06);
+  border: 1px solid rgba(30,45,58,0.06);
+}
+
+.module-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 14px 24px;
+  background: var(--ink);
+  color: #fff;
+  flex-wrap: wrap;
+  border-radius: 12px 12px 0 0;
+}
+
+.module-bar h3 {
+  margin: 0;
+  font-size: 0.74rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+}
+
+.module-bar .meta {
+  font-size: 0.66rem;
+  color: rgba(255,255,255,0.45);
+}
+
+.module-bar .toggle {
+  display: inline-flex;
+  border-radius: 999px;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.2);
+}
+
+.module-bar .toggle button {
+  padding: 5px 12px;
+  font-family: "Lato", sans-serif;
+  font-size: 0.62rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  border: none;
+  background: transparent;
+  color: rgba(255,255,255,0.5);
+  cursor: pointer;
+}
+
+.module-bar .toggle button.active {
+  background: rgba(255,255,255,0.15);
+  color: #fff;
+}
+
+.module-preview {
+  position: relative;
+  background: #fff;
+  overflow: hidden;
+}
+
+.module-iframe {
+  display: block;
+  border: 0;
+  background: #fff;
+  transform-origin: top left;
+  will-change: transform;
+}
+
+.module-code {
+  display: none;
+  max-height: 500px;
+  overflow: auto;
+  background: #1a1a2e;
+  padding: 0;
+}
+
+.module-code pre {
+  margin: 0;
+  padding: 20px;
+  white-space: pre-wrap;
+  word-break: break-word;
+  font-size: 0.8rem;
+  line-height: 1.7;
+  color: #d4d4d8;
+  tab-size: 2;
+}
+
+.module-entry.show-code .module-preview { display: none; }
+.module-entry.show-code .module-code { display: block; }
+
+/* ── Mobile frame ── */
+body.mobile-view .modules-stream {
+  max-width: 430px;
+  margin: 0 auto;
+  padding: 24px 16px;
+}
+
+@media (max-width: 900px) {
+  .modules-stream { padding: 24px 20px; }
+}
+
+@media (max-width: 500px) {
+  .top-bar { padding: 12px 16px; flex-wrap: wrap; gap: 8px; }
+  .top-bar h1 { font-size: 1.1rem; }
+  .modules-stream { padding: 16px 12px; }
+  .module-entry { margin-bottom: 16px; }
+}
+</style>
+</head>
+<body>
+
+<div class="top-bar">
+  <h1>Complete Content Modules</h1>
+  <div class="top-bar-links">
+    <a href="BrandGuidelines.html">&larr; Brand Guidelines</a>
+    <div class="viewport-toggle">
+      <button class="active" onclick="setView('desktop', this)">Desktop</button>
+      <button onclick="setView('mobile', this)">Mobile</button>
+    </div>
+  </div>
+</div>
+
+<div class="modules-stream" id="modulesStream"></div>
+
+<script>
+var ALL_MODULES = [
+  { title: "Home Hero", subtitle: "Full-screen video with curtain reveal", page: "index.html", file: "home-hero.html", previewSrc: "module-previews/home-hero.html", sourceSrc: "injectable-modules/home-hero.html", fw: 1440, fh: 900 },
+  { title: "Image Gallery", subtitle: "Horizontal scrollable image strip", page: "index.html", file: "home-image-gallery.html", previewSrc: "module-previews/home-image-gallery.html", sourceSrc: "injectable-modules/home-image-gallery.html", fw: 1440, fh: 260 },
+  { title: "Mountain Drawing Section", subtitle: "Tan section with sketch, heading and CTA", page: "index.html", file: "home-mountain-drawing.html", previewSrc: "module-previews/home-mountain-drawing.html", sourceSrc: "injectable-modules/home-mountain-drawing.html", fw: 1440, fh: 500 },
+  { title: "Life at Hoback Showcase", subtitle: "Cinematic alternating image/text panels", page: "index.html", file: "home-showcase-panels.html", previewSrc: "module-previews/home-showcase-panels.html", sourceSrc: "injectable-modules/home-showcase-panels.html", fw: 1440, fh: 2660 },
+  { title: "Seasons Section", subtitle: "Four-column season cards with hover", page: "index.html", file: "home-seasons.html", previewSrc: "module-previews/home-seasons.html", sourceSrc: "injectable-modules/home-seasons.html", fw: 1440, fh: 860 },
+  { title: "Season Hero", subtitle: "Four-panel hoverable season selector", page: "lifestyle.html", file: "lifestyle-season-hero.html", previewSrc: "module-previews/lifestyle-season-hero.html", sourceSrc: "injectable-modules/lifestyle-season-hero.html", fw: 1440, fh: 900 },
+  { title: "Activity Toggle", subtitle: "Winter/Summer toggle with activity cards", page: "lifestyle.html", file: "lifestyle-activity-toggle.html", previewSrc: "module-previews/lifestyle-activity-toggle.html", sourceSrc: "injectable-modules/lifestyle-activity-toggle.html", fw: 1440, fh: 3050 },
+  { title: "Mountain Report", subtitle: "Snow totals, weather, lift status", page: "mountain.html", file: "mountain-weather-report.html", previewSrc: "module-previews/mountain-weather-report.html", sourceSrc: "injectable-modules/mountain-weather-report.html", fw: 1440, fh: 450 },
+  { title: "Mountain Webcams", subtitle: "Live streams, panoramic views, static cameras", page: "mountain.html", file: "mountain-webcams.html", previewSrc: "module-previews/mountain-webcams.html", sourceSrc: "injectable-modules/mountain-webcams.html", fw: 1440, fh: 2280 },
+  { title: "Trail Explorer", subtitle: "Interactive Mapbox trail map", page: "mountain.html", file: "mountain-trail-explorer.html", previewSrc: "module-previews/mountain-trail-explorer.html", sourceSrc: "injectable-modules/mountain-trail-explorer.html", fw: 1440, fh: 760 },
+  { title: "Flyover Video", subtitle: "Fullscreen aerial journey video", page: "mountain.html", file: "mountain-flyover-video.html", previewSrc: "module-previews/mountain-flyover-video.html", sourceSrc: "injectable-modules/mountain-flyover-video.html", fw: 1440, fh: 765 },
+  { title: "Valley Explorer", subtitle: "Clickable location cards + Mapbox map", page: "mountain.html", file: "mountain-valley-explorer.html", previewSrc: "module-previews/mountain-valley-explorer.html", sourceSrc: "injectable-modules/mountain-valley-explorer.html", fw: 1440, fh: 760 },
+  { title: "Dining Menu Toggle", subtitle: "Dinner/Lunch tabs with full menu", page: "dining.html", file: "dining-menu-toggle.html", previewSrc: "module-previews/dining-menu-toggle.html", sourceSrc: "injectable-modules/dining-menu-toggle.html", fw: 1440, fh: 2900 }
+];
+
+function escapeHtml(s) {
+  return s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+}
+
+function buildEntry(m, i) {
+  var id = "mod-" + i;
+  return '<div class="module-entry" id="' + id + '">' +
+    '<div class="module-bar">' +
+      '<div><h3>' + m.title + ' &mdash; ' + m.subtitle + '</h3>' +
+      '<span class="meta">' + m.page + ' &rarr; ' + m.file + '</span></div>' +
+      '<div class="toggle">' +
+        '<button class="active" onclick="showPrev(\'' + id + '\',this)">Preview</button>' +
+        '<button onclick="showSrc(\'' + id + '\',this)">HTML</button>' +
+      '</div>' +
+    '</div>' +
+    '<div class="module-preview">' +
+      '<iframe class="module-iframe" src="' + m.previewSrc + '" title="' + m.title + '" loading="lazy"' +
+      ' data-fw="' + m.fw + '" data-fh="' + m.fh + '" style="height:' + m.fh + 'px;"></iframe>' +
+    '</div>' +
+    '<div class="module-code" data-source="' + m.sourceSrc + '"><pre>Loading source...</pre></div>' +
+  '</div>';
+}
+
+document.getElementById("modulesStream").innerHTML = ALL_MODULES.map(buildEntry).join("");
+
+function showPrev(id, btn) {
+  var el = document.getElementById(id);
+  el.classList.remove("show-code");
+  el.querySelectorAll(".toggle button").forEach(function(b) { b.classList.remove("active"); });
+  btn.classList.add("active");
+}
+
+function showSrc(id, btn) {
+  var el = document.getElementById(id);
+  el.classList.add("show-code");
+  el.querySelectorAll(".toggle button").forEach(function(b) { b.classList.remove("active"); });
+  btn.classList.add("active");
+  var cp = el.querySelector(".module-code");
+  if (cp.dataset.loaded) return;
+  fetch(cp.dataset.source)
+    .then(function(r) { return r.text(); })
+    .then(function(t) { cp.querySelector("pre").textContent = t; cp.dataset.loaded = "1"; })
+    .catch(function() { cp.querySelector("pre").textContent = "// Could not load source"; });
+}
+
+function sizeFrames() {
+  document.querySelectorAll(".module-iframe[data-fw]").forEach(function(frame) {
+    var pane = frame.parentElement;
+    var fw = parseFloat(frame.dataset.fw);
+    var fh = parseFloat(frame.dataset.fh);
+    if (!pane || !fw || !fh) return;
+    var scale = pane.clientWidth / fw;
+    frame.style.width = fw + "px";
+    frame.style.height = fh + "px";
+    frame.style.transform = "scale(" + scale + ")";
+    pane.style.height = Math.round(fh * scale) + "px";
+  });
+}
+
+window.addEventListener("load", function() { sizeFrames(); setTimeout(sizeFrames, 200); });
+window.addEventListener("resize", sizeFrames);
+
+function setView(mode, btn) {
+  document.body.classList.toggle("mobile-view", mode === "mobile");
+  document.querySelectorAll(".viewport-toggle button").forEach(function(b) { b.classList.remove("active"); });
+  btn.classList.add("active");
+  setTimeout(sizeFrames, 50);
+}
+</script>
+</body>
+</html>

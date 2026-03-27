@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hoback Club - Mailchimp Setup Guide</title>
+<link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Cormorant+Garamond:wght@300;400&display=swap" rel="stylesheet">
+<style>
+body { font-family: 'Lato', sans-serif; color: #272f36; background: #f7f5f2; margin: 0; padding: 40px; max-width: 800px; margin: 0 auto; }
+h1 { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: 2.2rem; color: #1e2d3a; margin-bottom: 4px; }
+h2 { font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.2em; color: #1e2d3a; margin: 40px 0 16px; border-bottom: 2px solid #1e2d3a; padding-bottom: 8px; }
+h3 { font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: #1e2d3a; margin: 24px 0 8px; }
+p, li { font-size: 0.9rem; color: #555; line-height: 1.8; }
+.subtitle { font-size: 0.8rem; color: #999; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 30px; }
+.section { background: #fff; border-radius: 8px; padding: 30px; margin-bottom: 20px; }
+ol, ul { padding-left: 20px; }
+ol li, ul li { margin-bottom: 8px; }
+code { background: #f0ede8; padding: 2px 6px; border-radius: 3px; font-size: 0.8rem; }
+.step-num { display: inline-block; width: 28px; height: 28px; background: #1e2d3a; color: #fff; border-radius: 50%; text-align: center; line-height: 28px; font-size: 0.75rem; font-weight: 700; margin-right: 8px; flex-shrink: 0; }
+.step { display: flex; align-items: flex-start; margin-bottom: 16px; }
+.step p { margin: 0; flex: 1; }
+.warning { background: #fff8e6; border-left: 4px solid #e6a817; padding: 14px 18px; border-radius: 0 6px 6px 0; margin: 16px 0; }
+.warning p { margin: 0; color: #8a6d00; font-size: 0.85rem; }
+.file-list { display: grid; grid-template-columns: 1fr 2fr; gap: 8px 20px; margin: 12px 0; }
+.file-list dt { font-weight: 700; font-size: 0.85rem; color: #1e2d3a; font-family: monospace; }
+.file-list dd { margin: 0; font-size: 0.85rem; color: #666; }
+</style>
+</head>
+<body>
+
+<h1>Mailchimp Setup Guide</h1>
+<p class="subtitle">Hoback Club - Dining Events Email Template</p>
+
+<!-- ===== WHAT'S IN THE FOLDER ===== -->
+<div class="section">
+<h2>What's in This Folder</h2>
+<dl class="file-list">
+  <dt>hoback-email-template.html</dt>
+  <dd>The Mailchimp-ready HTML email template with editable regions. This is what you import.</dd>
+  <dt>design-guide.html</dt>
+  <dd>Brand reference with colors, typography, button styles, and hosted image URLs. For your reference only — not imported into Mailchimp.</dd>
+  <dt>SETUP-GUIDE.html</dt>
+  <dd>This file. Step-by-step instructions for getting everything into Mailchimp.</dd>
+  <dt>logo-footer.svg</dt>
+  <dd>Shield logo for email header and footer (white on transparent).</dd>
+  <dt>logo-nav.svg</dt>
+  <dd>Horizontal wordmark logo.</dd>
+  <dt>tetons_drawing.png</dt>
+  <dd>Teton Range mountain sketch — used as decorative watermark in the intro section.</dd>
+  <dt>hoback_drawing.png</dt>
+  <dd>Hoback building sketch — used in the closing section.</dd>
+</dl>
+</div>
+
+
+<!-- ===== STEP 1 ===== -->
+<div class="section">
+<h2>Step 1 — Upload Images to Content Studio</h2>
+<p>Before importing the template, upload all images so Mailchimp hosts them and you have permanent URLs.</p>
+
+<div class="step"><span class="step-num">1</span><p>Log in to Mailchimp. In the left sidebar, go to <strong>Content &rarr; My Files</strong> (Content Studio).</p></div>
+<div class="step"><span class="step-num">2</span><p>Click <strong>Upload</strong> and select these 4 files from this folder:</p></div>
+<ul>
+  <li><code>logo-footer.svg</code></li>
+  <li><code>logo-nav.svg</code></li>
+  <li><code>tetons_drawing.png</code></li>
+  <li><code>hoback_drawing.png</code></li>
+</ul>
+<div class="step"><span class="step-num">3</span><p>After upload, click each image and copy its <strong>URL</strong> (click the image, then "Copy URL" or right-click and copy image address). Save these URLs — you'll need them in Step 2.</p></div>
+
+<div class="warning">
+  <p><strong>Note on SVG:</strong> Some email clients don't render SVG. If the logo doesn't display in test sends, export the SVGs as PNG files (at 2x resolution for retina) and upload those instead.</p>
+</div>
+</div>
+
+
+<!-- ===== STEP 2 ===== -->
+<div class="section">
+<h2>Step 2 — Update Image URLs in the Template</h2>
+<p>Open <code>hoback-email-template.html</code> in a text editor (TextEdit, VS Code, Notepad — anything works).</p>
+<p>Find and replace these placeholder <code>src</code> values with the Mailchimp Content Studio URLs you copied:</p>
+
+<dl class="file-list">
+  <dt>src="logo-footer.svg"</dt>
+  <dd>Replace with your Mailchimp-hosted logo URL (appears 2 times — header and footer)</dd>
+  <dt>src="tetons_drawing.png"</dt>
+  <dd>Replace with your Mailchimp-hosted tetons drawing URL (appears 1 time — intro section)</dd>
+  <dt>src="hoback_drawing.png"</dt>
+  <dd>Replace with your Mailchimp-hosted hoback drawing URL (appears 1 time — closing section)</dd>
+</dl>
+
+<div class="warning">
+  <p><strong>Tip:</strong> Use Find &amp; Replace (Ctrl+H / Cmd+H) to swap all instances at once. The event placeholder images (<code>hobackclub.com/images/dynamic/...</code>) can stay as-is — the dining room manager will replace them in the editor.</p>
+</div>
+</div>
+
+
+<!-- ===== STEP 3 ===== -->
+<div class="section">
+<h2>Step 3 — Import the Template into Mailchimp</h2>
+
+<div class="step"><span class="step-num">1</span><p>In Mailchimp, go to <strong>Content &rarr; Email templates</strong>.</p></div>
+<div class="step"><span class="step-num">2</span><p>Click <strong>Create Template</strong>.</p></div>
+<div class="step"><span class="step-num">3</span><p>Choose <strong>Code your own &rarr; Paste in code</strong>.</p></div>
+<div class="step"><span class="step-num">4</span><p>Open your updated <code>hoback-email-template.html</code>, select all the code (Ctrl+A / Cmd+A), copy it, and paste into the Mailchimp code editor.</p></div>
+<div class="step"><span class="step-num">5</span><p>Click <strong>Preview</strong> to verify the layout looks correct — check the drawing, logos, date badges, and footer.</p></div>
+<div class="step"><span class="step-num">6</span><p>Name the template (e.g., "Hoback Dining Events - 3 Event") and click <strong>Save</strong>.</p></div>
+
+<div class="warning">
+  <p><strong>Template size limit:</strong> Mailchimp allows up to 200KB of HTML. This template is well under that. However, Gmail clips emails larger than 102KB — keep total content (including images loaded inline) lean.</p>
+</div>
+</div>
+
+
+<!-- ===== STEP 4 ===== -->
+<div class="section">
+<h2>Step 4 — Creating a Campaign from the Template</h2>
+<p>This is the workflow the dining room manager will follow each time they send a dining events newsletter:</p>
+
+<div class="step"><span class="step-num">1</span><p>Go to <strong>Create &rarr; Email</strong> (Regular email).</p></div>
+<div class="step"><span class="step-num">2</span><p>Set the <strong>audience</strong> (who receives the email), <strong>subject line</strong>, and <strong>sender</strong>.</p></div>
+<div class="step"><span class="step-num">3</span><p>Under "Content", click <strong>Design Email</strong> and choose <strong>Saved Templates</strong>. Select "Hoback Dining Events - 3 Event".</p></div>
+<div class="step"><span class="step-num">4</span><p>The visual editor opens with all the editable sections. Click on any content block to edit it:</p></div>
+
+<h3>What the Manager Can Edit</h3>
+<ul>
+  <li><strong>Event details</strong> (<code>mc:edit="event_1_details"</code>, etc.) — Change the time, title, and date badge number/month</li>
+  <li><strong>Event images</strong> (<code>mc:edit="event_1_image"</code>, etc.) — Click the image, then "Replace" to pick a new photo from Content Studio or upload one</li>
+  <li><strong>Event descriptions</strong> (<code>mc:edit="event_1_cta"</code>, etc.) — Edit the description text, price, and guest limit. The "Reserve Your Seat" button link can be changed by clicking the button text and editing the URL</li>
+  <li><strong>Intro section</strong> — Update "The Great Hall" subheading or headline if needed</li>
+  <li><strong>Closing section</strong> — Update concierge phone number or "View Full Menu" link</li>
+  <li><strong>Footer</strong> — Links and contact info (usually stays the same)</li>
+</ul>
+
+<div class="step"><span class="step-num">5</span><p>Click <strong>Preview and Test &rarr; Send a Test Email</strong> to yourself before sending to members.</p></div>
+<div class="step"><span class="step-num">6</span><p><strong>Send</strong> or <strong>Schedule</strong> the campaign.</p></div>
+
+<div class="warning">
+  <p><strong>Pro tip:</strong> After the first campaign, the manager can go to Campaigns, find the previous dining email, and click <strong>Replicate</strong>. This copies everything — they just update the 3 events instead of starting from the template each time.</p>
+</div>
+</div>
+
+
+<!-- ===== EDITABLE REGIONS REFERENCE ===== -->
+<div class="section">
+<h2>Editable Regions Reference</h2>
+<p>Every <code>mc:edit</code> region in the template and what it controls:</p>
+
+<table style="width: 100%; border-collapse: collapse; font-size: 0.85rem; margin-top: 12px;">
+  <thead>
+    <tr style="border-bottom: 2px solid #1e2d3a; text-align: left;">
+      <th style="padding: 8px 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; font-size: 0.7rem;">mc:edit name</th>
+      <th style="padding: 8px 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; font-size: 0.7rem;">What to Edit</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr style="border-bottom: 1px solid #e8e4df;">
+      <td style="padding: 8px 12px; font-family: monospace; color: #1e2d3a;">header_logo</td>
+      <td style="padding: 8px 12px; color: #666;">Logo image in the dark blue header bar</td>
+    </tr>
+    <tr style="border-bottom: 1px solid #e8e4df;">
+      <td style="padding: 8px 12px; font-family: monospace; color: #1e2d3a;">intro_section</td>
+      <td style="padding: 8px 12px; color: #666;">Tan section with "The Great Hall" + "Upcoming Dining Events" headline</td>
+    </tr>
+    <tr style="border-bottom: 1px solid #e8e4df;">
+      <td style="padding: 8px 12px; font-family: monospace; color: #1e2d3a;">event_1_details</td>
+      <td style="padding: 8px 12px; color: #666;">Event 1: time, title, and date badge (day number + month)</td>
+    </tr>
+    <tr style="border-bottom: 1px solid #e8e4df;">
+      <td style="padding: 8px 12px; font-family: monospace; color: #1e2d3a;">event_1_image</td>
+      <td style="padding: 8px 12px; color: #666;">Event 1: photo (click to replace from Content Studio)</td>
+    </tr>
+    <tr style="border-bottom: 1px solid #e8e4df;">
+      <td style="padding: 8px 12px; font-family: monospace; color: #1e2d3a;">event_1_cta</td>
+      <td style="padding: 8px 12px; color: #666;">Event 1: description, price, guest limit, and "Reserve Your Seat" button</td>
+    </tr>
+    <tr style="border-bottom: 1px solid #e8e4df;">
+      <td style="padding: 8px 12px; font-family: monospace; color: #1e2d3a;">event_2_details</td>
+      <td style="padding: 8px 12px; color: #666;">Event 2: time, title, and date badge</td>
+    </tr>
+    <tr style="border-bottom: 1px solid #e8e4df;">
+      <td style="padding: 8px 12px; font-family: monospace; color: #1e2d3a;">event_2_image</td>
+      <td style="padding: 8px 12px; color: #666;">Event 2: photo</td>
+    </tr>
+    <tr style="border-bottom: 1px solid #e8e4df;">
+      <td style="padding: 8px 12px; font-family: monospace; color: #1e2d3a;">event_2_cta</td>
+      <td style="padding: 8px 12px; color: #666;">Event 2: description, price, guest limit, and button</td>
+    </tr>
+    <tr style="border-bottom: 1px solid #e8e4df;">
+      <td style="padding: 8px 12px; font-family: monospace; color: #1e2d3a;">event_3_details</td>
+      <td style="padding: 8px 12px; color: #666;">Event 3: time, title, and date badge</td>
+    </tr>
+    <tr style="border-bottom: 1px solid #e8e4df;">
+      <td style="padding: 8px 12px; font-family: monospace; color: #1e2d3a;">event_3_image</td>
+      <td style="padding: 8px 12px; color: #666;">Event 3: photo</td>
+    </tr>
+    <tr style="border-bottom: 1px solid #e8e4df;">
+      <td style="padding: 8px 12px; font-family: monospace; color: #1e2d3a;">event_3_cta</td>
+      <td style="padding: 8px 12px; color: #666;">Event 3: description, price, guest limit, and button</td>
+    </tr>
+    <tr style="border-bottom: 1px solid #e8e4df;">
+      <td style="padding: 8px 12px; font-family: monospace; color: #1e2d3a;">closing_cta</td>
+      <td style="padding: 8px 12px; color: #666;">"Questions or Special Requests?" headline</td>
+    </tr>
+    <tr>
+      <td style="padding: 8px 12px; font-family: monospace; color: #1e2d3a;">footer_content</td>
+      <td style="padding: 8px 12px; color: #666;">Footer: logo, address, phone, social links, legal/unsubscribe</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+<!-- ===== IMAGE SPECS ===== -->
+<div class="section">
+<h2>Image Specifications for the Dining Manager</h2>
+<p>When uploading event photos to Content Studio:</p>
+<ul>
+  <li><strong>Size:</strong> 1200 x 600 pixels (2x for retina — displays at 600 x 300)</li>
+  <li><strong>Format:</strong> JPG or PNG (JPG preferred for photos — smaller file size)</li>
+  <li><strong>Max file size:</strong> Under 1MB per image for fast loading</li>
+  <li><strong>Orientation:</strong> Landscape (horizontal) — portrait images will be cropped</li>
+  <li><strong>Content:</strong> Food, table settings, the dining room, chef — anything that sells the event</li>
+  <li><strong>Always add alt text</strong> when replacing images in the editor (e.g., "Wine Pairing Dinner at The Great Hall")</li>
+</ul>
+</div>
+
+
+<!-- ===== REQUIRED MERGE TAGS ===== -->
+<div class="section">
+<h2>Required Merge Tags (Already Included)</h2>
+<p>The template already includes all legally required Mailchimp merge tags. Don't remove these:</p>
+<ul>
+  <li><code>*|UNSUB|*</code> — Unsubscribe link (required by CAN-SPAM)</li>
+  <li><code>*|LIST:ADDRESSLINE|*</code> — Your physical mailing address (required by CAN-SPAM)</li>
+  <li><code>*|UPDATE_PROFILE|*</code> — Link for members to update their email preferences</li>
+  <li><code>*|CURRENT_YEAR|*</code> — Auto-fills the current year in the copyright line</li>
+</ul>
+<p>Make sure your Mailchimp <strong>audience settings</strong> have the correct physical address filled in (Settings &rarr; Audience name and defaults &rarr; Contact information). This is what <code>*|LIST:ADDRESSLINE|*</code> pulls from.</p>
+</div>
+
+
+<!-- ===== TESTING ===== -->
+<div class="section">
+<h2>Testing Checklist</h2>
+<p>Before the first real send, verify these:</p>
+<ol>
+  <li>Send a test email from Mailchimp to yourself (Gmail, Apple Mail, and Outlook if possible)</li>
+  <li>Check that <strong>logos display</strong> — if SVGs don't show, replace with PNG versions</li>
+  <li>Check that <strong>event images load</strong> and aren't stretched or cropped badly</li>
+  <li>Click every <strong>link and button</strong> — "Reserve Your Seat", "View Full Menu", phone number, social links</li>
+  <li>Verify the <strong>unsubscribe link</strong> works</li>
+  <li>Check the email on a <strong>phone</strong> — the layout should stack to single column</li>
+  <li>Verify the <strong>physical address</strong> appears in the footer (from your Mailchimp audience settings)</li>
+  <li>Check that the <strong>preview text</strong> shows in your inbox list (the "This month at The Great Hall..." line)</li>
+</ol>
+</div>
+
+
+<!-- ===== TROUBLESHOOTING ===== -->
+<div class="section">
+<h2>Troubleshooting</h2>
+
+<h3>Images not showing</h3>
+<p>Make sure image URLs point to Mailchimp's CDN (they should start with <code>https://mcusercontent.com/...</code> or <code>https://gallery.mailchimp.com/...</code>). Local file paths like <code>logo-footer.svg</code> won't work in sent emails.</p>
+
+<h3>Logo not rendering in Outlook</h3>
+<p>Outlook desktop doesn't support SVG. Export the logo as a PNG (at least 140px wide for the header, 100px for the footer) and re-upload to Content Studio.</p>
+
+<h3>Fonts look different in some email clients</h3>
+<p>Google Fonts (Cormorant Garamond, Lato) render in Apple Mail, iOS Mail, and the Gmail app. In Outlook and some webmail clients, they fall back to Georgia (for headlines) and Helvetica/Arial (for body text). This is expected and intentional — the fallback fonts are specified in the template.</p>
+
+<h3>Email looks broken in Outlook</h3>
+<p>The template includes Outlook-specific conditional comments (<code>&lt;!--[if mso]&gt;</code>) for the date badges and closing section layout. If something still looks off in Outlook, the issue is likely a missing closing tag. Validate your HTML before pasting into Mailchimp.</p>
+
+<h3>Mailchimp says "merge tag not found"</h3>
+<p>This usually means an HTML tag is unclosed somewhere in the template, which prevents Mailchimp from parsing the merge tags. Check for any unclosed <code>&lt;td&gt;</code>, <code>&lt;tr&gt;</code>, or <code>&lt;table&gt;</code> tags.</p>
+</div>
+
+</body>
+</html>

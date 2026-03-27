@@ -1,0 +1,114 @@
+<!-- MODULE: Image Gallery — Horizontal scrollable image strip -->
+<!-- Source: index.html -->
+<!-- Dependencies: GALLERY_IMAGES array (from gallery-config.js or inline) -->
+
+<style>
+/* ===== IMAGE GALLERY ===== */
+.img-carousel {
+  background: #ede9e1;
+  padding: 90px 0 80px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+.img-carousel::-webkit-scrollbar { display: none; }
+
+.img-carousel__track {
+  display: flex;
+  align-items: center;
+  gap: 50px;
+  padding: 0 60px;
+  width: max-content;
+}
+
+.img-carousel__slide {
+  flex-shrink: 0;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.img-carousel__slide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+@media (max-width: 768px) {
+  .img-carousel { padding: 60px 0 50px; }
+  .img-carousel__track { gap: 36px; padding: 0 30px; }
+}
+</style>
+
+<!-- HTML -->
+<section class="img-carousel" id="imgGallery">
+  <div class="img-carousel__track" id="imgCarouselTrack"></div>
+</section>
+
+<!-- JS -->
+<script>
+// Image Gallery — endless loop carousel
+// Each entry: { src, alt, scale (multiplier on BASE_WIDTH), aspect (height/width ratio) }
+(function() {
+  var track = document.getElementById('imgCarouselTrack');
+  if (!track || typeof GALLERY_IMAGES === 'undefined') return;
+
+  var BASE_WIDTH = 220;
+  var gap = 50;
+
+  function makeSlide(item) {
+    var w = Math.round(BASE_WIDTH * (item.scale || 1));
+    var slide = document.createElement('div');
+    slide.className = 'img-carousel__slide';
+    slide.style.width = w + 'px';
+    slide.style.height = Math.round(w * (item.aspect || 0.75)) + 'px';
+    var img = document.createElement('img');
+    img.src = item.src;
+    img.alt = item.alt || '';
+    img.loading = 'lazy';
+    slide.appendChild(img);
+    return slide;
+  }
+
+  // 3 copies for seamless loop
+  for (var copy = 0; copy < 3; copy++) {
+    GALLERY_IMAGES.forEach(function(item) {
+      track.appendChild(makeSlide(item));
+    });
+  }
+
+  var container = document.getElementById('imgGallery');
+  if (!container) return;
+
+  var slidesPerSet = GALLERY_IMAGES.length;
+  var allSlides = track.querySelectorAll('.img-carousel__slide');
+  var oneSetWidth = 0;
+  for (var i = 0; i < slidesPerSet; i++) {
+    oneSetWidth += allSlides[i].offsetWidth + gap;
+  }
+
+  container.scrollLeft = 0;
+  var speed = 0.4;
+  var paused = false;
+  var resumeTimer;
+
+  function drift() {
+    if (!paused) {
+      container.scrollLeft += speed;
+      if (container.scrollLeft >= oneSetWidth) {
+        container.scrollLeft -= oneSetWidth;
+      }
+    }
+    requestAnimationFrame(drift);
+  }
+  requestAnimationFrame(drift);
+
+  function pause() { paused = true; clearTimeout(resumeTimer); }
+  function resume() { clearTimeout(resumeTimer); resumeTimer = setTimeout(function() { paused = false; }, 2000); }
+  container.addEventListener('mouseenter', pause);
+  container.addEventListener('mouseleave', resume);
+  container.addEventListener('touchstart', pause, { passive: true });
+  container.addEventListener('touchend', resume, { passive: true });
+})();
+</script>

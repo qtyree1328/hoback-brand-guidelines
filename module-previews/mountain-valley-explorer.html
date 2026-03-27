@@ -1,0 +1,193 @@
+<!-- MODULE: Valley Explorer — Clickable location cards + Mapbox map -->
+<!-- Source: mountain.html -->
+<!-- Dependencies: Mapbox GL JS for the map panel, location images -->
+
+<link href="https://api.mapbox.com/mapbox-gl-js/v3.9.3/mapbox-gl.css" rel="stylesheet">
+<script src="https://api.mapbox.com/mapbox-gl-js/v3.9.3/mapbox-gl.js"></script>
+
+<style>
+.valley-explorer { background: #f7f5f2; min-height: 700px; padding: 60px 0 0; }
+.valley-explorer-header { text-align: center; padding: 0 30px 30px; }
+.valley-explorer-header h2 {
+  font-family: "Lato", sans-serif;
+  color: #1e2d3a;
+  font-size: 2.4rem;
+  font-weight: 300;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  margin-bottom: 8px;
+}
+.valley-explorer-header p { color: #5a6d7a; font-size: 0.9rem; letter-spacing: 0.05em; }
+.valley-explorer-body { display: flex; min-height: 600px; }
+.valley-panel { flex: 0 0 50%; background: #f7f5f2; overflow-y: auto; max-height: 700px; }
+.valley-map-wrap { flex: 0 0 50%; position: relative; min-height: 600px; }
+.valley-map-wrap #valleyMap { width: 100%; height: 100%; position: absolute; inset: 0; }
+.valley-loc { border-bottom: 1px solid #e8e4df; cursor: pointer; transition: background 0.3s; }
+.valley-loc:hover { background: #edeae6; }
+.valley-loc-head { padding: 20px 28px; display: flex; align-items: center; gap: 14px; }
+.valley-loc-num {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: #1e2d3a;
+  color: #fff;
+  font-size: 0.75rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.valley-loc-info { flex: 1; }
+.valley-loc-name {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #1e2d3a;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 2px;
+}
+.valley-loc-preview { font-size: 0.82rem; color: #5a6d7a; line-height: 1.4; }
+.valley-loc-expand { max-height: 0; overflow: hidden; transition: max-height 0.5s cubic-bezier(0.4,0,0.2,1); }
+.valley-loc.active .valley-loc-expand { max-height: 500px; }
+.valley-loc.active { background: #fff; }
+.valley-loc-detail { padding: 0 28px 24px; }
+.valley-loc-detail img { width: 100%; height: 200px; object-fit: cover; border-radius: 4px; margin-bottom: 14px; }
+.valley-loc-detail p { font-size: 0.9rem; color: #3a4f5e; line-height: 1.7; }
+@media (max-width: 768px) {
+  .valley-explorer-body { flex-direction: column; }
+  .valley-panel { max-height: none; }
+  .valley-map-wrap { flex: none; height: 450px; position: relative; min-height: 0; }
+  .valley-map-wrap #valleyMap { position: absolute; }
+}
+</style>
+
+<section class="valley-explorer" id="valleySection">
+  <div class="valley-explorer-header">
+    <h2>Explore Jackson Hole</h2>
+    <p>Discover key destinations in the valley</p>
+  </div>
+  <div class="valley-explorer-body">
+    <div class="valley-panel" id="valleyPanel">
+      <div class="valley-loc" data-idx="0">
+        <div class="valley-loc-head">
+          <div class="valley-loc-num">1</div>
+          <div class="valley-loc-info">
+            <div class="valley-loc-name">Grand Teton National Park</div>
+            <div class="valley-loc-preview">Iconic peaks rising to 13,775 feet</div>
+          </div>
+        </div>
+        <div class="valley-loc-expand"><div class="valley-loc-detail">
+          <img src="https://outdoorbeginner.com/wp-content/uploads/2019/01/beginners-guide-to-grand-teton-hiking-itinerary-e1599526796664.jpg" alt="Grand Teton">
+          <p>Iconic peaks rising to 13,775 feet. World-class mountaineering, hiking, and wildlife viewing in one of America's most dramatic landscapes.</p>
+        </div></div>
+      </div>
+      <div class="valley-loc" data-idx="1">
+        <div class="valley-loc-head">
+          <div class="valley-loc-num">2</div>
+          <div class="valley-loc-info">
+            <div class="valley-loc-name">Hoback Club</div>
+            <div class="valley-loc-preview">An exclusive mountain retreat</div>
+          </div>
+        </div>
+        <div class="valley-loc-expand"><div class="valley-loc-detail">
+          <img src="../images/card-discover.jpg" alt="Hoback Club">
+          <p>An exclusive mountain retreat nestled at the base of Jackson Hole Mountain Resort. Private ski-in/ski-out access with luxury amenities.</p>
+        </div></div>
+      </div>
+      <div class="valley-loc" data-idx="2">
+        <div class="valley-loc-head">
+          <div class="valley-loc-num">3</div>
+          <div class="valley-loc-info">
+            <div class="valley-loc-name">Snake River</div>
+            <div class="valley-loc-preview">Blue-ribbon trout fishing</div>
+          </div>
+        </div>
+        <div class="valley-loc-expand"><div class="valley-loc-detail">
+          <img src="https://hatchetresort.com/wp-content/uploads/2021/10/Snake-fishing-2245.jpeg" alt="Snake River">
+          <p>Blue-ribbon trout fishing through pristine canyon waters. Scenic float trips beneath the Tetons with opportunities to spot bald eagles, moose, and otters.</p>
+        </div></div>
+      </div>
+      <div class="valley-loc" data-idx="3">
+        <div class="valley-loc-head">
+          <div class="valley-loc-num">4</div>
+          <div class="valley-loc-info">
+            <div class="valley-loc-name">Jackson Hole Town</div>
+            <div class="valley-loc-preview">Vibrant mountain town culture</div>
+          </div>
+        </div>
+        <div class="valley-loc-expand"><div class="valley-loc-detail">
+          <img src="https://live.staticflickr.com/1150/1235648564_ddef24e34f_b.jpg" alt="Jackson Hole Town">
+          <p>A vibrant mountain town centered around the iconic elk antler arches of Town Square. Fine dining, western galleries, and apres-ski culture.</p>
+        </div></div>
+      </div>
+      <div class="valley-loc" data-idx="4">
+        <div class="valley-loc-head">
+          <div class="valley-loc-num">5</div>
+          <div class="valley-loc-info">
+            <div class="valley-loc-name">Yellowstone National Park</div>
+            <div class="valley-loc-preview">The world's first national park</div>
+          </div>
+        </div>
+        <div class="valley-loc-expand"><div class="valley-loc-detail">
+          <img src="https://www.nps.gov/yell/learn/nature/images/Wolf_1.jpg" alt="Yellowstone">
+          <p>The world's first national park, just an hour north. Old Faithful, Grand Prismatic Spring, and the largest concentration of wildlife in the lower 48.</p>
+        </div></div>
+      </div>
+    </div>
+    <div class="valley-map-wrap">
+      <div id="valleyMap"></div>
+    </div>
+  </div>
+</section>
+
+<script>
+(function() {
+  if (typeof mapboxgl === "undefined") return;
+
+  var MAPBOX_TOKEN = ["pk.eyJ1IjoicXR5cm","VlIiwiYSI6ImNtaHl5","eHNmeDBoY3oybXEwNT","IxNGgxYmsifQ.VqoAK","KHQxQX-lNNPwVKHmw"].join("");
+  mapboxgl.accessToken = MAPBOX_TOKEN;
+
+  var LOCATIONS = [
+    { name: "Grand Teton National Park", lat: 43.7904, lng: -110.6818, zoom: 11 },
+    { name: "Hoback Club", lat: 43.5877, lng: -110.8279, zoom: 14 },
+    { name: "Snake River", lat: 43.859167, lng: -110.546227, zoom: 12 },
+    { name: "Jackson Hole Town", lat: 43.4799, lng: -110.7624, zoom: 14 },
+    { name: "Yellowstone National Park", lat: 44.4280, lng: -110.5885, zoom: 9 }
+  ];
+
+  var valleyMap = new mapboxgl.Map({
+    container: "valleyMap",
+    style: "mapbox://styles/mapbox/satellite-streets-v12",
+    center: [-110.75, 43.65],
+    zoom: 9,
+    pitch: 40,
+    bearing: 0,
+    antialias: true,
+    interactive: false
+  });
+
+  valleyMap.on("style.load", function() {
+    valleyMap.addSource("mapbox-dem-valley", { type: "raster-dem", url: "mapbox://mapbox.mapbox-terrain-dem-v1", tileSize: 512, maxzoom: 14 });
+    valleyMap.setTerrain({ source: "mapbox-dem-valley", exaggeration: 1.5 });
+    valleyMap.setFog({ color: "rgba(186,210,235,0.4)", "high-color": "rgba(36,92,223,0.3)", "horizon-blend": 0.02, "space-color": "rgba(11,11,25,1)", "star-intensity": 0.1 });
+  });
+
+  var panel = document.getElementById("valleyPanel");
+  var locs = panel.querySelectorAll(".valley-loc");
+  locs.forEach(function(loc) {
+    loc.addEventListener("click", function() {
+      var idx = parseInt(loc.dataset.idx, 10);
+      var wasActive = loc.classList.contains("active");
+      locs.forEach(function(l) { l.classList.remove("active"); });
+      if (!wasActive) {
+        loc.classList.add("active");
+        var dest = LOCATIONS[idx];
+        valleyMap.flyTo({ center: [dest.lng, dest.lat], zoom: dest.zoom, pitch: 55, duration: 2500 });
+      } else {
+        valleyMap.flyTo({ center: [-110.75, 43.65], zoom: 9, pitch: 40, duration: 2000 });
+      }
+    });
+  });
+})();
+</script>

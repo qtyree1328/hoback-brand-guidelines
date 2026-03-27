@@ -1,0 +1,2227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hoback Club Brand Guidelines</title>
+<meta name="description" content="Hoback Club redesign package for Club Essential — brand standards, page structure, and injectable component library.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&family=Cormorant+Garamond:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #1e2d3a;
+  --ink-2: #273845;
+  --tan: #ede9e1;
+  --paper: #f7f5f2;
+  --line: #e8e4df;
+  --text: #272f36;
+  --muted: #666666;
+  --subtle: #7a8d98;
+  --white: #ffffff;
+  --success: #4ade80;
+  --warning: #f59e0b;
+  --shadow-lg: 0 24px 60px rgba(30, 45, 58, 0.10);
+  --shadow-md: 0 16px 36px rgba(30, 45, 58, 0.08);
+  --shadow-sm: 0 6px 18px rgba(30, 45, 58, 0.06);
+  --radius-lg: 26px;
+  --radius-md: 18px;
+  --radius-sm: 12px;
+  --sidebar-width: 268px;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  font-family: "Lato", Helvetica, Arial, sans-serif;
+  color: var(--text);
+  background:
+    radial-gradient(circle at top left, rgba(237, 233, 225, 0.9), transparent 26%),
+    linear-gradient(180deg, #fcfbf9 0%, #f5f1eb 100%);
+}
+
+img { max-width: 100%; display: block; }
+a { color: inherit; }
+code, pre, .meta-code {
+  font-family: "SFMono-Regular", Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+}
+
+/* ── Layout ── */
+.layout { display: flex; min-height: 100vh; }
+
+/* ── Sidebar ── */
+.sidebar {
+  position: fixed;
+  inset: 0 auto 0 0;
+  width: var(--sidebar-width);
+  padding: 24px 20px 24px 22px;
+  background: linear-gradient(180deg, rgba(11, 21, 29, 0.98) 0%, rgba(30, 45, 58, 0.98) 100%);
+  color: rgba(255, 255, 255, 0.88);
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  border-right: 1px solid rgba(255, 255, 255, 0.08);
+  overflow-y: auto;
+  z-index: 100;
+}
+
+.sidebar-top {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.sidebar-logo {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.sidebar-logo img { width: 48px; height: auto; flex-shrink: 0; }
+
+.sidebar-logo-text span { display: block; }
+
+.sidebar-kicker {
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.24em;
+  color: rgba(255, 255, 255, 0.45);
+  margin-bottom: 4px;
+}
+
+.sidebar-title {
+  font-family: "Cormorant Garamond", Georgia, "Times New Roman", serif;
+  font-size: 1.8rem;
+  font-weight: 300;
+  line-height: 0.95;
+}
+
+/* ── Sidebar Nav ── */
+.sidebar-nav {
+  display: grid;
+  gap: 2px;
+}
+
+.sidebar-nav-group-label {
+  padding: 14px 12px 6px;
+  font-size: 0.62rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  color: rgba(255, 255, 255, 0.35);
+}
+
+.sidebar-nav a {
+  padding: 8px 12px;
+  border-radius: 8px;
+  font-size: 0.74rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: rgba(255, 255, 255, 0.62);
+  transition: background 0.25s ease, color 0.25s ease;
+  display: block;
+}
+
+.sidebar-nav a:hover,
+.sidebar-nav a:focus-visible {
+  background: rgba(255, 255, 255, 0.08);
+  color: #ffffff;
+}
+
+.sidebar-nav a.active {
+  background: rgba(255, 255, 255, 0.12);
+  color: #ffffff;
+  font-weight: 700;
+}
+
+.sidebar-footer {
+  margin-top: auto;
+  padding-top: 14px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  display: grid;
+  gap: 10px;
+}
+
+.sidebar-footer small {
+  color: rgba(255, 255, 255, 0.48);
+  font-size: 0.72rem;
+  line-height: 1.6;
+}
+
+.sidebar-action {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 40px;
+  padding: 10px 16px;
+  text-decoration: none;
+  background: var(--tan);
+  color: var(--ink);
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  border-radius: 999px;
+}
+
+/* ── Main ── */
+.main {
+  width: 100%;
+  margin-left: var(--sidebar-width);
+}
+
+/* ── Section ── */
+.section {
+  padding: 52px 48px;
+  border-bottom: 1px solid rgba(30, 45, 58, 0.08);
+}
+
+.section-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 28px;
+}
+
+.section-label {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--subtle);
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+}
+
+.section-header h2 {
+  margin: 0;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: clamp(2.4rem, 4vw, 3.6rem);
+  font-weight: 300;
+  line-height: 0.98;
+  color: var(--ink);
+}
+
+.section-header p,
+.section-intro {
+  max-width: 760px;
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.85;
+  color: var(--muted);
+}
+
+/* ── Cover ── */
+/* ── Cover (full-screen) ── */
+.cover-section {
+  position: relative;
+  background: var(--tan);
+  overflow: hidden;
+  padding: 0;
+  min-height: 100vh;
+  display: flex;
+  align-items: flex-start;
+}
+
+.cover-mountain {
+  position: absolute;
+  bottom: -5%;
+  left: 55%;
+  transform: translateX(-50%);
+  width: 80%;
+  max-width: 1100px;
+  opacity: 0.18;
+  pointer-events: none;
+}
+
+.cover-inner {
+  position: relative;
+  z-index: 1;
+  padding: 80px 52px 60px;
+  max-width: 640px;
+}
+
+.cover-inner h1 {
+  margin: 12px 0 22px;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: clamp(3.6rem, 8vw, 7rem);
+  font-weight: 300;
+  line-height: 0.86;
+  color: var(--ink);
+}
+
+.cover-inner p {
+  max-width: 520px;
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.9;
+  color: var(--muted);
+}
+
+.cover-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 28px;
+}
+
+/* ── Scope cards (below cover) ── */
+.scope-section {
+  padding: 52px 48px;
+  border-bottom: 1px solid rgba(30, 45, 58, 0.08);
+}
+
+.scope-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 36px;
+  padding: 8px 14px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.74);
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: var(--ink);
+}
+
+.hero-meta .pill {
+  border-color: rgba(255, 255, 255, 0.14);
+  background: rgba(255, 255, 255, 0.09);
+  color: #ffffff;
+}
+
+.hero-side { display: grid; gap: 18px; }
+
+.surface-card {
+  padding: 28px;
+  border-radius: var(--radius-lg);
+  background: rgba(255, 255, 255, 0.86);
+  box-shadow: var(--shadow-md);
+}
+
+.surface-card h3 {
+  margin: 0 0 10px;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 1.8rem;
+  font-weight: 300;
+  color: var(--ink);
+}
+
+.surface-card p {
+  margin: 0;
+  line-height: 1.8;
+  color: var(--muted);
+}
+
+.surface-card .value {
+  display: block;
+  margin-top: 14px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--subtle);
+}
+
+.mini-stat-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+  margin-top: 20px;
+}
+
+.mini-stat {
+  padding: 18px 16px;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: rgba(247, 245, 242, 0.9);
+}
+
+.mini-stat strong {
+  display: block;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 2.1rem;
+  font-weight: 300;
+  color: var(--ink);
+}
+
+.mini-stat span {
+  display: block;
+  margin-top: 6px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: var(--subtle);
+}
+
+/* ── Brand Standards inline ── */
+.brand-sub {
+  margin: 40px 0 10px;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 1.6rem;
+  font-weight: 300;
+  color: var(--ink);
+}
+
+.brand-sub-minor {
+  margin: 24px 0 8px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--subtle);
+}
+
+.brand-desc {
+  margin: 0 0 12px;
+  font-size: 0.9rem;
+  line-height: 1.7;
+  color: var(--muted);
+}
+
+.asset-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 16px;
+}
+
+.asset-card-dark,
+.asset-card-light {
+  padding: 24px;
+  border-radius: 16px;
+  text-align: center;
+  display: grid;
+  gap: 8px;
+  justify-items: center;
+}
+
+.asset-card-dark {
+  background: var(--ink);
+  color: #ffffff;
+}
+
+.asset-card-dark strong { color: #ffffff; font-size: 0.82rem; }
+.asset-card-dark span { color: rgba(255,255,255,0.55); font-size: 0.75rem; }
+
+.asset-card-light {
+  background: var(--paper);
+  border: 1px solid var(--line);
+}
+
+.asset-card-light strong { color: var(--ink); font-size: 0.82rem; }
+.asset-card-light span { color: var(--muted); font-size: 0.75rem; }
+
+.brand-urls {
+  margin-top: 20px;
+  padding: 20px;
+  border-radius: 16px;
+  background: #fbfaf7;
+  border: 1px solid var(--line);
+  font-size: 0.78rem;
+  line-height: 2;
+}
+
+.brand-urls strong {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--ink);
+}
+
+.brand-urls code.url {
+  word-break: break-all;
+  color: var(--subtle);
+}
+
+.swatch-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin: 12px 0 20px;
+}
+
+.swatch-item { width: 150px; }
+
+.swatch-block {
+  height: 72px;
+  border-radius: 10px;
+  margin-bottom: 8px;
+  border: 1px solid rgba(0,0,0,0.06);
+}
+
+.swatch-item strong {
+  display: block;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--ink);
+}
+
+.swatch-item code {
+  font-size: 0.78rem;
+  color: var(--subtle);
+}
+
+.type-demo {
+  margin: 12px 0 16px;
+  padding: 20px;
+  border-radius: 12px;
+  background: var(--paper);
+  border: 1px solid var(--line);
+}
+
+.btn-demos {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 16px;
+  margin: 16px 0 24px;
+}
+
+.btn-demo-item {
+  display: grid;
+  gap: 10px;
+  align-content: start;
+  font-size: 0.86rem;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.btn-demo-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 46px;
+  padding: 12px 32px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  font-family: "Lato", sans-serif;
+}
+
+.spec-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.82rem;
+  margin-top: 12px;
+}
+
+.spec-table th {
+  text-align: left;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--ink);
+  padding: 10px 12px;
+  border-bottom: 2px solid var(--ink);
+}
+
+.spec-table td {
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--line);
+  color: var(--muted);
+}
+
+.spec-table td:first-child {
+  font-weight: 700;
+  color: var(--ink);
+  white-space: nowrap;
+}
+
+.impl-list {
+  margin: 12px 0 24px;
+  padding-left: 20px;
+  font-size: 0.88rem;
+  line-height: 2.2;
+  color: var(--muted);
+}
+
+.email-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.primary-link,
+.secondary-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 10px 16px;
+  text-decoration: none;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  border-radius: 999px;
+}
+
+.primary-link { background: var(--ink); color: #ffffff; }
+.secondary-link { border: 2px solid var(--ink); color: var(--ink); }
+
+/* ── Page Section Group ── */
+.page-group-header {
+  padding: 36px 48px;
+  background: var(--ink);
+  color: #ffffff;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.page-group-header h2 {
+  margin: 0;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: clamp(2.2rem, 3.5vw, 3.2rem);
+  font-weight: 300;
+}
+
+.page-group-header p {
+  margin: 10px 0 0;
+  font-size: 0.95rem;
+  line-height: 1.8;
+  color: rgba(255, 255, 255, 0.68);
+  max-width: 700px;
+}
+
+/* ── Page Card ── */
+.page-section {
+  padding: 48px;
+  border-bottom: 1px solid rgba(30, 45, 58, 0.08);
+}
+
+.page-header {
+  margin-bottom: 32px;
+}
+
+.page-header h3 {
+  margin: 0 0 6px;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: clamp(2rem, 3vw, 2.8rem);
+  font-weight: 300;
+  color: var(--ink);
+}
+
+.page-url {
+  display: inline-block;
+  margin-bottom: 10px;
+  font-size: 0.76rem;
+  letter-spacing: 0.06em;
+  color: var(--subtle);
+}
+
+.page-url a {
+  text-decoration: none;
+  color: var(--subtle);
+}
+
+.page-url a:hover { text-decoration: underline; }
+
+.change-blurb {
+  padding: 16px 20px;
+  border-left: 4px solid var(--ink);
+  border-radius: 0 14px 14px 0;
+  background: rgba(255, 255, 255, 0.82);
+  box-shadow: var(--shadow-sm);
+  margin-bottom: 28px;
+}
+
+.change-blurb strong {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--ink);
+}
+
+.change-blurb ul {
+  margin: 0;
+  padding-left: 18px;
+  font-size: 0.92rem;
+  line-height: 1.8;
+  color: var(--muted);
+}
+
+.change-blurb p {
+  margin: 0;
+  font-size: 0.92rem;
+  line-height: 1.8;
+  color: var(--muted);
+}
+
+/* ── Module Card (injectable) ── */
+.module-cards {
+  display: grid;
+  gap: 32px;
+}
+
+.module-card {
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow: var(--shadow-md);
+  border: 1px solid rgba(30, 45, 58, 0.06);
+}
+
+.module-card-header {
+  padding: 16px 24px;
+  background: var(--ink);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.module-card-header h4 {
+  margin: 0;
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+}
+
+.module-card-meta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.module-card-meta .tag {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: rgba(255, 255, 255, 0.48);
+}
+
+.view-toggle {
+  display: inline-flex;
+  border-radius: 999px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.view-toggle button {
+  padding: 6px 14px;
+  font-family: "Lato", sans-serif;
+  font-size: 0.66rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  border: none;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.58);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.view-toggle button.active {
+  background: rgba(255, 255, 255, 0.18);
+  color: #ffffff;
+}
+
+.view-toggle button:hover:not(.active) {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.module-preview-pane {
+  position: relative;
+  background: #ffffff;
+  overflow: hidden;
+}
+
+.module-frame {
+  display: block;
+  border: 0;
+  background: #ffffff;
+  transform-origin: top left;
+  will-change: transform;
+}
+
+.module-code-pane {
+  display: none;
+  max-height: 600px;
+  overflow: auto;
+  background: #1a1a2e;
+  padding: 0;
+}
+
+.module-code-pane pre {
+  margin: 0;
+  padding: 24px;
+  white-space: pre-wrap;
+  word-break: break-word;
+  font-size: 0.82rem;
+  line-height: 1.7;
+  color: #d4d4d8;
+  tab-size: 2;
+}
+
+.module-card.show-code .module-preview-pane { display: none; }
+.module-card.show-code .module-code-pane { display: block; }
+
+/* ── Imagery ── */
+.gallery-note {
+  padding: 20px 22px;
+  border-left: 4px solid var(--ink);
+  border-radius: 0 16px 16px 0;
+  background: rgba(255, 255, 255, 0.86);
+  box-shadow: var(--shadow-sm);
+}
+
+.gallery-note strong {
+  display: block;
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--ink);
+  margin-bottom: 8px;
+}
+
+.gallery-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 18px;
+}
+
+.gallery-group {
+  display: grid;
+  gap: 16px;
+  margin-top: 28px;
+}
+
+.gallery-group-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.gallery-group-head h3 {
+  margin: 0;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 2rem;
+  font-weight: 300;
+  color: var(--ink);
+}
+
+.gallery-group-head span {
+  font-size: 0.76rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--subtle);
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.gallery-card {
+  overflow: hidden;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow: var(--shadow-sm);
+}
+
+.gallery-card a { text-decoration: none; }
+
+.gallery-thumb {
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  background: var(--paper);
+}
+
+.gallery-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.gallery-body { padding: 14px 16px 16px; }
+
+.gallery-body h4 {
+  margin: 0 0 6px;
+  font-size: 0.84rem;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.gallery-body p {
+  margin: 0;
+  font-size: 0.75rem;
+  line-height: 1.6;
+  color: var(--subtle);
+}
+
+.gallery-source {
+  margin-top: 10px;
+  display: inline-flex;
+  min-height: 28px;
+  align-items: center;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: rgba(30, 45, 58, 0.06);
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: var(--ink);
+}
+
+.code-panel {
+  margin-top: 22px;
+  padding: 18px 20px;
+  border-radius: 18px;
+  background: #fbfaf7;
+  border: 1px solid var(--line);
+}
+
+.code-panel pre {
+  margin: 0;
+  white-space: pre-wrap;
+  word-break: break-word;
+  font-size: 0.84rem;
+  line-height: 1.8;
+  color: var(--ink);
+}
+
+/* ── Email Embed ── */
+.email-embed-wrapper {
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+  border: 1px solid rgba(30, 45, 58, 0.08);
+  background: #ffffff;
+}
+
+.email-embed-frame {
+  display: block;
+  width: 100%;
+  height: 1400px;
+  border: 0;
+  background: #ffffff;
+}
+
+/* ── Page Overview ── */
+.overview-columns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+}
+
+.overview-tree {
+  display: grid;
+  gap: 12px;
+}
+
+.overview-item {
+  padding: 14px 16px;
+  border-radius: 12px;
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.8);
+}
+
+.overview-item strong {
+  color: var(--ink);
+  font-size: 0.92rem;
+}
+
+.overview-item code {
+  font-size: 0.72rem;
+  color: var(--subtle);
+  margin-left: 6px;
+}
+
+.overview-item span {
+  display: block;
+  margin-top: 4px;
+  font-size: 0.84rem;
+  line-height: 1.6;
+  color: var(--muted);
+}
+
+/* ── Login Embed ── */
+.login-embed {
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+  border: 1px solid rgba(30,45,58,0.08);
+}
+
+.login-embed iframe {
+  display: block;
+  width: 100%;
+  height: 700px;
+  border: 0;
+}
+
+/* ── Concierge Table ── */
+.concierge-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.86rem;
+  margin-top: 16px;
+}
+
+.concierge-table th {
+  text-align: left;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--ink);
+  padding: 10px 12px;
+  border-bottom: 2px solid var(--ink);
+  background: var(--paper);
+}
+
+.concierge-table td {
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--line);
+  color: var(--muted);
+  vertical-align: top;
+}
+
+.concierge-table td:first-child {
+  font-weight: 700;
+  color: var(--ink);
+  white-space: nowrap;
+}
+
+.concierge-table a { color: var(--ink); }
+
+/* ── Footer ── */
+.footer {
+  padding: 36px 48px 60px;
+  color: var(--subtle);
+  font-size: 0.86rem;
+  line-height: 1.8;
+}
+
+/* ── Responsive ── */
+@media (max-width: 1380px) {
+  .gallery-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+
+@media (max-width: 1180px) {
+  :root { --sidebar-width: 238px; }
+  .scope-grid,
+  .overview-columns {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 940px) {
+  .layout { display: block; }
+  .sidebar {
+    position: sticky; top: 0; z-index: 200;
+    width: auto; padding: 14px 20px;
+    flex-direction: row; align-items: center;
+    gap: 12px; overflow: visible;
+  }
+  .sidebar-top { display: none; }
+  .sidebar-nav { display: none; position: absolute; top: 100%; left: 0; right: 0; background: rgba(11,21,29,0.98); padding: 16px 20px 24px; max-height: 70vh; overflow-y: auto; }
+  .sidebar-nav.open { display: grid; }
+  .sidebar-footer { margin-top: 0; padding-top: 0; border-top: none; flex-direction: row; align-items: center; gap: 12px; }
+  .sidebar-footer small { display: none; }
+  .sidebar-menu-btn {
+    display: flex !important; align-items: center; gap: 8px;
+    background: none; border: 1px solid rgba(255,255,255,0.2); border-radius: 8px;
+    color: rgba(255,255,255,0.8); padding: 8px 14px; cursor: pointer;
+    font-family: "Lato", sans-serif; font-size: 0.72rem; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.14em;
+  }
+  .sidebar-menu-btn:hover { background: rgba(255,255,255,0.08); }
+  .main { margin-left: 0; }
+  .section, .page-section, .page-group-header, .footer { padding-left: 20px; padding-right: 20px; }
+  .cover-inner { padding: 60px 24px 50px; }
+  .cover-section { min-height: 80vh; }
+  .scope-section { padding: 36px 20px; }
+  .gallery-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .mini-stat-grid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 620px) {
+  .gallery-grid { grid-template-columns: 1fr; }
+  .section-header { display: block; }
+  .section-header p { margin-top: 12px; }
+  .cover-inner { padding: 48px 20px 40px; }
+  .cover-inner h1 { font-size: 3.2rem; }
+  .cover-section { min-height: 70vh; }
+  .cover-mountain { width: 110%; bottom: -10%; left: 50%; }
+  .scope-section { padding: 28px 16px; }
+  .scope-grid { gap: 16px; }
+}
+</style>
+</head>
+<body>
+<div class="layout">
+  <aside class="sidebar">
+    <button class="sidebar-menu-btn" id="sidebarMenuBtn" onclick="document.querySelector('.sidebar-nav').classList.toggle('open'); this.querySelector('span').textContent = document.querySelector('.sidebar-nav').classList.contains('open') ? 'Close' : 'Menu';" style="display:none;">
+      <span>Menu</span>
+    </button>
+    <div class="sidebar-top">
+      <div class="sidebar-logo">
+        <img src="https://mcusercontent.com/c4b9546b92e82ffccc39aa16c/images/1128138d-9212-2ebf-c730-5ca629b99ea9.png" alt="Hoback Club shield">
+        <div class="sidebar-logo-text">
+          <span class="sidebar-kicker">Prepared For Club Essential</span>
+          <span class="sidebar-title">Brand Book</span>
+        </div>
+      </div>
+    </div>
+    <nav class="sidebar-nav" aria-label="Section navigation">
+      <a href="#cover">Cover</a>
+
+      <span class="sidebar-nav-group-label">Brand Standards</span>
+      <a href="#brand-standards">Logo / Color / Type</a>
+      <a href="#imagery">Image Library</a>
+      <a href="#email">Email Template</a>
+
+      <span class="sidebar-nav-group-label">Website</span>
+      <a href="#page-overview">Page Overview</a>
+
+      <span class="sidebar-nav-group-label">Public Site</span>
+      <a href="#pg-homepage">Homepage</a>
+      <a href="#pg-discover">Discover Us</a>
+      <a href="#pg-stay">Come &amp; Stay</a>
+      <a href="#pg-amenities">Amenities</a>
+      <a href="#pg-lifestyle">Lifestyle</a>
+      <a href="#pg-membership">Membership</a>
+      <a href="#pg-contact">Contact Us</a>
+      <a href="#pg-mountain">Mountain</a>
+      <a href="#pg-login">Login</a>
+
+      <span class="sidebar-nav-group-label">Private Dashboard</span>
+      <a href="#pg-myclub">My Club</a>
+      <a href="#pg-dining">Dining</a>
+      <a href="#pg-spa">Spa</a>
+      <a href="#pg-lifestyle-private">Lifestyle</a>
+      <a href="#pg-rental">Rental Program</a>
+      <a href="#pg-mountain-private">Mountain</a>
+      <a href="#pg-concierge">Concierge</a>
+
+      <span class="sidebar-nav-group-label"></span>
+      <a href="ContentModules.html" style="color: var(--tan); font-weight: 700;">All Content Modules &rarr;</a>
+    </nav>
+    <div class="sidebar-footer">
+      <small>Version 2.0<br>March 25, 2026<br>Static review package</small>
+    </div>
+  </aside>
+
+  <main class="main">
+
+    <!-- ════════════════════════════════════════════ -->
+    <!-- COVER                                        -->
+    <!-- ════════════════════════════════════════════ -->
+    <section class="cover-section" id="cover">
+      <img src="images/tetons_drawing4.png" alt="" class="cover-mountain">
+      <div class="cover-inner">
+        <span class="section-label">Hoback Club</span>
+        <h1>Brand<br>Guidelines</h1>
+        <p>Redesign package for review by the design team. This file consolidates brand standards, the full public and private page structure, and every injectable module with live preview and source code.</p>
+        <div class="cover-pills">
+          <span class="pill">Public Site</span>
+          <span class="pill">Member Dashboard</span>
+          <span class="pill">Injectable Modules</span>
+          <span class="pill">Mailchimp Templates</span>
+        </div>
+        <div style="margin-top: 24px;">
+          <a href="https://qtyree1328.github.io/hoback-demo/" target="_blank" rel="noopener" class="sidebar-action" style="font-size: 0.68rem;">View Live Demo Site &rarr;</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="scope-section">
+      <div class="scope-grid">
+        <div class="surface-card">
+          <span class="section-label">Project Scope</span>
+          <h3>What This Package Covers</h3>
+          <p>The redesign spans the public marketing site, private member-facing experiences, reusable Club Essential modules, and a branded email system.</p>
+          <div class="mini-stat-grid">
+            <div class="mini-stat"><strong>9</strong><span>Public Pages</span></div>
+            <div class="mini-stat"><strong>7</strong><span>Private Pages</span></div>
+            <div class="mini-stat"><strong>14</strong><span>Injectable Modules</span></div>
+            <div class="mini-stat"><strong>84</strong><span>Images</span></div>
+          </div>
+        </div>
+
+        <div class="surface-card">
+          <span class="section-label">Redesign Goals</span>
+          <h3>Let the Club Sell Itself</h3>
+          <p>Use the beauty of Hoback Club and Jackson Hole to attract renters. More high-quality images of the club, local wildlife, and local activities. All imagery should follow a consistent luxury style — natural light, composed shots, elevated mood.</p>
+          <span class="value">High-quality club photography / Local wildlife &amp; activities / Consistent luxury aesthetic</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ════════════════════════════════════════════ -->
+    <!-- BRAND STANDARDS (consolidated)               -->
+    <!-- ════════════════════════════════════════════ -->
+    <section class="section" id="brand-standards">
+      <div class="section-header">
+        <div>
+          <span class="section-label">Brand Standards</span>
+          <h2>Logo, Color, Typography &amp; Components</h2>
+        </div>
+        <p>All brand rules for the Hoback Club redesign. This is the single source of truth for visual identity.</p>
+      </div>
+
+      <!-- ── Logos ── -->
+      <h3 class="brand-sub">Logo System &amp; Assets</h3>
+      <p class="brand-desc">All images hosted on Mailchimp Content Studio. Use these URLs directly.</p>
+
+      <div class="asset-row">
+        <div class="asset-card-dark">
+          <img src="https://mcusercontent.com/c4b9546b92e82ffccc39aa16c/images/1128138d-9212-2ebf-c730-5ca629b99ea9.png" alt="Shield Logo" style="max-height: 80px; margin: 0 auto;">
+          <strong>Shield Logo (PNG)</strong>
+          <span>Primary logo for headers/footers</span>
+        </div>
+        <div class="asset-card-light">
+          <img src="https://mcusercontent.com/c4b9546b92e82ffccc39aa16c/files/3808e980-a573-8512-355b-384fd67f773c/logo_nav.svg" alt="Logo Nav" style="max-height: 40px; margin: 0 auto;">
+          <strong>Text Wordmark (SVG)</strong>
+          <span>Horizontal wordmark for compact headers</span>
+        </div>
+      </div>
+
+      <div class="asset-row" style="margin-top: 16px;">
+        <div class="asset-card-light">
+          <img src="https://mcusercontent.com/c4b9546b92e82ffccc39aa16c/images/3014529e-7a5a-646a-3a9c-32e89256771c.png" alt="Teton Range Drawing" style="max-height: 80px; margin: 0 auto; opacity: 0.3;">
+          <strong>Teton Range Drawing</strong>
+          <span>Hero/intro watermark at 15% opacity</span>
+        </div>
+        <div class="asset-card-light">
+          <img src="https://mcusercontent.com/c4b9546b92e82ffccc39aa16c/images/e1d7d626-3731-d70e-5fb3-8f73f62cb84f.png" alt="Building Drawing" style="max-height: 80px; margin: 0 auto; opacity: 0.3;">
+          <strong>Hoback Building Drawing</strong>
+          <span>Closing section accent at 25% opacity</span>
+        </div>
+      </div>
+
+      <div class="brand-urls">
+        <strong>Mailchimp CDN URLs</strong>
+        <div><code>Shield Logo (PNG):</code> <code class="url">https://mcusercontent.com/c4b9546b92e82ffccc39aa16c/images/1128138d-9212-2ebf-c730-5ca629b99ea9.png</code></div>
+        <div><code>Logo Nav (SVG):</code> <code class="url">https://mcusercontent.com/c4b9546b92e82ffccc39aa16c/files/3808e980-a573-8512-355b-384fd67f773c/logo_nav.svg</code></div>
+        <div><code>Mountains (PNG):</code> <code class="url">https://mcusercontent.com/c4b9546b92e82ffccc39aa16c/images/3014529e-7a5a-646a-3a9c-32e89256771c.png</code></div>
+        <div><code>Building (PNG):</code> <code class="url">https://mcusercontent.com/c4b9546b92e82ffccc39aa16c/images/e1d7d626-3731-d70e-5fb3-8f73f62cb84f.png</code></div>
+      </div>
+
+      <!-- ── Colors ── -->
+      <h3 class="brand-sub">Color Palette</h3>
+
+      <h4 class="brand-sub-minor">Primary Palette</h4>
+      <div class="swatch-row">
+        <div class="swatch-item"><div class="swatch-block" style="background: #1e2d3a;"></div><strong>Dark Blue</strong><code>#1e2d3a</code></div>
+        <div class="swatch-item"><div class="swatch-block" style="background: #ede9e1;"></div><strong>Warm Tan</strong><code>#ede9e1</code></div>
+        <div class="swatch-item"><div class="swatch-block" style="background: #f7f5f2;"></div><strong>Light Background</strong><code>#f7f5f2</code></div>
+        <div class="swatch-item"><div class="swatch-block" style="background: #ffffff; border: 1px solid #ddd;"></div><strong>White</strong><code>#ffffff</code></div>
+      </div>
+
+      <h4 class="brand-sub-minor">Text Colors</h4>
+      <div class="swatch-row">
+        <div class="swatch-item"><div class="swatch-block" style="background: #272f36;"></div><strong>Body Text</strong><code>#272f36</code></div>
+        <div class="swatch-item"><div class="swatch-block" style="background: #666;"></div><strong>Secondary Text</strong><code>#666666</code></div>
+        <div class="swatch-item"><div class="swatch-block" style="background: #999;"></div><strong>Muted / Caption</strong><code>#999999</code></div>
+        <div class="swatch-item"><div class="swatch-block" style="background: #7a8d98;"></div><strong>Accent Gray</strong><code>#7a8d98</code></div>
+      </div>
+
+      <h4 class="brand-sub-minor">UI &amp; Accent</h4>
+      <div class="swatch-row">
+        <div class="swatch-item"><div class="swatch-block" style="background: #365e75;"></div><strong>Button Hover</strong><code>#365e75</code></div>
+        <div class="swatch-item"><div class="swatch-block" style="background: #e8e4df;"></div><strong>Divider / Border</strong><code>#e8e4df</code></div>
+      </div>
+
+      <!-- ── Typography ── -->
+      <h3 class="brand-sub">Typography</h3>
+
+      <h4 class="brand-sub-minor">Headline Font &mdash; Cormorant Garamond</h4>
+      <p class="brand-desc">Used for large section headlines, hero text, and event titles. Always light weight (300).</p>
+      <div class="type-demo">
+        <p style="font-family: 'Cormorant Garamond', serif; font-size: 2.4rem; font-weight: 300; color: var(--ink); margin: 0 0 12px;">Upcoming Dining Events</p>
+        <p style="font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; font-weight: 300; color: var(--ink); margin: 0 0 12px;">Wine Pairing Dinner</p>
+        <p style="font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; font-weight: 300; color: var(--ink); margin: 0;">Questions or Special Requests?</p>
+      </div>
+      <p class="brand-desc"><strong>Email sizes:</strong> Hero headline <code>32px</code>, event titles <code>28px</code>, section headings <code>26px</code></p>
+
+      <h4 class="brand-sub-minor">Body Font &mdash; Lato</h4>
+      <p class="brand-desc">Used for all body text, navigation, buttons, labels, and captions.</p>
+      <div class="type-demo">
+        <p style="font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.15em; color: var(--subtle); margin: 0 0 12px;">Subheading Label &mdash; 11px / 700 / uppercase / 3px tracking</p>
+        <p style="font-size: 0.9rem; font-weight: 300; color: var(--muted); line-height: 1.7; margin: 0 0 12px;">Body text — Lato 300, 14px, color #666666, line-height 1.7. Used for event descriptions, paragraph content, and supporting text throughout.</p>
+        <p style="font-size: 0.82rem; font-weight: 700; color: var(--ink); margin: 0 0 12px;">Emphasis text &mdash; Lato 700, 13px, #1e2d3a. Used for pricing, guest limits, and key details.</p>
+        <p style="font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.2em; color: #999; margin: 0;">Time / Meta &mdash; 11px / 700 / uppercase / 3px tracking / #999</p>
+      </div>
+
+      <h4 class="brand-sub-minor">Web Font Links</h4>
+      <p class="brand-desc">Include in <code>&lt;head&gt;</code>. Falls back gracefully in Outlook to Georgia + Helvetica.</p>
+      <div class="type-demo">
+        <code style="font-size: 0.75rem; word-break: break-all;">&lt;link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Cormorant+Garamond:wght@300;400&display=swap" rel="stylesheet"&gt;</code>
+      </div>
+      <p class="brand-desc"><strong>Fallback stacks:</strong><br>
+        Headlines: <code>'Cormorant Garamond', Georgia, 'Times New Roman', serif</code><br>
+        Body: <code>'Lato', Helvetica, Arial, sans-serif</code></p>
+
+      <!-- ── Date Badge ── -->
+      <h3 class="brand-sub">Date Badge</h3>
+      <p class="brand-desc">Square badge showing day and month, positioned to the right of event titles.</p>
+      <div style="display: flex; align-items: center; gap: 30px; margin: 16px 0 32px;">
+        <div style="width: 66px; height: 66px; background: var(--ink); display: flex; flex-direction: column; align-items: center; justify-content: center; flex-shrink: 0;">
+          <span style="font-family: 'Cormorant Garamond', serif; font-size: 26px; font-weight: 300; color: #fff; line-height: 1;">22</span>
+          <span style="font-family: 'Lato', sans-serif; font-size: 10px; font-weight: 700; color: rgba(255,255,255,0.6); text-transform: uppercase; letter-spacing: 2px; line-height: 1.4;">MAR</span>
+        </div>
+        <div style="font-size: 0.82rem; line-height: 2; color: var(--muted);">
+          <strong>Size:</strong> 66 x 66px &nbsp;|&nbsp;
+          <strong>Background:</strong> <code>#1e2d3a</code><br>
+          <strong>Day:</strong> Cormorant Garamond 300, 26px, <code>#ffffff</code><br>
+          <strong>Month:</strong> Lato 700, 10px, uppercase, 2px tracking, <code>rgba(255,255,255,0.6)</code>
+        </div>
+      </div>
+
+      <!-- ── Buttons ── -->
+      <h3 class="brand-sub">Button System</h3>
+      <p class="brand-desc">Five button variants. In email, all buttons must use the "bulletproof button" pattern (table + td with background color) for Outlook compatibility.</p>
+
+      <div class="btn-demos">
+        <div class="btn-demo-item">
+          <span class="btn-demo-pill" style="background: var(--ink); color: #fff;">View Full Menu</span>
+          <div><strong>Primary</strong> &mdash; Main CTA on light backgrounds</div>
+        </div>
+        <div class="btn-demo-item">
+          <span class="btn-demo-pill" style="background: var(--tan); color: var(--ink);">Reserve Your Seat</span>
+          <div><strong>Tan</strong> &mdash; Secondary CTA on white backgrounds</div>
+        </div>
+        <div class="btn-demo-item">
+          <span class="btn-demo-pill" style="border: 2px solid var(--ink); color: var(--ink);">Learn More</span>
+          <div><strong>Outline</strong> &mdash; Tertiary action, lighter visual weight</div>
+        </div>
+        <div class="btn-demo-item" style="background: var(--ink); padding: 16px; border-radius: 12px;">
+          <span class="btn-demo-pill" style="border: 2px solid #fff; color: #fff;">Explore</span>
+          <div style="color: rgba(255,255,255,0.7);"><strong style="color:#fff;">White Outline</strong> &mdash; CTA on dark/image backgrounds</div>
+        </div>
+        <div class="btn-demo-item" style="background: var(--ink); padding: 16px; border-radius: 12px;">
+          <span class="btn-demo-pill" style="background: #fff; color: var(--ink);">Reserve Now</span>
+          <div style="color: rgba(255,255,255,0.7);"><strong style="color:#fff;">White Solid</strong> &mdash; High-emphasis CTA on dark backgrounds</div>
+        </div>
+      </div>
+
+      <table class="spec-table">
+        <thead>
+          <tr><th>Variant</th><th>Background</th><th>Text Color</th><th>Border</th><th>Use On</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Primary</td><td><code>#1e2d3a</code></td><td><code>#ffffff</code></td><td>None</td><td>Light backgrounds, closing CTA</td></tr>
+          <tr><td>Tan</td><td><code>#ede9e1</code></td><td><code>#1e2d3a</code></td><td>None</td><td>White event cards, secondary CTAs</td></tr>
+          <tr><td>Outline</td><td>Transparent</td><td><code>#1e2d3a</code></td><td><code>2px solid #1e2d3a</code></td><td>Light backgrounds, tertiary</td></tr>
+          <tr><td>White Outline</td><td>Transparent</td><td><code>#ffffff</code></td><td><code>2px solid #fff</code></td><td>Dark/image backgrounds</td></tr>
+          <tr><td>White Solid</td><td><code>#ffffff</code></td><td><code>#1e2d3a</code></td><td>None</td><td>Dark backgrounds, high emphasis</td></tr>
+        </tbody>
+      </table>
+
+      <p class="brand-desc" style="margin-top: 16px;"><strong>All variants:</strong> Lato 700, 11px, uppercase, letter-spacing 3px, padding 12px 32px, no border-radius.</p>
+
+    </section>
+
+    <!-- ════════════════════════════════════════════ -->
+    <!-- IMAGERY                                      -->
+    <!-- ════════════════════════════════════════════ -->
+    <section class="section" id="imagery">
+      <div class="section-header">
+        <div>
+          <span class="section-label">Imagery</span>
+          <h2>Image Library</h2>
+        </div>
+        <p>All photography for the redesign. Alpine-luxury standard: natural light, mountain scale, warm earth tones, crisp winter air, calm premium mood.</p>
+      </div>
+
+      <div class="code-panel">
+        <pre>Club Essential admin format:
+https://hobackclub.com/Default.aspx?p=.NETCEEditorPFSTC&amp;NoNav=1&amp;ShowFooter=Falsenoimgtrack=1&amp;NoModResize=1&amp;ID={ID}</pre>
+      </div>
+
+      <div class="gallery-group">
+        <div class="gallery-group-head">
+          <h3>CE Uploaded Images</h3>
+          <span id="libraryCount"></span>
+        </div>
+        <div class="gallery-grid" id="ceImageGrid"></div>
+      </div>
+
+      <div class="gallery-group">
+        <div class="gallery-group-head">
+          <h3>External Photos &mdash; Need to Replace</h3>
+          <span id="externalCount"></span>
+        </div>
+        <div class="gallery-grid" id="externalGrid"></div>
+      </div>
+    </section>
+
+    <!-- ════════════════════════════════════════════ -->
+    <!-- EMAIL                                        -->
+    <!-- ════════════════════════════════════════════ -->
+    <section class="section" id="email">
+      <div class="section-header">
+        <div>
+          <span class="section-label">Email &amp; Marketing</span>
+          <h2>Mailchimp Template Example</h2>
+        </div>
+        <p>Embedded example of the dining events email template.</p>
+      </div>
+
+      <div class="email-embed-wrapper">
+        <iframe src="Hoback_MailChimp/templates/dining-events.html" title="Dining events email template" loading="lazy" class="email-embed-frame"></iframe>
+      </div>
+    </section>
+
+    <!-- ════════════════════════════════════════════════════════════ -->
+    <!--  PAGE OVERVIEW                                              -->
+    <!-- ════════════════════════════════════════════════════════════ -->
+    <section class="section" id="page-overview">
+      <div class="section-header">
+        <div>
+          <span class="section-label">Website</span>
+          <h2>Page Overview</h2>
+        </div>
+        <p>Complete site structure with planned changes for each page.</p>
+      </div>
+
+      <div class="overview-columns">
+        <div class="overview-col">
+          <h3 class="brand-sub" style="margin-top: 0;">Public Site</h3>
+          <div class="overview-tree">
+            <div class="overview-item">
+              <strong>Homepage</strong> <code>/</code>
+              <span>Full redesign. Animated hero (later video), scrollable gallery, Life at Hoback panels, Four Seasons section</span>
+            </div>
+            <div class="overview-item">
+              <strong>Discover Us</strong> <code>/discover</code>
+              <span>Improved layout, add upcoming events section</span>
+            </div>
+            <div class="overview-item">
+              <strong>Come &amp; Stay</strong> <code>/stay</code>
+              <span>Add amenities list, reservation inquiry form, better image gallery</span>
+            </div>
+            <div class="overview-item">
+              <strong>Amenities</strong> <code>/amenities</code>
+              <span>Improved layout, image &amp; text switching sides (zigzag)</span>
+            </div>
+            <div class="overview-item">
+              <strong>Lifestyle</strong> <code>/lifestyle</code>
+              <span>Four seasons panel, activities split between winter and summer with toggle</span>
+            </div>
+            <div class="overview-item">
+              <strong>Membership</strong> <code>/membership</code>
+              <span>Possibly add image gallery</span>
+            </div>
+            <div class="overview-item">
+              <strong>Contact Us</strong> <code>/contact</code>
+              <span>Align styling with new brand system</span>
+            </div>
+            <div class="overview-item">
+              <strong>Mountain</strong> <code>/mountain</code>
+              <span>Full mountain report &amp; weather with live cams, trail map (optional, Mapbox), recorded flyover</span>
+            </div>
+            <div class="overview-item">
+              <strong>Login</strong> <code>/login</code>
+              <span>Complete layout redesign</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="overview-col">
+          <h3 class="brand-sub" style="margin-top: 0;">Private Dashboard</h3>
+          <div class="overview-tree">
+            <div class="overview-item">
+              <strong>My Club</strong> <code>homepage</code>
+              <span>Mountain background on welcome-back, weather this week dropdown (optional), upcoming events</span>
+            </div>
+            <div class="overview-item">
+              <strong>Dining</strong> <code>/dining</code>
+              <span>Full embedded menu with dinner/lunch tab toggle</span>
+            </div>
+            <div class="overview-item">
+              <strong>Spa</strong> <code>/spa</code>
+              <span>Add reserve buttons (not yet replicated)</span>
+            </div>
+            <div class="overview-item">
+              <strong>Lifestyle</strong> <code>/lifestyle</code>
+              <span>Same as public, but with reservation capability</span>
+            </div>
+            <div class="overview-item">
+              <strong>Rental Program</strong> <code>/rental</code>
+              <span>Leave as-is</span>
+            </div>
+            <div class="overview-item">
+              <strong>Mountain</strong> <code>/mountain</code>
+              <span>Same as public mountain page</span>
+            </div>
+            <div class="overview-item">
+              <strong>Concierge</strong> <code>/concierge</code>
+              <span>Full contact list for all club departments</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ════════════════════════════════════════════════════════════ -->
+    <!--  P U B L I C   S I T E                                      -->
+    <!-- ════════════════════════════════════════════════════════════ -->
+    <div class="page-group-header" id="public-site">
+      <span class="section-label" style="color: rgba(255,255,255,0.45);">Website Pages</span>
+      <h2>Public Site</h2>
+      <p>The visitor-facing pages on hobackclub.com. These are the pages any user sees before logging in.</p>
+    </div>
+
+    <!-- ── Homepage ── -->
+    <section class="page-section" id="pg-homepage">
+      <div class="page-header">
+        <span class="page-url"><a href="https://hobackclub.com" target="_blank" rel="noopener">hobackclub.com</a></span>
+        <h3>Homepage</h3>
+      </div>
+      <div class="change-blurb">
+        <strong>Key Changes</strong>
+        <ul>
+          <li>Full redesign of layout and visual hierarchy</li>
+          <li>Animated hero image (later replaced with video)</li>
+          <li>Scrollable image gallery section</li>
+          <li>"Life at Hoback" showcase panels</li>
+          <li>"Four Seasons of Extraordinary Living" section</li>
+        </ul>
+      </div>
+      <div class="module-cards" id="modules-homepage"></div>
+      <div style="margin-top: 24px; display: grid; gap: 12px;">
+        <div class="change-blurb" style="margin-bottom: 0;">
+          <strong>Weather Bar</strong>
+          <p>Use as-is, but link to the <a href="#pg-mountain" style="color: var(--ink); font-weight: 700;">Mountain page</a>.</p>
+        </div>
+        <div class="change-blurb" style="margin-bottom: 0;">
+          <strong>"Explore Our Exclusive Club" Card Carousel</strong>
+          <p>Use as-is.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Discover Us ── -->
+    <section class="page-section" id="pg-discover">
+      <div class="page-header">
+        <span class="page-url"><a href="https://hobackclub.com/Default.aspx?p=dynamicpage&pageid=425175" target="_blank" rel="noopener">hobackclub.com / Discover Us</a></span>
+        <h3>Discover Us</h3>
+      </div>
+      <div class="change-blurb">
+        <strong>Key Changes</strong>
+        <ul>
+          <li>Improved overall layout and visual balance</li>
+          <li>Add an upcoming events section</li>
+        </ul>
+      </div>
+      <div class="module-cards" id="modules-discover"></div>
+    </section>
+
+    <!-- ── Come and Stay ── -->
+    <section class="page-section" id="pg-stay">
+      <div class="page-header">
+        <span class="page-url"><a href="https://hobackclub.com/Default.aspx?p=dynamicpage&pageid=425178" target="_blank" rel="noopener">hobackclub.com / Come &amp; Stay</a></span>
+        <h3>Come &amp; Stay</h3>
+      </div>
+      <div class="change-blurb">
+        <strong>Key Changes</strong>
+        <ul>
+          <li>Add amenities list</li>
+          <li>Add reservation inquiry form</li>
+          <li>Better image gallery</li>
+        </ul>
+      </div>
+      <div class="module-cards">
+        <p style="color: var(--muted); font-size: 0.92rem;">No injectable modules yet. Changes involve template-level layout and a new reservation inquiry component.</p>
+      </div>
+    </section>
+
+    <!-- ── Amenities ── -->
+    <section class="page-section" id="pg-amenities">
+      <div class="page-header">
+        <span class="page-url"><a href="https://hobackclub.com/Default.aspx?p=dynamicpage&pageid=425179" target="_blank" rel="noopener">hobackclub.com / Amenities</a></span>
+        <h3>Amenities</h3>
+      </div>
+      <div class="change-blurb">
+        <strong>Key Changes</strong>
+        <ul>
+          <li>Improved layout throughout</li>
+          <li>Image and text alternate sides per section (zigzag pattern)</li>
+        </ul>
+      </div>
+      <div class="module-cards">
+        <p style="color: var(--muted); font-size: 0.92rem;">No injectable modules yet. The zigzag layout pattern is a template-level change using the showcase panel style.</p>
+      </div>
+    </section>
+
+    <!-- ── Lifestyle ── -->
+    <section class="page-section" id="pg-lifestyle">
+      <div class="page-header">
+        <span class="page-url"><a href="https://hobackclub.com/Default.aspx?p=dynamicpage&pageid=425180" target="_blank" rel="noopener">hobackclub.com / Lifestyle</a></span>
+        <h3>Lifestyle</h3>
+      </div>
+      <div class="change-blurb">
+        <strong>Key Changes</strong>
+        <ul>
+          <li>Four seasons panel at top</li>
+          <li>Activities split between Winter and Summer with toggle</li>
+        </ul>
+      </div>
+      <div class="module-cards" id="modules-lifestyle"></div>
+    </section>
+
+    <!-- ── Membership ── -->
+    <section class="page-section" id="pg-membership">
+      <div class="page-header">
+        <span class="page-url"><a href="https://hobackclub.com/Default.aspx?p=dynamicpage&pageid=425181" target="_blank" rel="noopener">hobackclub.com / Membership</a></span>
+        <h3>Membership</h3>
+      </div>
+      <div class="change-blurb">
+        <strong>Key Changes</strong>
+        <ul>
+          <li>Possibly add image gallery</li>
+        </ul>
+      </div>
+      <div class="module-cards">
+        <p style="color: var(--muted); font-size: 0.92rem;">No injectable modules yet. Pending decision on gallery addition.</p>
+      </div>
+    </section>
+
+    <!-- ── Contact Us ── -->
+    <section class="page-section" id="pg-contact">
+      <div class="page-header">
+        <span class="page-url"><a href="https://hobackclub.com/Default.aspx?p=dynamicpage&pageid=425186" target="_blank" rel="noopener">hobackclub.com / Contact Us</a></span>
+        <h3>Contact Us</h3>
+      </div>
+      <div class="change-blurb">
+        <strong>Key Changes</strong>
+        <p>Standard contact page — align styling with the new brand system.</p>
+      </div>
+      <div class="module-cards">
+        <p style="color: var(--muted); font-size: 0.92rem;">No injectable modules. Brand styling applied at the template level.</p>
+      </div>
+    </section>
+
+    <!-- ── Mountain ── -->
+    <section class="page-section" id="pg-mountain">
+      <div class="page-header">
+        <span class="page-url"><a href="https://hobackclub.com/Default.aspx?p=dynamicpage&pageid=425184" target="_blank" rel="noopener">hobackclub.com / Mountain</a></span>
+        <h3>Mountain</h3>
+      </div>
+      <div class="change-blurb">
+        <strong>Key Changes</strong>
+        <ul>
+          <li>Full mountain report and weather dashboard with live cams</li>
+          <li>Interactive trail map (optional — requires Mapbox)</li>
+          <li>Recorded flyover video</li>
+          <li>Valley explorer with location map</li>
+        </ul>
+      </div>
+      <div class="module-cards" id="modules-mountain"></div>
+    </section>
+
+    <!-- ── Login ── -->
+    <section class="page-section" id="pg-login">
+      <div class="page-header">
+        <span class="page-url"><a href="https://hobackclub.com/Default.aspx?p=Login" target="_blank" rel="noopener">hobackclub.com / Login</a></span>
+        <h3>Login</h3>
+      </div>
+      <div class="change-blurb">
+        <strong>Key Changes</strong>
+        <ul>
+          <li>Complete layout redesign (see login.html prototype)</li>
+        </ul>
+      </div>
+      <div class="module-cards">
+        <div class="module-card" id="login-module">
+          <div class="module-card-header">
+            <div>
+              <h4>Login Page — Full Redesign</h4>
+              <div class="module-card-meta"><span class="tag">login.html</span></div>
+            </div>
+            <div class="view-toggle">
+              <button class="active" onclick="showPreview('login-module', this)">Preview</button>
+              <button onclick="showCode('login-module', this)">HTML Code</button>
+            </div>
+          </div>
+          <div class="module-preview-pane">
+            <div class="login-embed">
+              <iframe src="login.html" title="Login page redesign" loading="lazy"></iframe>
+            </div>
+          </div>
+          <div class="module-code-pane" data-source="login.html">
+            <pre>Loading source...</pre>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ════════════════════════════════════════════════════════════ -->
+    <!--  P R I V A T E   D A S H B O A R D                          -->
+    <!-- ════════════════════════════════════════════════════════════ -->
+    <div class="page-group-header" id="private-site">
+      <span class="section-label" style="color: rgba(255,255,255,0.45);">Website Pages</span>
+      <h2>Private Dashboard</h2>
+      <p>Member-only pages visible after login. These share many modules with the public site but add reservation and personalization features.</p>
+    </div>
+
+    <!-- ── My Club ── -->
+    <section class="page-section" id="pg-myclub">
+      <div class="page-header">
+        <span class="page-url">Member Home (after login)</span>
+        <h3>My Club</h3>
+      </div>
+      <div class="change-blurb">
+        <strong>Key Changes</strong>
+        <ul>
+          <li>Mountain drawing in background of welcome-back section</li>
+          <li>Weather this week dropdown (optional)</li>
+          <li>Upcoming events section</li>
+        </ul>
+      </div>
+      <div class="module-cards" id="modules-myclub"></div>
+      <div style="margin-top: 24px;">
+        <div class="change-blurb" style="margin-bottom: 0;">
+          <strong>Weather Bar</strong>
+          <p>Use as-is, but link to the <a href="#pg-mountain" style="color: var(--ink); font-weight: 700;">Mountain page</a>.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Dining ── -->
+    <section class="page-section" id="pg-dining">
+      <div class="page-header">
+        <span class="page-url">Member Dashboard / Dining</span>
+        <h3>Dining</h3>
+      </div>
+      <div class="change-blurb">
+        <strong>Key Changes</strong>
+        <ul>
+          <li>Full embedded menu with dinner/lunch tab toggle</li>
+          <li>Same structure as winter/summer tabs in Lifestyle</li>
+        </ul>
+      </div>
+      <div class="module-cards" id="modules-dining"></div>
+    </section>
+
+    <!-- ── Spa ── -->
+    <section class="page-section" id="pg-spa">
+      <div class="page-header">
+        <span class="page-url">Member Dashboard / Spa</span>
+        <h3>Spa</h3>
+      </div>
+      <div class="change-blurb">
+        <strong>Key Changes</strong>
+        <ul>
+          <li>Include buttons to reserve spa services</li>
+          <li>Reservation flow not yet replicated — pending development</li>
+        </ul>
+      </div>
+      <div class="module-cards">
+        <p style="color: var(--muted); font-size: 0.92rem;">No injectable modules yet. Reservation system is pending.</p>
+      </div>
+    </section>
+
+    <!-- ── Lifestyle (Private) ── -->
+    <section class="page-section" id="pg-lifestyle-private">
+      <div class="page-header">
+        <span class="page-url">Member Dashboard / Lifestyle</span>
+        <h3>Lifestyle (Private)</h3>
+      </div>
+      <div class="change-blurb">
+        <strong>Key Changes</strong>
+        <ul>
+          <li>Same style as public-facing Lifestyle page</li>
+          <li>Adds ability to reserve activities when in the private dashboard</li>
+        </ul>
+      </div>
+      <div class="module-cards">
+        <p style="color: var(--muted); font-size: 0.92rem;">Uses the same modules as <a href="#pg-lifestyle" style="color: var(--ink); font-weight: 700;">Public Lifestyle</a> — Season Hero and Activity Toggle — with reservation buttons enabled.</p>
+      </div>
+    </section>
+
+    <!-- ── Rental Program ── -->
+    <section class="page-section" id="pg-rental">
+      <div class="page-header">
+        <span class="page-url">Member Dashboard / Rental Program</span>
+        <h3>Rental Program</h3>
+      </div>
+      <div class="change-blurb">
+        <strong>Key Changes</strong>
+        <p>Leave as-is. No redesign changes planned.</p>
+      </div>
+    </section>
+
+    <!-- ── Mountain (Private) ── -->
+    <section class="page-section" id="pg-mountain-private">
+      <div class="page-header">
+        <span class="page-url">Member Dashboard / Mountain</span>
+        <h3>Mountain (Private)</h3>
+      </div>
+      <div class="change-blurb">
+        <strong>Key Changes</strong>
+        <p>Same as <a href="#pg-mountain" style="color: var(--ink); font-weight: 700;">Public Mountain</a> — all the same modules apply.</p>
+      </div>
+    </section>
+
+    <!-- ── Concierge ── -->
+    <section class="page-section" id="pg-concierge">
+      <div class="page-header">
+        <span class="page-url">Member Dashboard / Concierge</span>
+        <h3>Concierge</h3>
+      </div>
+      <div class="change-blurb">
+        <strong>Key Changes</strong>
+        <ul>
+          <li>Full contact list for all club concierge services</li>
+        </ul>
+      </div>
+      <div class="module-cards">
+        <div class="module-card" id="concierge-module">
+          <div class="module-card-header">
+            <div>
+              <h4>Concierge Contacts — Full Directory</h4>
+              <div class="module-card-meta"><span class="tag">concierge.html</span></div>
+            </div>
+            <div class="view-toggle">
+              <button class="active" onclick="document.getElementById('concierge-module').classList.remove('show-code');this.parentElement.querySelectorAll('button').forEach(function(b){b.classList.remove('active')});this.classList.add('active')">Preview</button>
+              <button onclick="document.getElementById('concierge-module').classList.add('show-code');this.parentElement.querySelectorAll('button').forEach(function(b){b.classList.remove('active')});this.classList.add('active');loadConciergeCode()">HTML Code</button>
+            </div>
+          </div>
+          <div class="module-preview-pane" style="padding: 32px;">
+            <p style="font-size: 0.82rem; color: var(--subtle); margin-bottom: 8px;">Main Line: <strong style="color: var(--ink);">(307) 249-1000</strong></p>
+            <table class="concierge-table">
+              <thead><tr><th>Department</th><th>Contact</th><th>Phone</th><th>Email</th></tr></thead>
+              <tbody>
+                <tr><td>All Inquiries &amp; Concierge</td><td>Mel Toye</td><td>(307) 249-5913</td><td><a href="mailto:Concierge@hobackclub.com">Concierge@hobackclub.com</a></td></tr>
+                <tr><td>Member &amp; Guest Services</td><td>Cassidy Ballard</td><td>(307) 249-5903</td><td><a href="mailto:Cassidy.Ballard@hobackclub.com">Cassidy.Ballard@hobackclub.com</a></td></tr>
+                <tr><td>Room Reservations</td><td>Kristen Carelas</td><td>(307) 249-5914</td><td><a href="mailto:Reservations@hobackclub.com">Reservations@hobackclub.com</a></td></tr>
+                <tr><td>Dining / Host Stand</td><td>Vanessa Flory</td><td>(307) 249-5943</td><td><a href="mailto:dining@hobackclub.com">dining@hobackclub.com</a></td></tr>
+                <tr><td>Bar</td><td>Dee Bloomquist</td><td>(307) 249-5940</td><td></td></tr>
+                <tr><td>Director of F&amp;B</td><td>Nelson Veiga</td><td>(307) 249-5940</td><td>Banquet &amp; party reservations</td></tr>
+                <tr><td>Ski &amp; Parking Valet</td><td>Mike Quintiliani</td><td>(307) 249-5920</td><td><a href="mailto:Mike.Quintiliani@hobackclub.com">Mike.Quintiliani@hobackclub.com</a></td></tr>
+                <tr><td>Spa Reception</td><td></td><td>(307) 249-5930</td><td><a href="mailto:Spa@hobackclub.com">Spa@hobackclub.com</a></td></tr>
+                <tr><td>Property Manager</td><td>Megan McClintock</td><td>(307) 249-5951</td><td><a href="mailto:Megan.Mcclintock@hobackclub.com">Megan.Mcclintock@hobackclub.com</a></td></tr>
+                <tr><td>Night Security</td><td>Rob Hymas</td><td>(307) 249-5963</td><td>10 PM &ndash; 7 AM</td></tr>
+                <tr><td>Receiving &amp; Day Security</td><td>Mike Blawn / Dani Pevy</td><td>(307) 249-5962</td><td><a href="mailto:Receiving@hobackclub.com">Receiving@hobackclub.com</a></td></tr>
+                <tr><td>General Manager</td><td>John R. Newman</td><td>(307) 249-5901</td><td><a href="mailto:John.Newman@hobackclub.com">John.Newman@hobackclub.com</a></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="module-code-pane" id="concierge-code-pane" data-source="concierge.html">
+            <pre>Loading source...</pre>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div style="margin-bottom: 20px;">
+        <a class="sidebar-action" href="ContentModules.html">All Content Modules &rarr;</a>
+      </div>
+      Hoback Club Brand Guidelines, prepared March 25, 2026. Primary reference for the redesign package delivered alongside static page prototypes, injectable modules, and the Mailchimp template system.
+    </footer>
+  </main>
+</div>
+
+<script>
+/* ════════════════════════════════════════════════════
+   MODULE REGISTRY
+   Each module is defined once, then assigned to pages.
+   ════════════════════════════════════════════════════ */
+const MODULES = {
+  "home-hero": {
+    title: "Home Hero",
+    subtitle: "Full-screen video with curtain reveal",
+    file: "home-hero.html",
+    page: "index.html",
+    previewSrc: "module-previews/home-hero.html",
+    sourceSrc: "injectable-modules/home-hero.html",
+    frameWidth: 1440, frameHeight: 900
+  },
+  "home-weather-bar": {
+    title: "Weather Bar",
+    subtitle: "5-day forecast strip",
+    file: "home-weather-bar.html",
+    page: "index.html",
+    previewSrc: "module-previews/home-weather-bar.html",
+    sourceSrc: "injectable-modules/home-weather-bar.html",
+    frameWidth: 1440, frameHeight: 100
+  },
+  "home-mountain-drawing": {
+    title: "Mountain Drawing Section",
+    subtitle: "Tan section with sketch, heading and CTA",
+    file: "home-mountain-drawing.html",
+    page: "index.html",
+    previewSrc: "module-previews/home-mountain-drawing.html",
+    sourceSrc: "injectable-modules/home-mountain-drawing.html",
+    frameWidth: 1440, frameHeight: 500
+  },
+  "home-showcase-panels": {
+    title: "Life at Hoback Showcase",
+    subtitle: "Cinematic alternating image/text panels",
+    file: "home-showcase-panels.html",
+    page: "index.html",
+    previewSrc: "module-previews/home-showcase-panels.html",
+    sourceSrc: "injectable-modules/home-showcase-panels.html",
+    frameWidth: 1440, frameHeight: 2660
+  },
+  "home-card-carousel": {
+    title: "Card Carousel",
+    subtitle: "Explore Our Exclusive Club sliding cards",
+    file: "home-card-carousel.html",
+    page: "index.html",
+    previewSrc: "module-previews/home-card-carousel.html",
+    sourceSrc: "injectable-modules/home-card-carousel.html",
+    frameWidth: 1440, frameHeight: 600
+  },
+  "home-image-gallery": {
+    title: "Image Gallery",
+    subtitle: "Horizontal scrollable image strip with varied sizes",
+    file: "home-image-gallery.html",
+    page: "index.html",
+    previewSrc: "module-previews/home-image-gallery.html",
+    sourceSrc: "injectable-modules/home-image-gallery.html",
+    frameWidth: 1440, frameHeight: 260
+  },
+  "home-seasons": {
+    title: "Seasons Section",
+    subtitle: "Four-column season cards with hover effects",
+    file: "home-seasons.html",
+    page: "index.html",
+    previewSrc: "module-previews/home-seasons.html",
+    sourceSrc: "injectable-modules/home-seasons.html",
+    frameWidth: 1440, frameHeight: 860
+  },
+  "discover-upcoming-events": {
+    title: "Upcoming Events",
+    subtitle: "Event cards grid (example layout)",
+    file: "discover-upcoming-events.html",
+    page: "discover.html",
+    previewSrc: "module-previews/discover-upcoming-events.html",
+    sourceSrc: "module-previews/discover-upcoming-events.html",
+    frameWidth: 1440, frameHeight: 520
+  },
+  "lifestyle-intro-text": {
+    title: "Lifestyle Intro",
+    subtitle: "A Year-Round Destination header text",
+    file: "lifestyle-intro-text.html",
+    page: "lifestyle.html",
+    previewSrc: "module-previews/lifestyle-intro-text.html",
+    sourceSrc: "module-previews/lifestyle-intro-text.html",
+    frameWidth: 1440, frameHeight: 280
+  },
+  "mountain-weather-report": {
+    title: "Mountain Report",
+    subtitle: "Snow totals, weather, lift status dashboard",
+    file: "mountain-weather-report.html",
+    page: "mountain.html",
+    previewSrc: "module-previews/mountain-weather-report.html",
+    sourceSrc: "injectable-modules/mountain-weather-report.html",
+    frameWidth: 1440, frameHeight: 450
+  },
+  "mountain-webcams": {
+    title: "Mountain Webcams",
+    subtitle: "Live streams, panoramic views, static cameras",
+    file: "mountain-webcams.html",
+    page: "mountain.html",
+    previewSrc: "module-previews/mountain-webcams.html",
+    sourceSrc: "injectable-modules/mountain-webcams.html",
+    frameWidth: 1440, frameHeight: 2280
+  },
+  "mountain-trail-explorer": {
+    title: "Trail Explorer",
+    subtitle: "Interactive Mapbox trail map (optional)",
+    file: "mountain-trail-explorer.html",
+    page: "mountain.html",
+    previewSrc: "module-previews/mountain-trail-explorer.html",
+    sourceSrc: "injectable-modules/mountain-trail-explorer.html",
+    frameWidth: 1440, frameHeight: 760
+  },
+  "mountain-flyover-video": {
+    title: "Flyover Video",
+    subtitle: "Fullscreen aerial journey video",
+    file: "mountain-flyover-video.html",
+    page: "mountain.html",
+    previewSrc: "module-previews/mountain-flyover-video.html",
+    sourceSrc: "injectable-modules/mountain-flyover-video.html",
+    frameWidth: 1440, frameHeight: 765
+  },
+  "mountain-valley-explorer": {
+    title: "Valley Explorer",
+    subtitle: "Clickable location cards + Mapbox map",
+    file: "mountain-valley-explorer.html",
+    page: "mountain.html",
+    previewSrc: "module-previews/mountain-valley-explorer.html",
+    sourceSrc: "injectable-modules/mountain-valley-explorer.html",
+    frameWidth: 1440, frameHeight: 760
+  },
+  "lifestyle-season-hero": {
+    title: "Season Hero",
+    subtitle: "Four-panel hoverable season selector",
+    file: "lifestyle-season-hero.html",
+    page: "lifestyle.html",
+    previewSrc: "module-previews/lifestyle-season-hero.html",
+    sourceSrc: "injectable-modules/lifestyle-season-hero.html",
+    frameWidth: 1440, frameHeight: 900
+  },
+  "lifestyle-activity-toggle": {
+    title: "Activity Toggle",
+    subtitle: "Winter/Summer toggle with activity card grids",
+    file: "lifestyle-activity-toggle.html",
+    page: "lifestyle.html",
+    previewSrc: "module-previews/lifestyle-activity-toggle.html",
+    sourceSrc: "injectable-modules/lifestyle-activity-toggle.html",
+    frameWidth: 1440, frameHeight: 3050
+  },
+  "dining-menu-toggle": {
+    title: "Dining Menu Toggle",
+    subtitle: "Dinner/Lunch tabs with full menu items",
+    file: "dining-menu-toggle.html",
+    page: "dining.html",
+    previewSrc: "module-previews/dining-menu-toggle.html",
+    sourceSrc: "injectable-modules/dining-menu-toggle.html",
+    frameWidth: 1440, frameHeight: 2900
+  }
+};
+
+/* Page → module assignments */
+const PAGE_MODULES = {
+  "modules-homepage": [
+    "home-hero", "home-image-gallery", "home-mountain-drawing",
+    "home-showcase-panels", "home-seasons"
+  ],
+  "modules-discover": [
+    "discover-upcoming-events"
+  ],
+  "modules-lifestyle": [
+    "lifestyle-intro-text", "lifestyle-season-hero", "lifestyle-activity-toggle"
+  ],
+  "modules-mountain": [
+    "mountain-weather-report", "mountain-webcams",
+    "mountain-trail-explorer", "mountain-flyover-video", "mountain-valley-explorer"
+  ],
+  "modules-myclub": [
+    "home-mountain-drawing"
+  ],
+  "modules-dining": [
+    "dining-menu-toggle"
+  ]
+};
+
+/* ── Build module cards ── */
+function escapeHtml(str) {
+  return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+}
+
+function buildModuleCard(key) {
+  var m = MODULES[key];
+  var uid = "mc-" + key + "-" + Math.random().toString(36).slice(2, 8);
+  return `
+    <article class="module-card" id="${uid}">
+      <div class="module-card-header">
+        <div>
+          <h4>${m.title} — ${m.subtitle}</h4>
+          <div class="module-card-meta">
+            <span class="tag">${m.page}</span>
+            <span class="tag">${m.file}</span>
+          </div>
+        </div>
+        <div class="view-toggle">
+          <button class="active" onclick="showPreview('${uid}', this)">Preview</button>
+          <button onclick="showCode('${uid}', this)">HTML Code</button>
+        </div>
+      </div>
+      <div class="module-preview-pane">
+        <iframe class="module-frame" src="${m.previewSrc}" title="${m.title}" loading="lazy"
+          data-frame-width="${m.frameWidth}" data-frame-height="${m.frameHeight}"
+          style="height: ${m.frameHeight}px;"></iframe>
+      </div>
+      <div class="module-code-pane" data-source="${m.sourceSrc}">
+        <pre>Loading source...</pre>
+      </div>
+    </article>
+  `;
+}
+
+function showPreview(uid, btn) {
+  var card = document.getElementById(uid);
+  card.classList.remove("show-code");
+  var btns = card.querySelectorAll(".view-toggle button");
+  btns.forEach(function(b) { b.classList.remove("active"); });
+  btn.classList.add("active");
+}
+
+function showCode(uid, btn) {
+  var card = document.getElementById(uid);
+  card.classList.add("show-code");
+  var btns = card.querySelectorAll(".view-toggle button");
+  btns.forEach(function(b) { b.classList.remove("active"); });
+  btn.classList.add("active");
+
+  /* Lazy-load source */
+  var codePane = card.querySelector(".module-code-pane");
+  if (codePane.dataset.loaded) return;
+  var src = codePane.dataset.source;
+  fetch(src)
+    .then(function(r) { return r.text(); })
+    .then(function(text) {
+      codePane.querySelector("pre").textContent = text;
+      codePane.dataset.loaded = "1";
+    })
+    .catch(function() {
+      codePane.querySelector("pre").textContent = "// Could not load source file: " + src;
+    });
+}
+
+/* Render all page modules */
+Object.keys(PAGE_MODULES).forEach(function(containerId) {
+  var el = document.getElementById(containerId);
+  if (!el) return;
+  el.innerHTML = PAGE_MODULES[containerId].map(buildModuleCard).join("");
+});
+
+/* ── Scale module iframe previews ── */
+function sizeModuleFrames() {
+  document.querySelectorAll(".module-frame[data-frame-width]").forEach(function(frame) {
+    var preview = frame.parentElement;
+    var frameWidth = parseFloat(frame.dataset.frameWidth);
+    var frameHeight = parseFloat(frame.dataset.frameHeight);
+    if (!preview || !frameWidth || !frameHeight) return;
+    var scale = preview.clientWidth / frameWidth;
+    frame.style.width = frameWidth + "px";
+    frame.style.height = frameHeight + "px";
+    frame.style.transform = "scale(" + scale + ")";
+    preview.style.height = Math.round(frameHeight * scale) + "px";
+  });
+}
+
+window.addEventListener("load", function() {
+  sizeModuleFrames();
+  setTimeout(sizeModuleFrames, 200);
+});
+window.addEventListener("resize", sizeModuleFrames);
+
+/* ── Scroll spy for sidebar ── */
+function setupScrollSpy() {
+  var links = document.querySelectorAll(".sidebar-nav a[href^='#']");
+  var sections = [];
+  links.forEach(function(a) {
+    var id = a.getAttribute("href").slice(1);
+    var el = document.getElementById(id);
+    if (el) sections.push({ el: el, link: a });
+  });
+
+  function onScroll() {
+    var scrollY = window.scrollY + 120;
+    var current = null;
+    for (var i = sections.length - 1; i >= 0; i--) {
+      if (sections[i].el.offsetTop <= scrollY) {
+        current = sections[i];
+        break;
+      }
+    }
+    links.forEach(function(a) { a.classList.remove("active"); });
+    if (current) current.link.classList.add("active");
+  }
+
+  window.addEventListener("scroll", onScroll, { passive: true });
+  onScroll();
+}
+
+setupScrollSpy();
+
+/* ── Close mobile nav on link click ── */
+document.querySelectorAll('.sidebar-nav a').forEach(function(a) {
+  a.addEventListener('click', function() {
+    var nav = document.querySelector('.sidebar-nav');
+    if (nav.classList.contains('open')) {
+      nav.classList.remove('open');
+      var btn = document.getElementById('sidebarMenuBtn');
+      if (btn) btn.querySelector('span').textContent = 'Menu';
+    }
+  });
+});
+
+/* ── Image gallery ── */
+var ceImageIds = [
+  100147, 100148, 100149, 100150, 100151, 100152, 100153, 100154, 100155,
+  100156, 100157, 100158, 100159, 100160, 100162, 100163, 100164, 100165,
+  100166, 100167, 100168, 100169, 100170, 100171, 100172,
+  100023, 100032, 100043, 100048, 100065, 100066, 100067, 100068, 100077,
+  100083, 100085, 100087, 100088, 100089, 100091, 100092, 100093, 100094,
+  100096, 100097, 100099, 100100, 100101, 100102, 100103, 100104, 100105,
+  100106, 100107, 100108, 100109, 100110, 100111, 100112, 100113, 100114,
+  100116, 100117, 100118, 100119, 100120, 100121, 100122, 100123, 100124,
+  100125, 100126, 100127, 100128, 100129, 100130, 100133, 100142, 100143
+];
+
+var externalPhotos = [
+  { label: "Winter Powder Promo", url: "https://www.datocms-assets.com/50871/1680193117-skier-winter-promo-box-ajimmerson_powder_12-3-2022-1103-jpg.jpg", source: "External" },
+  { label: "Fall Colors Jackson Hole", url: "https://realestate.theclearcreekgroup.com/wp-content/uploads/sites/2/2016/09/Fall-Colors-Jackson-Hole-1030x579.jpg", source: "External" }
+];
+
+function buildDynamicImage(id) {
+  return "https://hobackclub.com/images/dynamic/getImage.gif?ID=" + id;
+}
+
+function galleryCard(o) {
+  return '<article class="gallery-card"><a href="' + o.url + '" target="_blank" rel="noopener noreferrer">' +
+    '<div class="gallery-thumb"><img src="' + o.url + '" alt="' + escapeHtml(o.label) + '" loading="lazy" decoding="async"></div>' +
+    '<div class="gallery-body"><h4>' + escapeHtml(o.label) + '</h4><p>' + escapeHtml(o.detail) + '</p>' +
+    '<span class="gallery-source">' + escapeHtml(o.source) + '</span></div></a></article>';
+}
+
+document.getElementById("ceImageGrid").innerHTML = ceImageIds.map(function(id) {
+  return galleryCard({ label: "CE " + id, url: buildDynamicImage(id), source: "CE Upload", detail: "Club Essential image ID " + id });
+}).join("");
+
+document.getElementById("externalGrid").innerHTML = externalPhotos.map(function(item) {
+  return galleryCard({ label: item.label, url: item.url, source: item.source, detail: "Need to replace with owned photography" });
+}).join("");
+
+document.getElementById("libraryCount").textContent = ceImageIds.length + " images";
+document.getElementById("externalCount").textContent = externalPhotos.length + " images";
+
+/* ── Concierge code loader ── */
+function loadConciergeCode() {
+  var pane = document.getElementById("concierge-code-pane");
+  if (pane.dataset.loaded) return;
+  fetch(pane.dataset.source)
+    .then(function(r) { return r.text(); })
+    .then(function(text) {
+      pane.querySelector("pre").textContent = text;
+      pane.dataset.loaded = "1";
+    })
+    .catch(function() {
+      pane.querySelector("pre").textContent = "// Could not load source";
+    });
+}
+</script>
+</body>
+</html>

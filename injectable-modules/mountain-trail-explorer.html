@@ -1,0 +1,56 @@
+<!-- MODULE: Trail Explorer — Interactive Mapbox trail map -->
+<!-- Source: mountain.html -->
+<!-- Dependencies: Mapbox GL JS (mapbox-gl.js + mapbox-gl.css), API token -->
+<!-- NOTE: This is a HEAVY module requiring the Mapbox GL JS library -->
+
+<style>
+.trail-explorer-section { background: #fff; padding: 60px 0 0; }
+.trail-explorer-header { text-align: center; padding: 0 30px 30px; }
+.trail-explorer-header h2 {
+  font-size: 2.4rem; font-weight: 300; text-transform: uppercase;
+  letter-spacing: 0.12em; color: #1e2d3a;
+}
+.trail-explorer-header p { color: #5a6d7a; font-size: 0.9rem; margin-top: 6px; }
+.trail-explorer-map { width: 100%; height: 70vh; min-height: 500px; }
+
+/* Legend overlay */
+#trailExplorerLegend {
+  position: absolute; bottom: 20px; left: 20px; z-index: 10;
+  background: rgba(255,255,255,0.95); padding: 14px 18px; border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.15); font-size: 0.75rem;
+}
+.legend-title {
+  font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em;
+  margin-bottom: 8px; color: #1e2d3a;
+}
+.legend-row { display: flex; align-items: center; gap: 8px; margin-bottom: 4px; color: #333; }
+</style>
+
+<!-- HTML -->
+<section class="trail-explorer-section" id="trailExplorerSection">
+  <div class="trail-explorer-header">
+    <h2>Trail Explorer</h2>
+    <p>Interactive Jackson Hole trail map with elevation profiles</p>
+  </div>
+  <div style="position:relative;">
+    <div class="trail-explorer-map" id="trailExplorerMap"></div>
+    <!-- Interaction blocker for scroll-past UX -->
+    <div id="mapInteractBlocker" style="position:absolute;inset:0;z-index:8;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.15);cursor:default;">
+      <button id="mapInteractBtn" style="padding:14px 32px;background:#1e2d3a;color:#fff;border:2px solid #fff;border-radius:6px;font-family:'Lato',sans-serif;font-size:0.9rem;font-weight:700;text-transform:uppercase;letter-spacing:0.12em;cursor:pointer;">
+        Interact with Map
+      </button>
+    </div>
+    <div id="trailExplorerLegend">
+      <div class="legend-title">Trail Difficulty</div>
+      <div class="legend-row"><svg width="18" height="18"><circle cx="9" cy="9" r="7" fill="hsl(125,100%,33%)"/></svg> Easy / Novice</div>
+      <div class="legend-row"><svg width="18" height="18"><rect x="2" y="2" width="14" height="14" fill="hsl(208,100%,33%)"/></svg> Intermediate</div>
+      <div class="legend-row"><svg width="18" height="18"><polygon points="9,2 16,9 9,16 2,9" fill="#000"/></svg> Advanced / Expert</div>
+      <div class="legend-row"><svg width="18" height="18"><polygon points="9,2 16,9 9,16 2,9" fill="hsl(34,100%,50%)"/></svg> Freeride</div>
+      <div class="legend-row" style="margin-top:4px;"><span style="width:20px;height:0;border-top:2px dashed #555;display:inline-block;"></span> Lift</div>
+    </div>
+  </div>
+</section>
+
+<!-- NOTE: Full Mapbox initialization JS is in mountain.html (~200 lines).
+     Requires: mapboxgl library, API token, and GeoJSON trail data.
+     Not included here — see mountain.html JS block for the full implementation. -->

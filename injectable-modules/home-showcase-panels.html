@@ -1,0 +1,158 @@
+<!-- MODULE: "Life at Hoback" Showcase Panels — Cinematic alternating image/text panels -->
+<!-- Source: index.html -->
+<!-- Dependencies: Panel images (images/hero-1.jpg, hero-2.jpg, etc.), IntersectionObserver -->
+
+<style>
+.showcase { background: #ede9e1; }
+.showcase__header { padding: 80px 6% 20px; }
+.showcase__header span {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(3.2rem, 4.5vw, 5rem);
+  font-weight: 300; color: #1e2d3a; letter-spacing: 0.02em;
+}
+.showcase__panel {
+  position: relative; display: flex; align-items: center;
+  min-height: auto; overflow: hidden; padding: 60px 6%; gap: 5%;
+}
+.showcase__panel:nth-child(even) { flex-direction: row-reverse; }
+.showcase__img-wrap {
+  position: relative; flex: 0 0 46%; overflow: hidden;
+  opacity: 0; transform: translateY(20px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+.showcase__panel.is-revealed .showcase__img-wrap { opacity: 1; transform: translateY(0); }
+.showcase__img-wrap::before { content: ''; display: block; padding-top: 70%; }
+.showcase__img {
+  position: absolute; inset: 0; background-size: cover; background-position: center;
+}
+.showcase__text {
+  flex: 1; display: flex; flex-direction: column; justify-content: center;
+  padding: 40px 0; position: relative; color: #1e2d3a;
+}
+.showcase__number {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(8rem, 14vw, 18rem); font-weight: 300; line-height: 1;
+  color: rgba(30,45,58,0.04); position: absolute;
+  top: 50%; left: 50%; transform: translate(-50%, -50%);
+  opacity: 0; transition: opacity 0.8s ease 0.15s; pointer-events: none; white-space: nowrap;
+}
+.showcase__panel.is-revealed .showcase__number { opacity: 1; }
+.showcase__line {
+  width: 70px; height: 1px;
+  background: linear-gradient(90deg, rgba(30,45,58,0.35), rgba(30,45,58,0));
+  margin-bottom: 28px; opacity: 0; transition: opacity 0.8s ease 0.2s;
+}
+.showcase__panel.is-revealed .showcase__line { opacity: 1; }
+.showcase__heading {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2.8rem, 3.5vw, 4.6rem); font-weight: 300; line-height: 1.15;
+  color: #1e2d3a; position: relative; z-index: 2;
+  opacity: 0; transform: translateY(15px);
+  transition: opacity 0.7s ease 0.2s, transform 0.7s ease 0.2s;
+}
+.showcase__panel.is-revealed .showcase__heading { opacity: 1; transform: translateY(0); }
+.showcase__desc {
+  font-size: clamp(1.35rem, 1.4vw, 1.6rem); font-weight: 300; line-height: 1.75;
+  max-width: 420px; margin-top: 22px; color: rgba(30,45,58,0.6);
+  position: relative; z-index: 2;
+  opacity: 0; transform: translateY(15px);
+  transition: opacity 0.7s ease 0.35s, transform 0.7s ease 0.35s;
+}
+.showcase__panel.is-revealed .showcase__desc { opacity: 1; transform: translateY(0); }
+@media (max-width: 900px) {
+  .showcase__panel { flex-direction: column !important; padding: 40px 6%; gap: 0; }
+  .showcase__img-wrap { flex: none; width: 100%; }
+  .showcase__img-wrap::before { padding-top: 60%; }
+  .showcase__text { flex: none; padding: 30px 0 0; }
+  .showcase__number { font-size: clamp(6rem, 20vw, 12rem); }
+}
+@media (max-width: 480px) {
+  .showcase__header { padding: 50px 6% 10px; }
+  .showcase__text { padding: 24px 0 0; }
+  .showcase__heading { font-size: clamp(2.4rem, 7vw, 3.2rem); }
+  .showcase__desc { font-size: 1.35rem; }
+  .showcase__number { display: none; }
+}
+</style>
+
+<!-- HTML -->
+<section class="showcase" id="showcase">
+  <div class="showcase__header"><span>Life at Hoback</span></div>
+
+  <div class="showcase__panel">
+    <div class="showcase__img-wrap">
+      <div class="showcase__img" style="background-image: url('images/hero-1.jpg')"></div>
+    </div>
+    <div class="showcase__text">
+      <div class="showcase__number">01</div>
+      <div class="showcase__line"></div>
+      <h2 class="showcase__heading">The Best Ski-In, Ski-Out Access in Jackson</h2>
+      <p class="showcase__desc">Step directly from your residence onto pristine corduroy. The most coveted slope-side position at Jackson Hole Mountain Resort, where powder days begin at your front door.</p>
+    </div>
+  </div>
+
+  <div class="showcase__panel">
+    <div class="showcase__img-wrap">
+      <div class="showcase__img" style="background-image: url('images/hero-2.jpg')"></div>
+    </div>
+    <div class="showcase__text">
+      <div class="showcase__number">02</div>
+      <div class="showcase__line"></div>
+      <h2 class="showcase__heading">World-Class Wellness &amp; Recovery Spa</h2>
+      <p class="showcase__desc">Restore body and mind in our alpine sanctuary. From hydrotherapy pools to expert-guided recovery sessions, every detail is designed to rejuvenate after a day on the mountain.</p>
+    </div>
+  </div>
+
+  <div class="showcase__panel">
+    <div class="showcase__img-wrap">
+      <div class="showcase__img" style="background-image: url('images/card-discover.jpg')"></div>
+    </div>
+    <div class="showcase__text">
+      <div class="showcase__number">03</div>
+      <div class="showcase__line"></div>
+      <h2 class="showcase__heading">Private Residence Dining, Locally Sourced</h2>
+      <p class="showcase__desc">Savor cuisine crafted by our culinary team from the finest regional ingredients. From intimate fireside dinners to curated tasting events, every meal becomes an occasion.</p>
+    </div>
+  </div>
+
+  <div class="showcase__panel">
+    <div class="showcase__img-wrap">
+      <div class="showcase__img" style="background-image: url('https://www.travelandleisure.com/thmb/YiylyFMlqZz6kD-78-4g_dHdxHU=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/TAL-deck-hoback-club-wyoming-HOBACKCLUB0126-16ecbcfb0dcf4eceb5f9cb6c44323a13.jpg')"></div>
+    </div>
+    <div class="showcase__text">
+      <div class="showcase__number">04</div>
+      <div class="showcase__line"></div>
+      <h2 class="showcase__heading">Indoor &amp; Outdoor Apr&egrave;s Ski Lounges</h2>
+      <p class="showcase__desc">Unwind fireside or beneath the stars. Thoughtfully designed gathering spaces that bring members together in effortless sophistication, from morning coffee to evening cocktails.</p>
+    </div>
+  </div>
+
+  <div class="showcase__panel">
+    <div class="showcase__img-wrap">
+      <div class="showcase__img" style="background-image: url('images/card-summer.jpg')"></div>
+    </div>
+    <div class="showcase__text">
+      <div class="showcase__number">05</div>
+      <div class="showcase__line"></div>
+      <h2 class="showcase__heading">Direct Access to Grand Teton National Park</h2>
+      <p class="showcase__desc">Your gateway to one of America's most iconic landscapes. Miles of pristine trails, untouched wilderness, and crystal waters begin where your doorstep ends.</p>
+    </div>
+  </div>
+</section>
+
+<!-- JS: Scroll-triggered reveal -->
+<script>
+(function() {
+  var panels = document.querySelectorAll('.showcase__panel');
+  if (!panels.length) return;
+  var observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(e) {
+      if (e.isIntersecting) {
+        e.target.classList.add('is-revealed');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.2 });
+  panels.forEach(function(p) { observer.observe(p); });
+})();
+</script>

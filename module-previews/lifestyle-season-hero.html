@@ -1,0 +1,80 @@
+<!-- MODULE: Season Hero — Four-panel hoverable season selector -->
+<!-- Source: lifestyle.html -->
+<!-- Dependencies: Season images (external URLs) -->
+
+<style>
+.seasons-hero { display: flex; width: 100%; height: 100vh; min-height: 600px; }
+.season-panel {
+  flex: 1; position: relative; overflow: hidden; cursor: pointer;
+  transition: flex 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+.season-panel:hover { flex: 1.6; }
+.season-panel img {
+  position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
+  transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+.season-panel:hover img { transform: scale(1.05); }
+.season-panel::after {
+  content: ''; position: absolute; inset: 0;
+  background: rgba(30,45,58,0.4); transition: background 0.5s;
+}
+.season-panel:hover::after { background: rgba(30,45,58,0.15); }
+.season-panel-label {
+  position: absolute; inset: 0; display: flex; flex-direction: column;
+  align-items: center; justify-content: center; z-index: 2; color: #fff;
+}
+.season-panel-label h2 {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(2.4rem, 3.5vw, 4.4rem); font-weight: 300;
+  text-transform: uppercase; letter-spacing: 0.06em;
+  text-shadow: 0 2px 20px rgba(0,0,0,0.35);
+}
+.season-panel-label p {
+  font-size: 0.85rem; font-weight: 300; letter-spacing: 0.12em;
+  opacity: 0; transform: translateY(10px);
+  transition: opacity 0.5s 0.1s, transform 0.5s 0.1s;
+}
+.season-panel:hover .season-panel-label p { opacity: 0.9; transform: translateY(0); }
+@media (max-width: 900px) {
+  .seasons-hero { flex-wrap: wrap; height: auto; min-height: 0; }
+  .season-panel { flex: 1 1 50%; height: 45vh; }
+  .season-panel:hover { flex: 1 1 50%; }
+}
+@media (max-width: 768px) {
+  .seasons-hero { flex-direction: column; }
+  .season-panel { flex: none; height: 35vh; }
+  .season-panel-label h2 { font-size: 2.4rem; }
+}
+</style>
+
+<!-- HTML -->
+<section class="seasons-hero">
+  <div class="season-panel">
+    <img src="https://www.datocms-assets.com/50871/1680193117-skier-winter-promo-box-ajimmerson_powder_12-3-2022-1103-jpg.jpg" alt="Winter" style="object-position: 65% center;">
+    <div class="season-panel-label">
+      <h2>Winter</h2>
+      <p>Pristine powder and legendary terrain</p>
+    </div>
+  </div>
+  <div class="season-panel">
+    <img src="https://hobackclub.com/images/dynamic/getImage.gif?ID=100077" alt="Spring" style="object-position: 25% center;">
+    <div class="season-panel-label">
+      <h2>Spring</h2>
+      <p>Last runs and alpine awakening</p>
+    </div>
+  </div>
+  <div class="season-panel">
+    <img src="https://hobackclub.com/images/dynamic/getImage.gif?ID=100120" alt="Summer" style="object-position: 60% center;">
+    <div class="season-panel-label">
+      <h2>Summer</h2>
+      <p>Sun-drenched days and endless adventure</p>
+    </div>
+  </div>
+  <div class="season-panel">
+    <img src="https://realestate.theclearcreekgroup.com/wp-content/uploads/sites/2/2016/09/Fall-Colors-Jackson-Hole-1030x579.jpg" alt="Fall">
+    <div class="season-panel-label">
+      <h2>Fall</h2>
+      <p>Golden aspens and quiet grandeur</p>
+    </div>
+  </div>
+</section>

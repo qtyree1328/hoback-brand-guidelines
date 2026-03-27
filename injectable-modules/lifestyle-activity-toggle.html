@@ -1,0 +1,199 @@
+<!-- MODULE: Activity Toggle — Winter/Summer toggle with activity card grids -->
+<!-- Source: lifestyle.html -->
+<!-- Dependencies: Activity images from hobackclub.com CDN, IntersectionObserver for card reveals -->
+<!-- Note: This is a LARGE module — includes toggle, intro, cards grid, section dividers -->
+
+<style>
+.toggle-section { text-align: center; padding: 70px 40px 20px; }
+.toggle-section h2 {
+  font-size: 2.2rem; font-weight: 300; color: #1e2d3a;
+  letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 12px;
+}
+.toggle-section p {
+  font-size: 1rem; color: #5a6d7a; max-width: 700px;
+  margin: 0 auto 40px; line-height: 1.8;
+}
+.activity-toggle {
+  display: inline-flex; border-radius: 40px; overflow: hidden; border: 2px solid #1e2d3a;
+}
+.toggle-btn {
+  padding: 14px 44px; font-family: 'Lato', sans-serif; font-size: 0.8rem;
+  font-weight: 700; text-transform: uppercase; letter-spacing: 0.18em;
+  border: none; background: transparent; color: #1e2d3a; cursor: pointer; transition: all 0.3s;
+}
+.toggle-btn.active { background: #1e2d3a; color: #fff; }
+.toggle-btn:hover:not(.active) { background: rgba(30,45,58,0.08); }
+
+.activity-section { display: none; animation: fadeUp 0.6s ease forwards; }
+.activity-section.active { display: block; }
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.section-intro { max-width: 900px; margin: 0 auto; padding: 60px 40px 50px; text-align: center; }
+.section-intro h3 {
+  font-size: 1.6rem; font-weight: 300; color: #1e2d3a;
+  letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 25px;
+}
+.section-intro p { font-size: 1rem; line-height: 1.9; color: #555; margin-bottom: 12px; }
+.concierge-note {
+  background: #f7f5f2; padding: 20px 30px; border-left: 3px solid #1e2d3a;
+  margin: 25px 0 0; font-size: 0.95rem; color: #555; font-style: italic;
+}
+.sub-heading { max-width: 1200px; margin: 0 auto; padding: 40px 40px 20px; }
+.sub-heading h3 {
+  font-size: 1.1rem; font-weight: 700; color: #1e2d3a;
+  text-transform: uppercase; letter-spacing: 0.12em;
+}
+
+.activities-grid {
+  max-width: 1200px; margin: 0 auto; padding: 0 40px 60px;
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
+}
+.activity-card {
+  position: relative; border-radius: 8px; overflow: hidden; height: 380px;
+  cursor: pointer; box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+  opacity: 0; transform: translateY(40px);
+  transition: transform 0.4s ease, box-shadow 0.4s ease, opacity 0.6s ease;
+}
+.activity-card.revealed { opacity: 1; transform: translateY(0); }
+.activity-card:hover { box-shadow: 0 20px 60px rgba(0,0,0,0.2); }
+.activity-card img {
+  width: 100%; height: 100%; object-fit: cover;
+  transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+.activity-card:hover img { transform: scale(1.08); }
+.activity-card-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(15,25,35,0.85) 0%, rgba(15,25,35,0.2) 50%, transparent 70%);
+  display: flex; flex-direction: column; justify-content: flex-end; padding: 28px;
+  transition: background 0.5s;
+}
+.activity-card:hover .activity-card-overlay {
+  background: linear-gradient(to top, rgba(15,25,35,0.92) 0%, rgba(15,25,35,0.5) 55%, rgba(15,25,35,0.15) 100%);
+}
+.activity-card h4 {
+  color: #fff; font-size: 1rem; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.1em; margin-bottom: 6px; transition: transform 0.4s;
+}
+.activity-card:hover h4 { transform: translateY(-4px); }
+.activity-card p {
+  color: rgba(255,255,255,0.85); font-size: 0.82rem; line-height: 1.6;
+  max-height: 0; opacity: 0; overflow: hidden;
+  transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.4s 0.1s;
+}
+.activity-card:hover p { max-height: 200px; opacity: 1; }
+.activity-card:nth-child(1) { transition-delay: 0s; }
+.activity-card:nth-child(2) { transition-delay: 0.08s; }
+.activity-card:nth-child(3) { transition-delay: 0.16s; }
+.activity-card:nth-child(4) { transition-delay: 0.24s; }
+.activity-card:nth-child(5) { transition-delay: 0.32s; }
+.activity-card:nth-child(6) { transition-delay: 0.4s; }
+
+
+@media (max-width: 1200px) { .activities-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 768px) {
+  .activities-grid { grid-template-columns: 1fr; padding: 0 20px 50px; }
+  .activity-card { height: 320px; }
+  .section-intro { padding: 50px 20px 40px; }
+  .sub-heading { padding: 30px 20px 15px; }
+  .toggle-btn { padding: 12px 28px; font-size: 0.7rem; }
+}
+</style>
+
+<!-- HTML: Toggle -->
+<div class="toggle-section">
+  <h2>Jackson Hole Activities</h2>
+  <p>From pristine powder to sun-drenched trails, every season brings a new way to experience the extraordinary.</p>
+  <div class="activity-toggle">
+    <button class="toggle-btn active" data-target="winter">Winter</button>
+    <button class="toggle-btn" data-target="summer">Summer</button>
+  </div>
+</div>
+
+<!-- HTML: Winter Section (abbreviated — 3 sample cards) -->
+<div class="activity-section active" id="winter">
+  <div class="section-intro">
+    <h3>Winter Activities</h3>
+    <p>Winter in Jackson Hole is more than a season -- it's a way of life.</p>
+    <div class="concierge-note">Let our Club Concierge take care of every detail -- every activity below can be arranged for you.</div>
+  </div>
+  <div class="sub-heading"><h3>Skiing</h3></div>
+  <div class="activities-grid">
+    <div class="activity-card">
+      <img src="https://hobackclub.com/images/dynamic/getImage.gif?ID=100100" alt="Ski Passes">
+      <div class="activity-card-overlay">
+        <h4>Ski Passes</h4>
+        <p>We will assist you in lift passes for you and your family.</p>
+      </div>
+    </div>
+    <div class="activity-card">
+      <img src="https://hobackclub.com/images/dynamic/getImage.gif?ID=100104" alt="Heli Skiing">
+      <div class="activity-card-overlay">
+        <h4>Heli Skiing</h4>
+        <p>The ultimate heli-skiing adventure in Jackson Hole.</p>
+      </div>
+    </div>
+    <div class="activity-card">
+      <img src="https://hobackclub.com/images/dynamic/getImage.gif?ID=100103" alt="Backcountry">
+      <div class="activity-card-overlay">
+        <h4>Backcountry Ski Guiding</h4>
+        <p>Beyond the resort gates into untouched terrain.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- HTML: Summer Section (abbreviated — 3 sample cards) -->
+<div class="activity-section" id="summer">
+  <div class="section-intro">
+    <h3>Summer Activities</h3>
+    <p>Sun-drenched days and endless adventure await.</p>
+  </div>
+  <div class="activities-grid">
+    <div class="activity-card">
+      <img src="https://hobackclub.com/images/dynamic/getImage.gif?ID=100119" alt="Fly-Fishing">
+      <div class="activity-card-overlay">
+        <h4>Fly-Fishing</h4>
+        <p>World-class guided fly fishing on the Snake River.</p>
+      </div>
+    </div>
+    <div class="activity-card">
+      <img src="https://hobackclub.com/images/dynamic/getImage.gif?ID=100117" alt="Horseback Riding">
+      <div class="activity-card-overlay">
+        <h4>Horseback Riding</h4>
+        <p>Private, guided rides through alpine meadows.</p>
+      </div>
+    </div>
+    <div class="activity-card">
+      <img src="https://hobackclub.com/images/dynamic/getImage.gif?ID=100120" alt="Hiking">
+      <div class="activity-card-overlay">
+        <h4>Hiking Jackson Hole Valley</h4>
+        <p>From Teton Village to tranquil trails like Phelps Lake.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- JS: Toggle + Card Reveal -->
+<script>
+// Toggle
+document.querySelectorAll('.toggle-btn').forEach(function(btn) {
+  btn.addEventListener('click', function() {
+    document.querySelectorAll('.toggle-btn').forEach(function(b) { b.classList.remove('active'); });
+    btn.classList.add('active');
+    document.querySelectorAll('.activity-section').forEach(function(s) { s.classList.remove('active'); s.style.animation = 'none'; });
+    var el = document.getElementById(btn.dataset.target);
+    el.classList.add('active'); el.offsetHeight; el.style.animation = '';
+  });
+});
+// Card scroll reveal
+(function() {
+  var cards = document.querySelectorAll('.activity-card');
+  if (!cards.length) return;
+  var obs = new IntersectionObserver(function(entries) {
+    entries.forEach(function(e) { if (e.isIntersecting) { e.target.classList.add('revealed'); obs.unobserve(e.target); } });
+  }, { threshold: 0.15 });
+  cards.forEach(function(c) { obs.observe(c); });
+})();
+</script>

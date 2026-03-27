@@ -1,0 +1,137 @@
+<!-- MODULE: Dining Menu Toggle — Dinner/Lunch tabs with full menu items -->
+<!-- Source: dining.html -->
+<!-- Dependencies: Menu item photos (external URLs, only 4 items have photos) -->
+
+<style>
+.menu-toggle-section { text-align: center; padding: 50px 40px 10px; background: #f7f5f2; }
+.menu-toggle {
+  display: inline-flex; border-radius: 40px; overflow: hidden; border: 2px solid #1e2d3a;
+}
+.menu-toggle-btn {
+  padding: 14px 50px; font-family: 'Lato', sans-serif; font-size: 0.8rem;
+  font-weight: 700; text-transform: uppercase; letter-spacing: 0.18em;
+  border: none; background: transparent; color: #1e2d3a; cursor: pointer; transition: all 0.3s;
+}
+.menu-toggle-btn.active { background: #1e2d3a; color: #fff; }
+.menu-toggle-btn:hover:not(.active) { background: rgba(30,45,58,0.08); }
+
+.menu-content { background: #f7f5f2; padding: 40px 0 80px; }
+.menu-tab { display: none; animation: menuFadeUp 0.5s ease forwards; }
+.menu-tab.active { display: block; }
+@keyframes menuFadeUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.menu-intro { text-align: center; max-width: 700px; margin: 0 auto 50px; padding: 0 30px; }
+.menu-intro h2 {
+  font-family: 'Cormorant Garamond', serif; font-size: 2.6rem;
+  font-weight: 300; color: #1e2d3a; margin-bottom: 10px;
+}
+.menu-intro p { font-size: 0.9rem; color: #7a8d98; letter-spacing: 0.05em; line-height: 1.7; }
+.menu-category { max-width: 900px; margin: 0 auto 50px; padding: 0 30px; }
+.menu-category-title {
+  font-size: 0.75rem; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.2em; color: #1e2d3a;
+  border-bottom: 2px solid #1e2d3a; padding-bottom: 10px; margin-bottom: 30px;
+}
+.menu-item { padding: 24px 0; border-bottom: 1px solid #e8e4df; }
+.menu-item:last-child { border-bottom: none; }
+.menu-item-header {
+  display: flex; justify-content: space-between; align-items: baseline; gap: 16px; margin-bottom: 6px;
+}
+.menu-item-name { font-size: 1.05rem; font-weight: 700; color: #1e2d3a; }
+.menu-item-price { font-size: 1rem; font-weight: 300; color: #1e2d3a; white-space: nowrap; }
+.menu-item-desc { font-size: 0.85rem; color: #666; line-height: 1.6; }
+.menu-item-img { margin-top: 16px; border-radius: 8px; overflow: hidden; max-height: 280px; }
+.menu-item-img img { width: 100%; height: 280px; object-fit: cover; }
+.sourcing-note { max-width: 900px; margin: 0 auto; padding: 30px 30px 0; text-align: center; }
+.sourcing-note p { font-size: 0.8rem; font-style: italic; color: #999; line-height: 1.7; }
+.reservation-cta { max-width: 900px; margin: 40px auto 0; padding: 0 30px; text-align: center; }
+.reservation-cta-btn {
+  display: inline-block; padding: 16px 44px; background: #1e2d3a; color: #fff;
+  font-family: 'Lato', sans-serif; font-size: 0.75rem; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.2em; border: none; cursor: pointer; transition: background 0.3s;
+}
+.reservation-cta-btn:hover { background: #365e75; }
+@media (max-width: 768px) {
+  .menu-toggle-btn { padding: 12px 30px; font-size: 0.7rem; }
+  .menu-item-img { max-height: 220px; }
+  .menu-item-img img { height: 220px; }
+}
+</style>
+
+<!-- HTML: Toggle -->
+<div class="menu-toggle-section">
+  <div class="menu-toggle">
+    <button class="menu-toggle-btn active" data-tab="dinner">Dinner</button>
+    <button class="menu-toggle-btn" data-tab="lunch">Lunch</button>
+  </div>
+</div>
+
+<!-- HTML: Sample dinner tab (abbreviated) -->
+<div class="menu-content">
+  <div class="menu-tab active" id="dinner">
+    <div class="menu-intro">
+      <h2>Dinner Menu</h2>
+      <p>An exquisite evening dining experience featuring locally sourced ingredients.</p>
+    </div>
+    <div class="menu-category">
+      <div class="menu-category-title">Appetizers</div>
+      <div class="menu-item">
+        <div class="menu-item-header">
+          <span class="menu-item-name">Parisian Onion Soup "Au Gratin"</span>
+          <span class="menu-item-price">16</span>
+        </div>
+        <div class="menu-item-desc">Gratin&eacute;e with Baguette, Comt&eacute;, Gruyere</div>
+      </div>
+      <div class="menu-item">
+        <div class="menu-item-header">
+          <span class="menu-item-name">Island Creek Oysters (6)*</span>
+          <span class="menu-item-price">28</span>
+        </div>
+        <div class="menu-item-desc">Cocktail Sauce, Mignonette, Lemons</div>
+        <div class="menu-item-img">
+          <img src="https://images.squarespace-cdn.com/content/v1/5c6060230490797f225942e3/1551923830277-065ESPBY4YS3K949LFEU/InAHalfShell-2012-OystersAtHome-4.jpg" alt="Oysters">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="menu-tab" id="lunch">
+    <div class="menu-intro">
+      <h2>Lunch Menu</h2>
+      <p>Refined midday dining featuring lighter fare and hearty main dishes.</p>
+    </div>
+    <div class="menu-category">
+      <div class="menu-category-title">Main Dishes</div>
+      <div class="menu-item">
+        <div class="menu-item-header">
+          <span class="menu-item-name">Hoback Smash Burger</span>
+          <span class="menu-item-price">19 | 34</span>
+        </div>
+        <div class="menu-item-desc">Lazy T Ranch Beef, Lettuce, Pickle, Bacon, Comeback Sauce, Cheddar Cheese</div>
+        <div class="menu-item-img">
+          <img src="https://www.foodandwine.com/thmb/XE8ubzwObCIgMw7qJ9CsqUZocNM=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/MSG-Smash-Burger-FT-RECIPE0124-d9682401f3554ef683e24311abdf342b.jpg" alt="Smash Burger">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="reservation-cta">
+    <button class="reservation-cta-btn">Make a Reservation</button>
+  </div>
+</div>
+
+<!-- JS: Tab Toggle -->
+<script>
+document.querySelectorAll('.menu-toggle-btn').forEach(function(btn) {
+  btn.addEventListener('click', function() {
+    document.querySelectorAll('.menu-toggle-btn').forEach(function(b) { b.classList.remove('active'); });
+    btn.classList.add('active');
+    document.querySelectorAll('.menu-tab').forEach(function(tab) { tab.classList.remove('active'); tab.style.animation = 'none'; });
+    var el = document.getElementById(btn.dataset.tab);
+    el.classList.add('active'); el.offsetHeight; el.style.animation = '';
+    window.scrollTo({ top: document.querySelector('.menu-toggle-section').offsetTop - 80, behavior: 'smooth' });
+  });
+});
+</script>

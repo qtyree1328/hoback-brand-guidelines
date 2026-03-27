@@ -1,0 +1,140 @@
+<!-- MODULE: Card Carousel — "Explore Our Exclusive Club" sliding cards -->
+<!-- Source: index.html -->
+<!-- Dependencies: Card images, touch/swipe JS -->
+
+<style>
+.callouts {
+  background: #1e2d3a;
+  background-image: url('https://static.clubessential.com/CEFED/_Axis-Website/Sites/HobackClub-2025/images/cta-slider-bg-pattern-PbHm.png');
+  background-size: cover;
+  padding: 80px 0 80px 60px; display: flex; gap: 60px; align-items: flex-start;
+}
+.callouts-left { flex: 0 0 280px; }
+.callouts-left h2 {
+  color: #fff; font-size: 3.6rem; font-weight: 300;
+  text-transform: uppercase; letter-spacing: 0.08em; line-height: 1.2; margin-bottom: 30px;
+}
+.callouts-controls { display: flex; align-items: center; gap: 20px; }
+.callouts-dots { display: flex; gap: 8px; }
+.callouts-dots span {
+  width: 10px; height: 10px; border-radius: 50%;
+  border: 1px solid rgba(255,255,255,0.5); cursor: pointer; transition: background 0.3s;
+}
+.callouts-dots span.active { background: #fff; border-color: #fff; }
+.callouts-arrows { display: flex; gap: 15px; }
+.callouts-arrows button {
+  background: none; border: none; color: #fff; font-size: 1.3rem;
+  cursor: pointer; opacity: 0.7; transition: opacity 0.3s;
+}
+.callouts-arrows button:hover { opacity: 1; }
+.callouts-right { flex: 1; overflow: hidden; }
+.cards-track { display: flex; gap: 20px; transition: transform 0.5s ease; }
+.card {
+  flex: 0 0 500px; position: relative; height: 420px;
+  border-radius: 4px; overflow: hidden; cursor: pointer;
+}
+.card-bg {
+  position: absolute; inset: 0; background-size: cover;
+  background-position: center; transition: transform 0.6s ease;
+}
+.card:hover .card-bg { transform: scale(1.05); }
+.card-overlay {
+  position: absolute; bottom: 0; left: 0; right: 0; padding: 25px;
+  background: linear-gradient(to top, rgba(30,45,58,0.8), transparent);
+}
+.card-overlay a {
+  color: #fff; font-size: 1.3rem; font-weight: 400; text-transform: uppercase;
+  letter-spacing: 0.15em; border-bottom: 1px solid rgba(255,255,255,0.5);
+  padding-bottom: 4px; text-decoration: none;
+}
+@media (max-width: 1200px) {
+  .callouts { flex-direction: column; padding: 60px 30px; }
+  .callouts-left { flex: none; }
+  .card { flex: 0 0 380px; height: 360px; }
+}
+@media (max-width: 768px) {
+  .callouts { padding: 40px 20px; }
+  .callouts-left h2 { font-size: 2.2rem; }
+  .card { flex: 0 0 calc(100vw - 60px); height: 300px; }
+}
+</style>
+
+<!-- HTML -->
+<section class="callouts">
+  <div class="callouts-left">
+    <h2>Explore Our Exclusive Club</h2>
+    <div class="callouts-controls">
+      <div class="callouts-dots">
+        <span class="active" data-index="0"></span>
+        <span data-index="1"></span>
+        <span data-index="2"></span>
+        <span data-index="3"></span>
+        <span data-index="4"></span>
+      </div>
+      <div class="callouts-arrows">
+        <button id="prevCard">&larr;</button>
+        <button id="nextCard">&rarr;</button>
+      </div>
+    </div>
+  </div>
+  <div class="callouts-right">
+    <div class="cards-track" id="cardsTrack">
+      <div class="card">
+        <div class="card-bg" style="background-image: url('images/card-discover.jpg')"></div>
+        <div class="card-overlay"><a href="#">Discover Us</a></div>
+      </div>
+      <div class="card">
+        <div class="card-bg" style="background-image: url('images/card-stay.jpg')"></div>
+        <div class="card-overlay"><a href="#">Come &amp; Stay</a></div>
+      </div>
+      <div class="card">
+        <div class="card-bg" style="background-image: url('images/card-amenities.jpg')"></div>
+        <div class="card-overlay"><a href="#">Amenities</a></div>
+      </div>
+      <div class="card">
+        <div class="card-bg" style="background-image: url('images/card-winter.jpg')"></div>
+        <div class="card-overlay"><a href="#">Winter Activities</a></div>
+      </div>
+      <div class="card">
+        <div class="card-bg" style="background-image: url('images/card-summer.jpg')"></div>
+        <div class="card-overlay"><a href="#">Summer Activities</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- JS: Carousel with swipe -->
+<script>
+(function() {
+  const track = document.getElementById('cardsTrack');
+  if (!track) return;
+  const dots = document.querySelectorAll('.callouts-dots span');
+  const cards = track.querySelectorAll('.card');
+  const container = document.querySelector('.callouts-right');
+  let pos = 0;
+  function getCardWidth() { return cards[0].offsetWidth + 20; }
+  function getMaxPos() {
+    var containerW = container.offsetWidth;
+    var cardW = getCardWidth();
+    return Math.max(0, Math.ceil((track.scrollWidth - containerW) / cardW));
+  }
+  function updateCarousel() {
+    var maxT = Math.max(0, track.scrollWidth - container.offsetWidth);
+    var desired = pos * getCardWidth();
+    track.style.transform = 'translateX(-' + Math.min(desired, maxT) + 'px)';
+    dots.forEach(function(d, i) { d.classList.toggle('active', i === pos); });
+  }
+  function next() { pos = pos >= getMaxPos() ? 0 : pos + 1; updateCarousel(); }
+  function prev() { pos = pos <= 0 ? getMaxPos() : pos - 1; updateCarousel(); }
+  document.getElementById('nextCard').addEventListener('click', next);
+  document.getElementById('prevCard').addEventListener('click', prev);
+  dots.forEach(function(d) {
+    d.addEventListener('click', function() { pos = Math.min(parseInt(d.dataset.index), getMaxPos()); updateCarousel(); });
+  });
+  window.addEventListener('resize', function() { if (pos > getMaxPos()) pos = getMaxPos(); updateCarousel(); });
+  // Touch
+  let startX = 0, isDragging = false;
+  container.addEventListener('touchstart', function(e) { startX = e.touches[0].clientX; isDragging = true; }, { passive: true });
+  container.addEventListener('touchend', function(e) { if (!isDragging) return; isDragging = false; var dx = e.changedTouches[0].clientX - startX; if (dx < -40) next(); else if (dx > 40) prev(); }, { passive: true });
+})();
+</script>

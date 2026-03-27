@@ -1,0 +1,581 @@
+<!-- MODULE: Dining Menu Toggle — Dinner/Lunch tabs with full menu items -->
+<!-- Source: dining.html -->
+<!-- Dependencies: Menu item photos (external URLs, only 4 items have photos) -->
+
+<style>
+.menu-toggle-section {
+  text-align: center;
+  padding: 50px 40px 10px;
+  background: #f7f5f2;
+}
+
+.menu-toggle {
+  display: inline-flex;
+  border-radius: 40px;
+  overflow: hidden;
+  border: 2px solid #1e2d3a;
+}
+
+.menu-toggle-btn {
+  padding: 14px 50px;
+  font-family: "Lato", sans-serif;
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  border: none;
+  background: transparent;
+  color: #1e2d3a;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.menu-toggle-btn.active {
+  background: #1e2d3a;
+  color: #fff;
+}
+
+.menu-toggle-btn:hover:not(.active) {
+  background: rgba(30, 45, 58, 0.08);
+}
+
+.menu-content {
+  background: #f7f5f2;
+  padding: 40px 0 80px;
+}
+
+.menu-tab {
+  display: none;
+  animation: menuFadeUp 0.5s ease forwards;
+}
+
+.menu-tab.active {
+  display: block;
+}
+
+@keyframes menuFadeUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.menu-intro {
+  text-align: center;
+  max-width: 700px;
+  margin: 0 auto 50px;
+  padding: 0 30px;
+}
+
+.menu-intro h2 {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 2.6rem;
+  font-weight: 300;
+  color: #1e2d3a;
+  margin-bottom: 10px;
+}
+
+.menu-intro p {
+  font-size: 0.9rem;
+  color: #7a8d98;
+  letter-spacing: 0.05em;
+  line-height: 1.7;
+}
+
+.menu-category {
+  max-width: 900px;
+  margin: 0 auto 50px;
+  padding: 0 30px;
+}
+
+.menu-category-title {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: #1e2d3a;
+  border-bottom: 2px solid #1e2d3a;
+  padding-bottom: 10px;
+  margin-bottom: 30px;
+}
+
+.menu-item {
+  padding: 24px 0;
+  border-bottom: 1px solid #e8e4df;
+}
+
+.menu-item:last-child {
+  border-bottom: none;
+}
+
+.menu-item-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 16px;
+  margin-bottom: 6px;
+}
+
+.menu-item-name {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #1e2d3a;
+}
+
+.menu-item-price {
+  font-size: 1rem;
+  font-weight: 300;
+  color: #1e2d3a;
+  white-space: nowrap;
+}
+
+.menu-item-desc {
+  font-size: 0.85rem;
+  color: #666;
+  line-height: 1.6;
+}
+
+.menu-item-img {
+  margin-top: 16px;
+  border-radius: 8px;
+  overflow: hidden;
+  max-height: 280px;
+}
+
+.menu-item-img img {
+  width: 100%;
+  height: 280px;
+  object-fit: cover;
+}
+
+.sides-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px 30px;
+}
+
+.side-item {
+  padding: 12px 0;
+  border-bottom: 1px solid #e8e4df;
+  font-size: 0.95rem;
+  color: #272f36;
+}
+
+.proteins-row {
+  display: flex;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+.protein-item {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 0;
+  border-bottom: 1px solid #e8e4df;
+  flex: 1;
+  min-width: 180px;
+}
+
+.protein-item span:first-child {
+  font-size: 0.95rem;
+  color: #272f36;
+}
+
+.protein-item span:last-child {
+  font-size: 0.95rem;
+  color: #888;
+  font-weight: 300;
+}
+
+.sourcing-note {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 30px 30px 0;
+  text-align: center;
+}
+
+.sourcing-note p {
+  font-size: 0.8rem;
+  font-style: italic;
+  color: #999;
+  line-height: 1.7;
+}
+
+.reservation-cta {
+  max-width: 900px;
+  margin: 40px auto 0;
+  padding: 0 30px;
+  text-align: center;
+}
+
+.reservation-cta-btn {
+  display: inline-block;
+  padding: 16px 44px;
+  background: #1e2d3a;
+  color: #fff;
+  font-family: "Lato", sans-serif;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  border: none;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.reservation-cta-btn:hover {
+  background: #365e75;
+}
+
+@media (max-width: 768px) {
+  .menu-toggle-btn { padding: 12px 30px; font-size: 0.7rem; }
+  .menu-item-img { max-height: 220px; }
+  .menu-item-img img { height: 220px; }
+}
+</style>
+
+<div class="menu-toggle-section">
+  <div class="menu-toggle">
+    <button class="menu-toggle-btn active" data-tab="dinner">Dinner</button>
+    <button class="menu-toggle-btn" data-tab="lunch">Lunch</button>
+  </div>
+</div>
+
+<div class="menu-content">
+  <div class="menu-tab active" id="dinner">
+    <div class="menu-intro">
+      <h2>Dinner Menu</h2>
+      <p>An exquisite evening dining experience featuring locally sourced ingredients, wild-caught fish, and organic produce curated by our Michelin Star Chef.</p>
+    </div>
+
+    <div class="menu-category">
+      <div class="menu-category-title">Appetizers</div>
+
+      <div class="menu-item">
+        <div class="menu-item-header">
+          <span class="menu-item-name">Parisian Onion Soup "Au Gratin"</span>
+          <span class="menu-item-price">16</span>
+        </div>
+        <div class="menu-item-desc">Gratinee with Baguette, Comte, Gruyere</div>
+      </div>
+
+      <div class="menu-item">
+        <div class="menu-item-header">
+          <span class="menu-item-name">Grilled Brussels Sprouts Salad</span>
+          <span class="menu-item-price">21</span>
+        </div>
+        <div class="menu-item-desc">Endive, Pear, Rogue Creamery Blue Cheese, Organic Oregon Hazelnuts, Cranberries, Raisins, Sherry Vinaigrette</div>
+      </div>
+
+      <div class="menu-item">
+        <div class="menu-item-header">
+          <span class="menu-item-name">Hoback Club Wedge</span>
+          <span class="menu-item-price">19</span>
+        </div>
+        <div class="menu-item-desc">Baby Iceberg, Applewood Bacon Crumble, Cherry Tomatoes, Boiled Egg, Blue Cheese Dressing</div>
+      </div>
+
+      <div class="menu-item">
+        <div class="menu-item-header">
+          <span class="menu-item-name">Wild Mushroom Risotto</span>
+          <span class="menu-item-price">19</span>
+        </div>
+        <div class="menu-item-desc">Shaved Parmesan</div>
+      </div>
+
+      <div class="menu-item">
+        <div class="menu-item-header">
+          <span class="menu-item-name">Hamachi Crudo*</span>
+          <span class="menu-item-price">21</span>
+        </div>
+        <div class="menu-item-desc">Sushi Rice, Coconut Milk, Fresno Chili, Soy-Yuzu Dressing, Micro Cilantro</div>
+      </div>
+
+      <div class="menu-item">
+        <div class="menu-item-header">
+          <span class="menu-item-name">Island Creek Oysters (6)*</span>
+          <span class="menu-item-price">28</span>
+        </div>
+        <div class="menu-item-desc">Cocktail Sauce, Mignonette, Lemons</div>
+        <div class="menu-item-img">
+          <img src="https://images.squarespace-cdn.com/content/v1/5c6060230490797f225942e3/1551923830277-065ESPBY4YS3K949LFEU/InAHalfShell-2012-OystersAtHome-4.jpg" alt="Island Creek Oysters">
+        </div>
+      </div>
+
+      <div class="menu-item">
+        <div class="menu-item-header">
+          <span class="menu-item-name">Prime Beef Tartare*</span>
+          <span class="menu-item-price">25</span>
+        </div>
+        <div class="menu-item-desc">Romesco, Scallions, Dijon, Quail Egg, House Made Potato Chips</div>
+      </div>
+    </div>
+
+    <div class="menu-category">
+      <div class="menu-category-title">Entrees</div>
+
+      <div class="menu-item">
+        <div class="menu-item-header">
+          <span class="menu-item-name">Arctic Salmon*</span>
+          <span class="menu-item-price">39</span>
+        </div>
+        <div class="menu-item-desc">Caramelized Saffron Fennel, Citrus-Clam Broth, Guanciale &amp; Orange Relish</div>
+      </div>
+
+      <div class="menu-item">
+        <div class="menu-item-header">
+          <span class="menu-item-name">Winter Vegetable &amp; Preserved Lemon Tagine</span>
+          <span class="menu-item-price">29</span>
+        </div>
+        <div class="menu-item-desc">Couscous, Cilantro, Confit Onions, Raisins, Almonds, Harissa Broth</div>
+      </div>
+
+      <div class="menu-item">
+        <div class="menu-item-header">
+          <span class="menu-item-name">Organic Free Range Pasture Chicken Schnitzel</span>
+          <span class="menu-item-price">39</span>
+        </div>
+        <div class="menu-item-desc">Wilted Coleslaw, Fingerling Potatoes, Caper &amp; Lemon Sauce</div>
+      </div>
+
+      <div class="menu-item">
+        <div class="menu-item-header">
+          <span class="menu-item-name">North American Elk Tenderloin*</span>
+          <span class="menu-item-price">61</span>
+        </div>
+        <div class="menu-item-desc">Parmesan Polenta, Swiss Chard, Cippolini Onion, Rosemary Elk Sauce</div>
+        <div class="menu-item-img">
+          <img src="https://cdn-ilbdein.nitrocdn.com/qkShIANPFbpxPxJgBxbDTPbtLAOnqaCy/assets/images/optimized/rev-76372eb/thehonestbison.com/wp-content/uploads/Elk_Filet_Mignon_1-1.jpg" alt="Elk Tenderloin">
+        </div>
+      </div>
+
+      <div class="menu-item">
+        <div class="menu-item-header">
+          <span class="menu-item-name">House-Made Semolina Carrot Pasta Creste di Bruco</span>
+          <span class="menu-item-price">39</span>
+        </div>
+        <div class="menu-item-desc">Braised Lamb Shank, Local Mushrooms, Pomegranate, Pine Nut, Burrata</div>
+      </div>
+
+      <div class="menu-item">
+        <div class="menu-item-header">
+          <span class="menu-item-name">Veal Scallopini</span>
+          <span class="menu-item-price">55</span>
+        </div>
+        <div class="menu-item-desc">Brown Butter Herb Spaetzle, Spinach, Morel Sauce</div>
+      </div>
+
+      <div class="menu-item">
+        <div class="menu-item-header">
+          <span class="menu-item-name">Daily Butchers Cut</span>
+          <span class="menu-item-price">MP</span>
+        </div>
+        <div class="menu-item-desc">Ask your server for today's selection</div>
+      </div>
+    </div>
+
+    <div class="menu-category">
+      <div class="menu-category-title">Sides — 11</div>
+      <div class="sides-grid">
+        <div class="side-item">Carrot Pasta, Vermont Butter</div>
+        <div class="side-item">Sauteed Spinach</div>
+        <div class="side-item">Mushroom Casserole</div>
+        <div class="side-item">Pan Seared Herbed Spaetzle</div>
+        <div class="side-item">Classical French Fries</div>
+        <div class="side-item">Charred Brussels Sprouts</div>
+      </div>
+    </div>
+
+    <div class="sourcing-note">
+      <p>We strive to collaborate extensively with local suppliers.<br>Our fish is not farm-raised. Additionally, most of our products are organic.</p>
+      <p style="margin-top: 10px; font-size: 0.7rem;">*Consuming raw or undercooked meats, poultry, seafood, shellfish, or eggs may increase your risk of food borne illness.</p>
+    </div>
+  </div>
+
+  <div class="menu-tab" id="lunch">
+    <div class="menu-intro">
+      <h2>Lunch Menu</h2>
+      <p>Refined midday dining in The Great Hall, featuring lighter fare and hearty main dishes made with locally sourced, organic ingredients.</p>
+    </div>
+
+    <div class="menu-category">
+      <div class="menu-category-title">Lighter Fare</div>
+
+      <div class="menu-item">
+        <div class="menu-item-header">
+          <span class="menu-item-name">Roasted Red Pepper &amp; Tomato Soup</span>
+          <span class="menu-item-price">17</span>
+        </div>
+        <div class="menu-item-desc">Gruyere Grilled Cheese</div>
+      </div>
+
+      <div class="menu-item">
+        <div class="menu-item-header">
+          <span class="menu-item-name">Prime Beef Chili Bowl</span>
+          <span class="menu-item-price">17</span>
+        </div>
+        <div class="menu-item-desc">Cheddar Cheese, Scallions, Sour Cream</div>
+      </div>
+
+      <div class="menu-item">
+        <div class="menu-item-header">
+          <span class="menu-item-name">Endive &amp; Beet Salad</span>
+          <span class="menu-item-price">20</span>
+        </div>
+        <div class="menu-item-desc">Idaho Goat Cheese, Green Apple, Caramelized Walnuts, Sherry Vinaigrette</div>
+      </div>
+
+      <div class="menu-item">
+        <div class="menu-item-header">
+          <span class="menu-item-name">Hoback Cobb</span>
+          <span class="menu-item-price">19</span>
+        </div>
+        <div class="menu-item-desc">Mixed Lettuces, Grape Tomato, Endive, Bacon, Hard Boiled Egg, Cucumber, Balsamic Vinaigrette</div>
+      </div>
+
+      <div class="menu-item">
+        <div class="menu-item-header">
+          <span class="menu-item-name">Caesar Salad</span>
+          <span class="menu-item-price">19</span>
+        </div>
+        <div class="menu-item-desc">Romaine, Garlic-Anchovy Dressing, Focaccia Croutons, Shaved Parmesan</div>
+      </div>
+
+      <div class="menu-item">
+        <div class="menu-item-header">
+          <span class="menu-item-name">Poke Bowl</span>
+          <span class="menu-item-price">28</span>
+        </div>
+        <div class="menu-item-desc">Marinated Ahi Tuna, Coconut Milk, Sushi Rice, Avocado, Cucumber, Butternut Squash, Radishes, Pear, Ponzu Sauce</div>
+        <div class="menu-item-img">
+          <img src="https://res.cloudinary.com/kraft-heinz-whats-cooking-ca/image/upload/f_auto/q_auto/c_limit,w_3840/v1/dxp-images/brands/Recipes/global-recipes-heinz-nz/%5Bseriously%5D-good-salmon-poke-bowl/generated/%5Bseriously%5D-good-salmon-poke-bowl-498120?_a=BAVMn6ID0" alt="Poke Bowl">
+        </div>
+      </div>
+
+      <div class="menu-item">
+        <div class="menu-item-header">
+          <span class="menu-item-name">Farm Eggs Omelet</span>
+          <span class="menu-item-price">19</span>
+        </div>
+        <div class="menu-item-desc">SRF Ham, Fingerling Potato, Swiss Cheese, Green Salad</div>
+      </div>
+    </div>
+
+    <div class="menu-category">
+      <div class="menu-category-title">Salad Proteins</div>
+      <div class="proteins-row">
+        <div class="protein-item">
+          <span>Grilled Chicken</span>
+          <span>12</span>
+        </div>
+        <div class="protein-item">
+          <span>Grilled Shrimp</span>
+          <span>17</span>
+        </div>
+        <div class="protein-item">
+          <span>Grilled Salmon</span>
+          <span>19</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="menu-category">
+      <div class="menu-category-title">Main Dishes</div>
+
+      <div class="menu-item">
+        <div class="menu-item-header">
+          <span class="menu-item-name">Reminisce Ranch Angus Beef Tenderloin Carpaccio</span>
+          <span class="menu-item-price">25</span>
+        </div>
+        <div class="menu-item-desc">Baby Arugula, Shaved Grana Padano</div>
+      </div>
+
+      <div class="menu-item">
+        <div class="menu-item-header">
+          <span class="menu-item-name">Snake River Farms Ham &amp; Swiss Cheese Panini</span>
+          <span class="menu-item-price">19</span>
+        </div>
+        <div class="menu-item-desc">460 Ciabatta, Dijonnaise, Arugula, French Fries</div>
+      </div>
+
+      <div class="menu-item">
+        <div class="menu-item-header">
+          <span class="menu-item-name">Hoback Smash Burger</span>
+          <span class="menu-item-price">19 | 34</span>
+        </div>
+        <div class="menu-item-desc">Lazy T Ranch Beef (5oz or 10oz), Lettuce, Pickle, Bacon, Comeback Sauce, Cheddar Cheese Brioche Roll, French Fries</div>
+        <div class="menu-item-img">
+          <img src="https://www.foodandwine.com/thmb/XE8ubzwObCIgMw7qJ9CsqUZocNM=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/MSG-Smash-Burger-FT-RECIPE0124-d9682401f3554ef683e24311abdf342b.jpg" alt="Hoback Smash Burger">
+        </div>
+      </div>
+
+      <div class="menu-item">
+        <div class="menu-item-header">
+          <span class="menu-item-name">Idaho Trout</span>
+          <span class="menu-item-price">38</span>
+        </div>
+        <div class="menu-item-desc">Boiled Potatoes, Sauteed Spinach, Roasted Cauliflower, Lemon Gremolata</div>
+      </div>
+
+      <div class="menu-item">
+        <div class="menu-item-header">
+          <span class="menu-item-name">Winter Pear &amp; Gorgonzola Ravioli</span>
+          <span class="menu-item-price">25</span>
+        </div>
+        <div class="menu-item-desc">Peppercorn Pasta Dough, Spinach, Gorgonzola Sauce, Almonds</div>
+      </div>
+
+      <div class="menu-item">
+        <div class="menu-item-header">
+          <span class="menu-item-name">Alaskan Cod Fish and Chips</span>
+          <span class="menu-item-price">27</span>
+        </div>
+        <div class="menu-item-desc">Tempura Batter, Tartar Sauce, Lemon</div>
+      </div>
+
+      <div class="menu-item">
+        <div class="menu-item-header">
+          <span class="menu-item-name">Hanger Steak Frites</span>
+          <span class="menu-item-price">25</span>
+        </div>
+        <div class="menu-item-desc">Marinated Steak, Side Salad, French Fries</div>
+      </div>
+    </div>
+
+    <div class="menu-category">
+      <div class="menu-category-title">Sides — 11</div>
+      <div class="sides-grid">
+        <div class="side-item">Charred Brussels Sprouts</div>
+        <div class="side-item">Classical French Fries</div>
+        <div class="side-item">Sauteed Spinach</div>
+        <div class="side-item">Mixed Green Salad</div>
+      </div>
+    </div>
+
+    <div class="sourcing-note">
+      <p>We strive to collaborate extensively with local suppliers.<br>Our fish is wild caught. Additionally, most of our products are organic.</p>
+      <p style="margin-top: 10px; font-size: 0.7rem;">*Consuming raw or undercooked meats, poultry, seafood, shellfish, or eggs may increase your risk of food borne illness.</p>
+    </div>
+  </div>
+
+  <div class="reservation-cta">
+    <button class="reservation-cta-btn" onclick="alert('Dining reservations coming soon. Contact the concierge at (307) 249-5943.')">Make a Reservation</button>
+  </div>
+</div>
+
+<script>
+document.querySelectorAll(".menu-toggle-btn").forEach(function(btn) {
+  btn.addEventListener("click", function() {
+    document.querySelectorAll(".menu-toggle-btn").forEach(function(b) { b.classList.remove("active"); });
+    btn.classList.add("active");
+    document.querySelectorAll(".menu-tab").forEach(function(tab) {
+      tab.classList.remove("active");
+      tab.style.animation = "none";
+    });
+    var el = document.getElementById(btn.dataset.tab);
+    el.classList.add("active");
+    el.offsetHeight;
+    el.style.animation = "";
+    window.scrollTo({ top: document.querySelector(".menu-toggle-section").offsetTop - 80, behavior: "smooth" });
+  });
+});
+</script>

@@ -1,0 +1,146 @@
+<!-- MODULE: Mountain Webcams — Live streams, panoramic views, static cameras, carousel -->
+<!-- Source: mountain.html -->
+<!-- Dependencies: YouTube embeds, Jackson Hole webcam feeds, Roundshot panoramic feeds -->
+
+<style>
+.mountain-cams { background: #1e2d3a; padding: 60px 0 80px; }
+.webcam-section-type { text-align: center; padding: 40px 30px 20px; }
+.webcam-section-type:first-child { padding-top: 0; }
+.webcam-section-type h3 {
+  font-size: 0.7rem; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.2em; color: rgba(255,255,255,0.4);
+}
+.webcam-section-type p { font-size: 0.75rem; color: rgba(255,255,255,0.25); margin-top: 4px; }
+.cams-header { text-align: center; padding: 0 30px 40px; }
+.cams-header h2 {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 2.4rem; font-weight: 300; color: #fff; letter-spacing: 0.08em;
+}
+.cams-header p { color: rgba(255,255,255,0.4); font-size: 0.85rem; margin-top: 6px; }
+
+.cams-section-label {
+  font-size: 0.65rem; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.2em; color: rgba(255,255,255,0.3);
+  padding: 0 60px; margin-bottom: 12px; margin-top: 30px;
+}
+
+/* Live streams */
+.cams-livestream { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; padding: 0 60px; }
+.cam-card { position: relative; border-radius: 8px; overflow: hidden; aspect-ratio: 16/9; }
+.cam-card iframe { width: 100%; height: 100%; border: none; }
+.cam-label {
+  position: absolute; bottom: 0; left: 0; right: 0; padding: 12px 16px;
+  background: linear-gradient(to top, rgba(15,25,35,0.9), transparent);
+  display: flex; align-items: center; gap: 8px;
+}
+.cam-label span { color: #fff; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.08em; }
+.cam-live-dot {
+  width: 6px; height: 6px; border-radius: 50%; background: #4ade80;
+  animation: livePulse 2s infinite;
+}
+@keyframes livePulse { 0%,100% { opacity:1; } 50% { opacity:0.4; } }
+
+/* Panoramic */
+.cams-pano { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; padding: 0 60px; }
+.pano-card { position: relative; border-radius: 8px; overflow: hidden; }
+.pano-card img { width: 100%; aspect-ratio: 3/1; object-fit: cover; display: block; }
+
+/* Static cams */
+.cams-static { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; padding: 0 60px; }
+.static-cam { position: relative; border-radius: 6px; overflow: hidden; }
+.static-cam img { width: 100%; aspect-ratio: 16/9; object-fit: cover; display: block; }
+
+/* Carousel */
+.cam-carousel-section { max-width: 900px; margin: 0 auto; padding: 0 30px; }
+.cam-carousel-title {
+  font-size: 0.65rem; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.2em; color: rgba(255,255,255,0.3); margin-bottom: 12px;
+}
+.cam-carousel-wrap { position: relative; border-radius: 8px; overflow: hidden; }
+.cam-carousel-main { width: 100%; aspect-ratio: 16/9; background: #111; }
+.cam-carousel-main img { width: 100%; height: 100%; object-fit: cover; }
+.cam-carousel-arrow {
+  position: absolute; top: 50%; transform: translateY(-50%);
+  width: 44px; height: 44px; background: rgba(30,45,58,0.7); border: none;
+  color: #fff; font-size: 1.6rem; cursor: pointer; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  transition: background 0.3s;
+}
+.cam-carousel-arrow:hover { background: rgba(30,45,58,0.95); }
+.cam-carousel-arrow.prev { left: 12px; }
+.cam-carousel-arrow.next { right: 12px; }
+.cam-carousel-thumbs {
+  display: flex; gap: 8px; margin-top: 12px; overflow-x: auto; padding-bottom: 4px;
+}
+.cam-carousel-thumbs img {
+  width: 80px; height: 50px; object-fit: cover; border-radius: 4px;
+  cursor: pointer; opacity: 0.5; transition: opacity 0.3s; border: 2px solid transparent;
+}
+.cam-carousel-thumbs img.active { opacity: 1; border-color: #fff; }
+
+@media (max-width: 768px) {
+  .cams-livestream, .cams-pano { grid-template-columns: 1fr; padding: 0 20px; }
+  .cams-static { grid-template-columns: 1fr 1fr; padding: 0 20px; }
+  .cams-section-label { padding: 0 20px; }
+}
+</style>
+
+<!-- HTML -->
+<section class="mountain-cams" id="mountain-cams">
+  <div class="cams-header">
+    <h2>Live From the Mountain</h2>
+    <p>Real-time views from Jackson Hole Mountain Resort</p>
+  </div>
+
+  <div class="cams-section-label">Live Streams</div>
+  <div class="cams-livestream">
+    <div class="cam-card">
+      <iframe src="https://www.youtube.com/embed/9kK7RfM3eSc?autoplay=1&mute=1&loop=1&playlist=9kK7RfM3eSc&controls=0&modestbranding=1&rel=0" allow="autoplay; encrypted-media" allowfullscreen loading="lazy"></iframe>
+      <div class="cam-label"><div class="cam-live-dot"></div><span>Corbet's Couloir</span></div>
+    </div>
+    <div class="cam-card">
+      <iframe src="https://www.youtube.com/embed/cOcHcIDbi1o?autoplay=1&mute=1&loop=1&playlist=cOcHcIDbi1o&controls=0&modestbranding=1&rel=0" allow="autoplay; encrypted-media" allowfullscreen loading="lazy"></iframe>
+      <div class="cam-label"><div class="cam-live-dot"></div><span>Snow Stake</span></div>
+    </div>
+  </div>
+
+  <div class="cams-section-label">Panoramic Views</div>
+  <div class="cams-pano">
+    <div class="pano-card">
+      <img src="https://backend.roundshot.com/cams/12a4b2c24cd515e0a115d4a0f59ef7f8/default" alt="Summit Panorama">
+      <div class="cam-label"><span>Summit Panorama</span></div>
+    </div>
+    <div class="pano-card">
+      <img src="https://backend.roundshot.com/cams/6f7dc91857e22fe329e8bdeef5ee5750/default" alt="Rendezvous Lodge">
+      <div class="cam-label"><span>Rendezvous Lodge</span></div>
+    </div>
+  </div>
+
+  <div class="cams-section-label">Mountain Cameras</div>
+  <div class="cams-static">
+    <div class="static-cam">
+      <img src="https://cams.jacksonhole.com/webcam/corbetscouloir.jpg" alt="Corbet's Couloir">
+      <div class="cam-label"><span>Corbet's Couloir</span></div>
+    </div>
+    <div class="static-cam">
+      <img src="https://cams.jacksonhole.com/webcam/codybowl.jpg" alt="Cody Bowl">
+      <div class="cam-label"><span>Cody Bowl</span></div>
+    </div>
+    <div class="static-cam">
+      <img src="https://cams.jacksonhole.com/webcam/guncam.jpg" alt="Sublette Base">
+      <div class="cam-label"><span>Sublette Base</span></div>
+    </div>
+    <div class="static-cam">
+      <img src="https://cams.jacksonhole.com/webcam/commons.jpg" alt="Tram Cam">
+      <div class="cam-label"><span>Tram Cam</span></div>
+    </div>
+    <div class="static-cam">
+      <img src="https://cams.jacksonhole.com/webcam/SouthHoback.jpg" alt="Mountain View">
+      <div class="cam-label"><span>Mountain View</span></div>
+    </div>
+    <div class="static-cam">
+      <img src="https://cams.jacksonhole.com/webcam/casperchair.jpg" alt="Casper Chair">
+      <div class="cam-label"><span>Casper Chair</span></div>
+    </div>
+  </div>
+</section>

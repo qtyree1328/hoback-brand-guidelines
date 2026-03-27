@@ -1,0 +1,71 @@
+<!-- MODULE: Upcoming Events — Example event cards grid -->
+<!-- Source: discover.html -->
+<!-- Note: This is an EXAMPLE of what the events section should look like -->
+
+<style>
+body { margin: 0; font-family: 'Lato', Helvetica, Arial, sans-serif; color: #272f36; }
+.events-section { background: #f7f5f2; padding: 60px 40px; }
+.events-section h3 {
+  font-size: 1.4rem; font-weight: 300; color: #1e2d3a;
+  letter-spacing: 0.1em; text-transform: uppercase; margin: 0 0 8px;
+}
+.events-note {
+  font-size: 0.78rem; color: #7a8d98; font-style: italic; margin-bottom: 30px;
+}
+.events-cards {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px;
+}
+.event-card {
+  background: #fff; border-radius: 6px; overflow: hidden;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+  transition: transform 0.4s, box-shadow 0.4s;
+}
+.event-card:hover { transform: translateY(-4px); box-shadow: 0 10px 30px rgba(0,0,0,0.12); }
+.event-card img { width: 100%; height: 240px; object-fit: cover; }
+.event-card-body { padding: 20px 24px; }
+.event-card-body h4 {
+  font-size: 1rem; font-weight: 700; color: #1e2d3a;
+  text-transform: uppercase; letter-spacing: 0.08em; margin: 0 0 6px;
+}
+.event-card-body .event-date {
+  font-size: 0.8rem; color: #7a8d98; text-transform: uppercase;
+  letter-spacing: 0.1em; margin-bottom: 10px;
+}
+.event-card-body p { font-size: 0.9rem; color: #555; line-height: 1.6; margin: 0; }
+@media (max-width: 768px) {
+  .events-section { padding: 40px 20px; }
+  .events-cards { grid-template-columns: 1fr; }
+  .event-card img { height: 200px; }
+}
+</style>
+
+<div class="events-section">
+  <h3>Upcoming Events</h3>
+  <p class="events-note">Example layout — actual events will be dynamically populated</p>
+  <div class="events-cards">
+    <div class="event-card">
+      <img src="https://www.datocms-assets.com/50871/1765062442-jh_2026rendezvous_digitalgraphics_announcement_infeed_1080x1350_v11.png?fit=crop&w=960" alt="Rendezvous Festival">
+      <div class="event-card-body">
+        <h4>Rendezvous Music Festival</h4>
+        <div class="event-date">March 28, 2026</div>
+        <p>Jackson Hole Mountain Resort's annual celebration of music, skiing, and mountain culture. Live performances across multiple stages in Teton Village.</p>
+      </div>
+    </div>
+    <div class="event-card">
+      <img src="https://hobackclub.com/images/dynamic/getImage.gif?ID=100133" alt="Spring Wine Dinner">
+      <div class="event-card-body">
+        <h4>Spring Wine Dinner</h4>
+        <div class="event-date">April 12, 2026</div>
+        <p>An intimate evening of fine wines paired with a curated multi-course dinner by Chef Jean-Louis Dumonet in The Great Hall.</p>
+      </div>
+    </div>
+    <div class="event-card">
+      <img src="https://hobackclub.com/images/dynamic/getImage.gif?ID=100077" alt="Last Day on Snow">
+      <div class="event-card-body">
+        <h4>Last Day on Snow</h4>
+        <div class="event-date">April 20, 2026</div>
+        <p>Celebrate the end of an incredible ski season with live music, apres festivities, and one final legendary run.</p>
+      </div>
+    </div>
+  </div>
+</div>

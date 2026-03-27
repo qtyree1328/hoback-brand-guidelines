@@ -1,0 +1,74 @@
+<!-- MODULE: Seasons Section — Four-column season cards with hover effects -->
+<!-- Source: index.html -->
+<!-- Dependencies: Season images (external URLs) -->
+
+<style>
+.seasons-section { padding: 0; background: #f5f1eb; }
+.seasons-header { text-align: center; padding: 80px 30px 50px; }
+.seasons-header-sub {
+  display: block; font-size: 1.1rem; text-transform: uppercase;
+  letter-spacing: 0.2em; color: rgba(30,45,58,0.4); font-weight: 300; margin-bottom: 16px;
+}
+.seasons-header-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2.6rem, 4vw, 4.2rem); font-weight: 300; color: #1e2d3a; letter-spacing: 0.02em;
+}
+.seasons-grid { display: flex; flex-wrap: wrap; overflow: hidden; list-style: none; margin: 0; padding: 0; }
+.seasons-grid:hover .seasons-item:not(:hover) .seasons-img { filter: brightness(0.35); }
+.seasons-item { position: relative; width: 25%; overflow: hidden; cursor: pointer; }
+.seasons-item::before { content: ""; display: block; padding-top: 200%; }
+.seasons-img {
+  position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
+  --pos-x: 0; --pos-y: 0;
+  object-position: calc(50% + var(--pos-x) * 50%) calc(50% + var(--pos-y) * 50%);
+  transition: filter 0.6s cubic-bezier(0.22, 1, 0.36, 1), transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.seasons-item:hover .seasons-img { transform: scale(1.04); filter: brightness(0.75); }
+.seasons-label {
+  position: absolute; inset: 0; display: flex; flex-direction: column;
+  align-items: center; justify-content: center; z-index: 2; color: #fff;
+}
+.seasons-name {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(2.8rem, 3.2vw, 4.4rem); font-weight: 300;
+  text-transform: uppercase; letter-spacing: 0.04em; text-shadow: 0 2px 20px rgba(0,0,0,0.35);
+}
+@media (max-width: 768px) {
+  .seasons-item { width: 50%; }
+  .seasons-item::before { padding-top: 80%; }
+}
+</style>
+
+<!-- HTML -->
+<section class="seasons-section">
+  <div class="seasons-header">
+    <span class="seasons-header-sub">Jackson Hole, Wyoming</span>
+    <h2 class="seasons-header-title">Four Seasons of Extraordinary Living</h2>
+  </div>
+  <ul class="seasons-grid">
+    <li class="seasons-item">
+      <img class="seasons-img" style="--pos-x: .5; --pos-y: 0"
+           src="https://www.datocms-assets.com/50871/1680193117-skier-winter-promo-box-ajimmerson_powder_12-3-2022-1103-jpg.jpg"
+           alt="Winter in Jackson Hole" loading="lazy">
+      <div class="seasons-label"><span class="seasons-name">Winter</span></div>
+    </li>
+    <li class="seasons-item">
+      <img class="seasons-img" style="--pos-x: -.7; --pos-y: 0"
+           src="https://hobackclub.com/images/dynamic/getImage.gif?ID=100077"
+           alt="Spring in Jackson Hole" loading="lazy">
+      <div class="seasons-label"><span class="seasons-name">Spring</span></div>
+    </li>
+    <li class="seasons-item">
+      <img class="seasons-img" style="--pos-x: .4; --pos-y: 0"
+           src="https://hobackclub.com/images/dynamic/getImage.gif?ID=100120"
+           alt="Summer in Jackson Hole" loading="lazy">
+      <div class="seasons-label"><span class="seasons-name">Summer</span></div>
+    </li>
+    <li class="seasons-item">
+      <img class="seasons-img" style="--pos-x: 0; --pos-y: 0"
+           src="https://realestate.theclearcreekgroup.com/wp-content/uploads/sites/2/2016/09/Fall-Colors-Jackson-Hole-1030x579.jpg"
+           alt="Fall in Jackson Hole" loading="lazy">
+      <div class="seasons-label"><span class="seasons-name">Fall</span></div>
+    </li>
+  </ul>
+</section>

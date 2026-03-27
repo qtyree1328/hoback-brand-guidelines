@@ -1,0 +1,46 @@
+<!-- MODULE: Flyover Video — Fullscreen aerial journey video -->
+<!-- Source: mountain.html -->
+<!-- Dependencies: images/flyover-hq.mp4 -->
+
+<style>
+.village-scroll-section { position: relative; overflow: hidden; }
+.village-scroll-header {
+  position: absolute; top: 40px; left: 0; right: 0; text-align: center; z-index: 2;
+  pointer-events: none;
+}
+.village-scroll-header h2 {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 2.4rem; font-weight: 300; color: #fff;
+  text-shadow: 0 2px 20px rgba(0,0,0,0.5);
+}
+.village-scroll-header p {
+  font-size: 0.8rem; color: rgba(255,255,255,0.6);
+  text-transform: uppercase; letter-spacing: 0.15em; margin-top: 4px;
+}
+.village-scroll-video {
+  width: 100%; display: block; max-height: 85vh; object-fit: cover;
+}
+</style>
+
+<!-- HTML -->
+<section class="village-scroll-section" id="flyoverSection">
+  <div style="position:relative;">
+    <div class="village-scroll-header">
+      <h2>Jackson Flyover to Hoback</h2>
+      <p>Aerial journey through the valley</p>
+    </div>
+    <video class="village-scroll-video" src="https://qtyree1328.github.io/hoback-demo/images/flyover-hq.mp4" muted playsinline preload="auto" loop></video>
+  </div>
+</section>
+
+<!-- JS: Auto-play on scroll into view -->
+<script>
+(function() {
+  var vid = document.querySelector('.village-scroll-video');
+  if (!vid) return;
+  var obs = new IntersectionObserver(function(entries) {
+    entries.forEach(function(e) { e.isIntersecting ? vid.play() : vid.pause(); });
+  }, { threshold: 0.3 });
+  obs.observe(vid);
+})();
+</script>

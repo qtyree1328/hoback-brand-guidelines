@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hoback Club - Email Design Guide</title>
+<link href="https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&family=Cormorant+Garamond:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+body { font-family: 'Lato', sans-serif; color: #272f36; background: #f7f5f2; margin: 0; padding: 40px; max-width: 900px; margin: 0 auto; }
+h1 { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: 2.4rem; color: #1e2d3a; margin-bottom: 8px; }
+h2 { font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.2em; color: #1e2d3a; margin: 50px 0 20px; border-bottom: 2px solid #1e2d3a; padding-bottom: 10px; }
+h3 { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.15em; color: #666; margin: 24px 0 10px; }
+p { font-size: 0.9rem; color: #666; line-height: 1.7; margin-bottom: 12px; }
+.subtitle { font-size: 0.8rem; color: #999; letter-spacing: 0.1em; text-transform: uppercase; }
+
+.guide-section { background: #fff; border-radius: 8px; padding: 40px; margin-bottom: 30px; }
+
+/* Color swatches */
+.swatches { display: flex; gap: 20px; flex-wrap: wrap; margin: 20px 0; }
+.swatch { width: 160px; }
+.swatch-block { height: 80px; border-radius: 6px; margin-bottom: 8px; border: 1px solid rgba(0,0,0,0.08); }
+.swatch-name { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; }
+.swatch-hex { font-size: 0.8rem; color: #999; font-family: monospace; }
+
+/* Typography samples */
+.type-sample { margin: 20px 0; padding: 20px; background: #f7f5f2; border-radius: 6px; }
+
+/* Asset grid */
+.asset-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 20px; margin: 20px 0; }
+.asset-card { background: #f7f5f2; border-radius: 8px; padding: 20px; text-align: center; }
+.asset-card img { max-height: 120px; margin: 0 auto 12px; }
+.asset-card .filename { font-size: 0.75rem; font-family: monospace; color: #999; }
+
+/* Button samples */
+.btn-row { display: flex; gap: 20px; flex-wrap: wrap; margin: 16px 0; align-items: center; }
+.btn-primary { display: inline-block; padding: 14px 36px; background: #1e2d3a; color: #fff; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.2em; border: none; cursor: pointer; text-decoration: none; }
+.btn-tan { display: inline-block; padding: 14px 36px; background: #ede9e1; color: #1e2d3a; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.2em; border: none; cursor: pointer; text-decoration: none; }
+.btn-outline { display: inline-block; padding: 14px 36px; border: 2px solid #1e2d3a; color: #1e2d3a; background: transparent; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.2em; cursor: pointer; text-decoration: none; }
+.btn-white-outline { display: inline-block; padding: 14px 36px; border: 2px solid #fff; color: #fff; background: transparent; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.2em; cursor: pointer; text-decoration: none; }
+.btn-white-solid { display: inline-block; padding: 14px 36px; background: #fff; color: #1e2d3a; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.2em; border: none; cursor: pointer; text-decoration: none; }
+
+/* Spec table */
+.spec-table { width: 100%; border-collapse: collapse; font-size: 0.82rem; margin-top: 16px; }
+.spec-table th { text-align: left; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: #1e2d3a; padding: 10px 12px; border-bottom: 2px solid #1e2d3a; }
+.spec-table td { padding: 10px 12px; border-bottom: 1px solid #e8e4df; color: #555; }
+.spec-table td:first-child { font-weight: 700; color: #1e2d3a; white-space: nowrap; }
+
+code { background: #f0ede8; padding: 2px 6px; border-radius: 3px; font-size: 0.8rem; }
+</style>
+</head>
+<body>
+
+<h1>Hoback Club</h1>
+<p class="subtitle">Email Campaign Design Guide &amp; Asset Reference</p>
+
+<!-- ===== COLORS ===== -->
+<div class="guide-section">
+<h2>Brand Colors</h2>
+
+<h3>Primary Palette</h3>
+<div class="swatches">
+  <div class="swatch">
+    <div class="swatch-block" style="background: #1e2d3a;"></div>
+    <div class="swatch-name">Dark Blue</div>
+    <div class="swatch-hex">#1e2d3a</div>
+  </div>
+  <div class="swatch">
+    <div class="swatch-block" style="background: #ede9e1;"></div>
+    <div class="swatch-name">Warm Tan</div>
+    <div class="swatch-hex">#ede9e1</div>
+  </div>
+  <div class="swatch">
+    <div class="swatch-block" style="background: #f7f5f2;"></div>
+    <div class="swatch-name">Light Background</div>
+    <div class="swatch-hex">#f7f5f2</div>
+  </div>
+  <div class="swatch">
+    <div class="swatch-block" style="background: #ffffff; border: 1px solid #ddd;"></div>
+    <div class="swatch-name">White</div>
+    <div class="swatch-hex">#ffffff</div>
+  </div>
+</div>
+
+<h3>Text Colors</h3>
+<div class="swatches">
+  <div class="swatch">
+    <div class="swatch-block" style="background: #272f36;"></div>
+    <div class="swatch-name">Body Text</div>
+    <div class="swatch-hex">#272f36</div>
+  </div>
+  <div class="swatch">
+    <div class="swatch-block" style="background: #666;"></div>
+    <div class="swatch-name">Secondary Text</div>
+    <div class="swatch-hex">#666666</div>
+  </div>
+  <div class="swatch">
+    <div class="swatch-block" style="background: #999;"></div>
+    <div class="swatch-name">Muted / Caption</div>
+    <div class="swatch-hex">#999999</div>
+  </div>
+  <div class="swatch">
+    <div class="swatch-block" style="background: #7a8d98;"></div>
+    <div class="swatch-name">Accent Gray</div>
+    <div class="swatch-hex">#7a8d98</div>
+  </div>
+</div>
+
+<h3>UI &amp; Accent Colors</h3>
+<div class="swatches">
+  <div class="swatch">
+    <div class="swatch-block" style="background: #365e75;"></div>
+    <div class="swatch-name">Button Hover</div>
+    <div class="swatch-hex">#365e75</div>
+  </div>
+  <div class="swatch">
+    <div class="swatch-block" style="background: #e8e4df;"></div>
+    <div class="swatch-name">Divider / Border</div>
+    <div class="swatch-hex">#e8e4df</div>
+  </div>
+</div>
+</div>
+
+<!-- ===== TYPOGRAPHY ===== -->
+<div class="guide-section">
+<h2>Typography</h2>
+
+<h3>Headline Font &mdash; Cormorant Garamond</h3>
+<p>Used for large section headlines, hero text, and event titles. Always light weight (300).</p>
+<div class="type-sample">
+  <p style="font-family: 'Cormorant Garamond', serif; font-size: 2.4rem; font-weight: 300; color: #1e2d3a; margin: 0 0 12px;">Upcoming Dining Events</p>
+  <p style="font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; font-weight: 300; color: #1e2d3a; margin: 0 0 12px;">Wine Pairing Dinner</p>
+  <p style="font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; font-weight: 300; color: #1e2d3a; margin: 0;">Questions or Special Requests?</p>
+</div>
+<p><strong>Email sizes:</strong> Hero headline <code>32px</code>, event titles <code>28px</code>, section headings <code>26px</code></p>
+
+<h3>Body Font &mdash; Lato</h3>
+<p>Used for all body text, navigation, buttons, labels, and captions.</p>
+<div class="type-sample">
+  <p style="font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.15em; color: #7a8d98; margin: 0 0 12px;">Subheading Label &mdash; 11px / 700 / uppercase / 3px tracking / #7a8d98</p>
+  <p style="font-size: 0.9rem; font-weight: 300; color: #666; line-height: 1.7; margin: 0 0 12px;">Body text — Lato 300, 14px, color #666666, line-height 1.7. Used for event descriptions, paragraph content, and supporting text throughout the email.</p>
+  <p style="font-size: 0.82rem; font-weight: 700; color: #1e2d3a; margin: 0 0 12px;">Emphasis text &mdash; Lato 700, 13px, #1e2d3a. Used for pricing, guest limits, and key details.</p>
+  <p style="font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.2em; color: #999; margin: 0;">Time / Meta &mdash; 11px / 700 / uppercase / 3px tracking / #999</p>
+</div>
+
+<h3>Web Font Links</h3>
+<p>Include in <code>&lt;head&gt;</code>. Falls back gracefully in Outlook to Georgia + Helvetica.</p>
+<div class="type-sample">
+  <code style="font-size: 0.75rem; display: block; word-break: break-all;">&lt;link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Cormorant+Garamond:wght@300;400&display=swap" rel="stylesheet"&gt;</code>
+</div>
+<p><strong>Fallback stacks:</strong></p>
+<p>Headlines: <code>'Cormorant Garamond', Georgia, 'Times New Roman', serif</code><br>
+Body: <code>'Lato', Helvetica, Arial, sans-serif</code></p>
+</div>
+
+<!-- ===== BUTTONS ===== -->
+<div class="guide-section">
+<h2>Button Styles</h2>
+<p>Five button variants used across the brand. In email, all buttons must use the "bulletproof button" pattern (table + td with background color) for Outlook compatibility.</p>
+
+<h3>Primary (Dark Blue)</h3>
+<p>Main call-to-action. Used for "View Full Menu" in the closing section.</p>
+<div class="btn-row">
+  <a class="btn-primary">View Full Menu</a>
+</div>
+
+<h3>Tan (Warm Tan Background)</h3>
+<p>Secondary CTA on white backgrounds. Used for "Reserve Your Seat" buttons on each event.</p>
+<div class="btn-row">
+  <a class="btn-tan">Reserve Your Seat</a>
+</div>
+
+<h3>Outline (Dark Blue Border)</h3>
+<p>Tertiary action on light backgrounds. Use when you need a lighter visual weight.</p>
+<div class="btn-row">
+  <a class="btn-outline">Learn More</a>
+</div>
+
+<h3>White Outline (On Dark Backgrounds)</h3>
+<p>CTA on dark blue or image backgrounds.</p>
+<div class="btn-row" style="background: #1e2d3a; padding: 24px; border-radius: 6px;">
+  <a class="btn-white-outline">Explore</a>
+</div>
+
+<h3>White Solid (On Dark Backgrounds)</h3>
+<p>High-emphasis CTA on dark blue or image backgrounds.</p>
+<div class="btn-row" style="background: #1e2d3a; padding: 24px; border-radius: 6px;">
+  <a class="btn-white-solid">Reserve Now</a>
+</div>
+
+<h3>Button Specification Table</h3>
+<table class="spec-table">
+  <thead>
+    <tr>
+      <th>Variant</th>
+      <th>Background</th>
+      <th>Text Color</th>
+      <th>Border</th>
+      <th>Use On</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Primary</td>
+      <td><code>#1e2d3a</code></td>
+      <td><code>#ffffff</code></td>
+      <td>None</td>
+      <td>Light backgrounds, closing CTA</td>
+    </tr>
+    <tr>
+      <td>Tan</td>
+      <td><code>#ede9e1</code></td>
+      <td><code>#1e2d3a</code></td>
+      <td>None</td>
+      <td>White event cards, secondary CTAs</td>
+    </tr>
+    <tr>
+      <td>Outline</td>
+      <td>Transparent</td>
+      <td><code>#1e2d3a</code></td>
+      <td><code>2px solid #1e2d3a</code></td>
+      <td>Light backgrounds, tertiary actions</td>
+    </tr>
+    <tr>
+      <td>White Outline</td>
+      <td>Transparent</td>
+      <td><code>#ffffff</code></td>
+      <td><code>2px solid #ffffff</code></td>
+      <td>Dark blue or image backgrounds</td>
+    </tr>
+    <tr>
+      <td>White Solid</td>
+      <td><code>#ffffff</code></td>
+      <td><code>#1e2d3a</code></td>
+      <td>None</td>
+      <td>Dark blue or image backgrounds, high emphasis</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3>Shared Button Properties</h3>
+<p>All variants share these properties:</p>
+<div class="type-sample">
+  <p style="font-size: 0.82rem; margin: 0; line-height: 2;">
+    <strong>Font:</strong> Lato, 11px, weight 700<br>
+    <strong>Text transform:</strong> uppercase<br>
+    <strong>Letter spacing:</strong> 3px (0.2em)<br>
+    <strong>Padding:</strong> 12px top/bottom, 32px left/right<br>
+    <strong>Border radius:</strong> None (square/rectangular)
+  </p>
+</div>
+
+<h3>Email Button Code Pattern</h3>
+<p>Use this table-based "bulletproof button" pattern in email templates. This renders correctly in every email client including Outlook:</p>
+<div class="type-sample">
+<code style="font-size: 0.72rem; display: block; white-space: pre-wrap; line-height: 1.6;">&lt;table role="presentation" cellspacing="0" cellpadding="0" border="0"&gt;
+  &lt;tr&gt;
+    &lt;td style="background-color: #ede9e1; padding: 12px 32px;"&gt;
+      &lt;a href="#" style="font-family: 'Lato', Helvetica, Arial, sans-serif;
+        font-size: 11px; font-weight: 700; color: #1e2d3a;
+        text-decoration: none; text-transform: uppercase;
+        letter-spacing: 3px; display: inline-block;"&gt;
+        Reserve Your Seat
+      &lt;/a&gt;
+    &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/table&gt;</code>
+</div>
+<p>Swap the <code>background-color</code> and <code>color</code> values to create any variant.</p>
+</div>
+
+<!-- ===== DATE BADGE ===== -->
+<div class="guide-section">
+<h2>Date Badge</h2>
+<p>Square badge showing day and month, positioned to the right of event titles.</p>
+
+<div style="display: flex; align-items: center; gap: 30px; margin: 20px 0;">
+  <div style="width: 66px; height: 66px; background: #1e2d3a; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+    <span style="font-family: 'Cormorant Garamond', serif; font-size: 26px; font-weight: 300; color: #fff; line-height: 1;">22</span>
+    <span style="font-family: 'Lato', sans-serif; font-size: 10px; font-weight: 700; color: rgba(255,255,255,0.6); text-transform: uppercase; letter-spacing: 2px; line-height: 1.4;">MAR</span>
+  </div>
+  <div>
+    <p style="margin: 0; font-size: 0.82rem; line-height: 2;">
+      <strong>Size:</strong> 66 x 66px<br>
+      <strong>Background:</strong> <code>#1e2d3a</code><br>
+      <strong>Day:</strong> Cormorant Garamond 300, 26px, <code>#ffffff</code><br>
+      <strong>Month:</strong> Lato 700, 10px, uppercase, 2px tracking, <code>rgba(255,255,255,0.6)</code>
+    </p>
+  </div>
+</div>
+</div>
+
+<!-- ===== ASSETS ===== -->
+<div class="guide-section">
+<h2>Image Assets &mdash; Mailchimp Content Studio URLs</h2>
+<p>All images are uploaded to Mailchimp Content Studio. Use these URLs directly in templates.</p>
+
+<h3>Logos</h3>
+<div class="asset-grid">
+  <div class="asset-card" style="background: #1e2d3a;">
+    <img src="https://mcusercontent.com/c4b9546b92e82ffccc39aa16c/images/1128138d-9212-2ebf-c730-5ca629b99ea9.png" alt="Logo Shield" style="max-height: 80px;">
+    <div class="swatch-name" style="color: #fff; margin-top: 12px;">Shield Logo (PNG)</div>
+    <div class="filename" style="color: rgba(255,255,255,0.5);">Primary logo for headers/footers</div>
+  </div>
+  <div class="asset-card">
+    <img src="https://mcusercontent.com/c4b9546b92e82ffccc39aa16c/files/3808e980-a573-8512-355b-384fd67f773c/logo_nav.svg" alt="Logo Nav" style="max-height: 40px;">
+    <div class="swatch-name" style="margin-top: 12px;">Text Wordmark (SVG)</div>
+    <div class="filename">Horizontal wordmark for compact headers</div>
+  </div>
+</div>
+
+<h3>Mailchimp CDN URLs</h3>
+<div class="type-sample" style="font-size: 0.75rem;">
+  <p style="margin-bottom: 10px;"><strong>Shield Logo (PNG):</strong><br><code style="word-break: break-all;">https://mcusercontent.com/c4b9546b92e82ffccc39aa16c/images/1128138d-9212-2ebf-c730-5ca629b99ea9.png</code></p>
+  <p style="margin-bottom: 10px;"><strong>Logo Nav (SVG):</strong><br><code style="word-break: break-all;">https://mcusercontent.com/c4b9546b92e82ffccc39aa16c/files/3808e980-a573-8512-355b-384fd67f773c/logo_nav.svg</code></p>
+  <p style="margin-bottom: 10px;"><strong>Mountains Drawing (PNG):</strong><br><code style="word-break: break-all;">https://mcusercontent.com/c4b9546b92e82ffccc39aa16c/images/3014529e-7a5a-646a-3a9c-32e89256771c.png</code></p>
+  <p style="margin-bottom: 0;"><strong>Building Drawing (PNG):</strong><br><code style="word-break: break-all;">https://mcusercontent.com/c4b9546b92e82ffccc39aa16c/images/e1d7d626-3731-d70e-5fb3-8f73f62cb84f.png</code></p>
+</div>
+
+<h3>Decorative Drawings</h3>
+<div class="asset-grid">
+  <div class="asset-card">
+    <img src="https://mcusercontent.com/c4b9546b92e82ffccc39aa16c/images/3014529e-7a5a-646a-3a9c-32e89256771c.png" alt="Tetons Drawing" style="opacity: 0.3;">
+    <div class="swatch-name" style="margin-top: 12px;">Teton Range Drawing</div>
+    <div class="filename">Hero/intro watermark at 15% opacity</div>
+  </div>
+  <div class="asset-card">
+    <img src="https://mcusercontent.com/c4b9546b92e82ffccc39aa16c/images/e1d7d626-3731-d70e-5fb3-8f73f62cb84f.png" alt="Building Drawing" style="opacity: 0.3;">
+    <div class="swatch-name" style="margin-top: 12px;">Hoback Building Drawing</div>
+    <div class="filename">Closing section accent at 25% opacity</div>
+  </div>
+</div>
+
+<h3>Seasonal / Stock Images (Hosted Externally)</h3>
+<p>These are already hosted and can be used by URL in any template:</p>
+<div class="type-sample" style="font-size: 0.75rem;">
+  <p><strong>Dining / Hero:</strong><br><code style="word-break: break-all;">https://hobackclub.com/images/dynamic/getImage.gif?ID=100091</code></p>
+  <p><strong>Spring:</strong><br><code style="word-break: break-all;">https://hobackclub.com/images/dynamic/getImage.gif?ID=100077</code></p>
+  <p><strong>Summer:</strong><br><code style="word-break: break-all;">https://hobackclub.com/images/dynamic/getImage.gif?ID=100120</code></p>
+  <p><strong>Deck / Apres Ski:</strong><br><code style="word-break: break-all;">https://www.travelandleisure.com/thmb/YiylyFMlqZz6kD-78-4g_dHdxHU=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/TAL-deck-hoback-club-wyoming-HOBACKCLUB0126-16ecbcfb0dcf4eceb5f9cb6c44323a13.jpg</code></p>
+</div>
+</div>
+
+<!-- ===== LAYOUT ===== -->
+<div class="guide-section">
+<h2>Email Layout Structure</h2>
+
+<h3>Dining Events Template Layout</h3>
+<div class="type-sample">
+  <p style="font-size: 0.82rem; margin: 0; line-height: 2.2;">
+    1. <strong>Header bar:</strong> #1e2d3a, centered shield logo, 30px padding<br>
+    2. <strong>Intro section:</strong> #ede9e1 tan, mountain drawing watermark (15% opacity), headline overlay<br>
+    3. <strong>Event cards (x3):</strong> White background, title + date badge row, full-width image, description + tan CTA button<br>
+    4. <strong>Spacers:</strong> 16px #f7f5f2 gap between each event card<br>
+    5. <strong>Closing section:</strong> #ede9e1 tan, two-column table &mdash; text + button left, building drawing right (25% opacity)<br>
+    6. <strong>Legal line:</strong> Inline with closing, small text with unsubscribe + address merge tags
+  </p>
+</div>
+
+<h3>Spacing Rules</h3>
+<table class="spec-table">
+  <thead>
+    <tr><th>Element</th><th>Value</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Email max-width</td><td>600px</td></tr>
+    <tr><td>Side padding</td><td>40px (20px on mobile)</td></tr>
+    <tr><td>Event card top padding</td><td>35px</td></tr>
+    <tr><td>Event card bottom padding</td><td>35px</td></tr>
+    <tr><td>Between events (spacer)</td><td>16px</td></tr>
+    <tr><td>Image border-radius</td><td>4px</td></tr>
+    <tr><td>Event image height</td><td>260px (200px mobile)</td></tr>
+    <tr><td>Recommended image upload size</td><td>1200 x 600px (2x retina)</td></tr>
+  </tbody>
+</table>
+</div>
+
+<!-- ===== MC:EDIT REGIONS ===== -->
+<div class="guide-section">
+<h2>Editable Regions (mc:edit) Reference</h2>
+<p>These are the content blocks the dining room manager can edit in Mailchimp's visual editor:</p>
+
+<table class="spec-table">
+  <thead>
+    <tr><th>mc:edit Name</th><th>Content</th><th>What to Change</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>header_logo</td><td>Dark blue header bar</td><td>Logo image (rarely changes)</td></tr>
+    <tr><td>intro_section</td><td>Tan intro with mountain drawing</td><td>Headline text, subheading</td></tr>
+    <tr><td>event_1_details</td><td>Event 1 title row</td><td>Time, event name, date badge day + month</td></tr>
+    <tr><td>event_1_image</td><td>Event 1 photo</td><td>Click image to replace from Content Studio</td></tr>
+    <tr><td>event_1_cta</td><td>Event 1 description</td><td>Description, price, guest limit, button link</td></tr>
+    <tr><td>event_2_details</td><td>Event 2 title row</td><td>Same as event 1</td></tr>
+    <tr><td>event_2_image</td><td>Event 2 photo</td><td>Same as event 1</td></tr>
+    <tr><td>event_2_cta</td><td>Event 2 description</td><td>Same as event 1</td></tr>
+    <tr><td>event_3_details</td><td>Event 3 title row</td><td>Same as event 1</td></tr>
+    <tr><td>event_3_image</td><td>Event 3 photo</td><td>Same as event 1</td></tr>
+    <tr><td>event_3_cta</td><td>Event 3 description</td><td>Same as event 1</td></tr>
+    <tr><td>closing_cta</td><td>Closing section text</td><td>Headline, phone number, "View Full Menu" link</td></tr>
+  </tbody>
+</table>
+</div>
+
+<!-- ===== MERGE TAGS ===== -->
+<div class="guide-section">
+<h2>Required Mailchimp Merge Tags</h2>
+<p>These are already included in the template. Do not remove them:</p>
+<table class="spec-table">
+  <thead>
+    <tr><th>Merge Tag</th><th>Purpose</th><th>Required</th></tr>
+  </thead>
+  <tbody>
+    <tr><td><code>*|UNSUB|*</code></td><td>Unsubscribe link</td><td>Yes (CAN-SPAM)</td></tr>
+    <tr><td><code>*|LIST:ADDRESSLINE|*</code></td><td>Physical mailing address</td><td>Yes (CAN-SPAM)</td></tr>
+    <tr><td><code>*|UPDATE_PROFILE|*</code></td><td>Update email preferences link</td><td>Recommended</td></tr>
+    <tr><td><code>*|CURRENT_YEAR|*</code></td><td>Auto-fills current year in copyright</td><td>No</td></tr>
+    <tr><td><code>*|FNAME|*</code></td><td>Recipient's first name (for personalization)</td><td>No</td></tr>
+  </tbody>
+</table>
+</div>
+
+<!-- ===== MAILCHIMP NOTES ===== -->
+<div class="guide-section">
+<h2>Implementation Notes</h2>
+<ul style="font-size: 0.85rem; line-height: 2.4; color: #666;">
+  <li>Use <strong>table-based layout only</strong> &mdash; flexbox, grid, and div positioning break in Outlook</li>
+  <li>Use the <strong>bulletproof button pattern</strong> (table &gt; tr &gt; td with background-color) for all buttons</li>
+  <li>Google Fonts render in Apple Mail, iOS Mail, and Gmail app. Falls back to Georgia/Helvetica in Outlook</li>
+  <li>SVG may not render in Outlook desktop &mdash; the shield logo uses PNG to avoid this</li>
+  <li>All images need explicit <code>width</code> attributes and <code>alt</code> text</li>
+  <li>Upload event photos at <strong>1200 x 600px</strong> for retina displays</li>
+  <li>Keep total email HTML under <strong>102KB</strong> to avoid Gmail clipping</li>
+  <li>The drawings use inline <code>opacity: 0.15</code> (mountains) and <code>opacity: 0.25</code> (building) to stay subtle</li>
+  <li>Inline all CSS &mdash; Mailchimp's auto-inliner handles <code>&lt;style&gt;</code> blocks but some clients strip them</li>
+  <li>To use the template: <strong>Content &rarr; Email Templates &rarr; Create Template &rarr; Paste in code</strong></li>
+</ul>
+</div>
+
+</body>
+</html>
